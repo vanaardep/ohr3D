@@ -5,9 +5,9 @@ public class EnemyMove : MonoBehaviour {
 
 	public AudioClip hurtSound2;
 
-	public Transform player;
-	Transform TeslaSpotlight;
-	public Transform baseCar;
+     Transform player;
+	 Transform TeslaSpotlight;
+	 Transform baseCar;
 	
 	float speed = 1f;
 	//float angleSpread = 20;
@@ -24,7 +24,7 @@ public class EnemyMove : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		player = GameObject.Find ("Player").transform;
+		player = GameObject.Find ("Auron").transform;
 		frozen = false;
 		//TeslaSpotlight = GameObject.Find ("TeslaSpotlight").transform;
 		baseCar = GameObject.Find ("baseCar").transform;
@@ -65,16 +65,17 @@ public class EnemyMove : MonoBehaviour {
 				Invoke ("unfreezeEnemy", enemyFreezeTime);
 			} */
 			
-			if (distanceToPlayer < distanceToCar) {
-				// Move towards player
-
-				transform.LookAt(player.position, Vector3.up);
-				transform.position = Vector3.MoveTowards (transform.position, player.position, speed * Time.deltaTime);
-			} else {
-				// Move towards car
-				transform.LookAt(baseCar.position, Vector3.up);
-				transform.position = Vector3.MoveTowards (transform.position, baseCar.position, speed * Time.deltaTime);
-			}
+			if (distanceToPlayer < distanceToCar) 
+				{
+					// Move towards player
+					transform.LookAt(player.position, Vector3.up);
+					transform.position = Vector3.MoveTowards (transform.position, player.position, speed * Time.deltaTime);
+				}
+		   		 else
+					{
+						transform.LookAt(baseCar.position, Vector3.up);
+						transform.position = Vector3.MoveTowards (transform.position, baseCar.position, speed * Time.deltaTime);
+					}
 		//} 
 	}
 
