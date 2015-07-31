@@ -9,7 +9,7 @@ public class EnemyMove : MonoBehaviour {
 	 Transform TeslaSpotlight;
 	 Transform baseCar;
 	
-	float speed = 1f;
+	public float speed = 1.2f;
 	//float angleSpread = 20;
 	//float enemyFreezeTime = 5;
 
