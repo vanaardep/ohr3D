@@ -1,10 +1,54 @@
 fileFormatVersion: 2
-guid: 601872391c42c0048b4364a396ce3b1d
-timeCreated: 1439720698
+guid: 9342a07b38106d44fadcffe995e071d9
+timeCreated: 1439722012
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: pad_f_l
+    100004: pad_f_r
+    100006: pad_r_l
+    100008: pad_r_r
+    100010: Plane
+    100012: platform_lower
+    100014: platform_upper
+    100016: weapon
+    400000: //RootNode
+    400002: pad_f_l
+    400004: pad_f_r
+    400006: pad_r_l
+    400008: pad_r_r
+    400010: Plane
+    400012: platform_lower
+    400014: platform_upper
+    400016: weapon
+    2300000: pad_f_l
+    2300002: pad_f_r
+    2300004: pad_r_l
+    2300006: pad_r_r
+    2300008: Plane
+    2300010: platform_lower
+    2300012: platform_upper
+    2300014: weapon
+    3300000: pad_f_l
+    3300002: pad_f_r
+    3300004: pad_r_l
+    3300006: pad_r_r
+    3300008: Plane
+    3300010: platform_lower
+    3300012: platform_upper
+    3300014: weapon
+    4300000: platform_lower
+    4300002: Plane
+    4300004: pad_r_l
+    4300006: pad_f_l
+    4300008: pad_r_r
+    4300010: pad_f_r
+    4300012: weapon
+    4300014: platform_upper
+    7400000: Default Take
+    9500000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0
@@ -28,7 +72,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: .5
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1

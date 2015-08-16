@@ -31,5 +31,15 @@ public class BuildDefenceObject : MonoBehaviour {
 			GameObject thisObject = Instantiate(Resources.Load("lightMine"), playerPosition, Quaternion.identity) as GameObject;
 			SoundManager.instance.PlaySingle(buildSound);
 		}
+
+		if (Input.GetKeyUp (KeyCode.R)) { //Deploy light turret
+			
+			Debug.Log(">>>> Place light turret");
+			
+			Vector3 playerPosition = GameObject.Find("Auron").transform.position;
+			
+			GameObject thisObject = Instantiate(Resources.Load("turretPrefab"), playerPosition, Quaternion.identity) as GameObject;
+			SoundManager.instance.PlaySingle(buildSound);
+		}
 	}
 }
