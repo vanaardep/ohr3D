@@ -10,8 +10,8 @@ public class EnemyMove : MonoBehaviour {
 	 Transform baseCar;
 	
 	public float speed = 1.2f;
-	//float angleSpread = 20;
-	//float enemyFreezeTime = 5;
+	float angleSpread = 20;
+	float enemyFreezeTime = 5;
 
 	// Distances and light	
 	bool frozen = false;
@@ -35,14 +35,14 @@ public class EnemyMove : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		/*if (distanceToPlayer <= 25 && ((facing.z - angleSpread) < playerZRotation.z && playerZRotation.z < (facing.z + angleSpread))) {
-			frozen = true;
+		//if (distanceToPlayer <= 25 && ((facing.z - angleSpread) < playerZRotation.z && playerZRotation.z < (facing.z + angleSpread))) {
+			//frozen = true;
 			
 			// Are we killing this guy?
 			//PlayerTeslaGlove gloveScript = TeslaSpotlight.GetComponent<PlayerTeslaGlove> ();
 			//Debug.Log (gloveScript.gloveActive);
 			
-			if (gloveScript.gloveActive) {
+			/*if (gloveScript.gloveActive) {
 				// Kill enemy
 				Debug.Log ("Finish Him!!");
 				if (!playingSound) {
@@ -54,7 +54,7 @@ public class EnemyMove : MonoBehaviour {
 			}
 		}*/
 
-		//if (!frozen) {
+		if (!frozen) {
 			// Check if enemy in angle
 			//========================
 			/*if (distanceToPlayer <= 25 && ((facing.z - angleSpread) < playerZRotation.z && playerZRotation.z < (facing.z + angleSpread))) {
@@ -63,7 +63,7 @@ public class EnemyMove : MonoBehaviour {
 				// Just freeze him
 				Debug.Log ("FREEEEZE BITCH");
 				Invoke ("unfreezeEnemy", enemyFreezeTime);
-			} */
+			}*/
 			
 			if (distanceToPlayer < distanceToCar) 
 				{
@@ -76,7 +76,7 @@ public class EnemyMove : MonoBehaviour {
 						transform.LookAt(baseCar.position, Vector3.up);
 						transform.position = Vector3.MoveTowards (transform.position, baseCar.position, speed * Time.deltaTime);
 					}
-		//} 
+		}
 	}
 
 	void checkDistances(){
@@ -113,5 +113,15 @@ public class EnemyMove : MonoBehaviour {
 	
 	void unfreezeEnemy () {
 		frozen = false;
+
+		this.GetComponent<Animator>().Play("walk");
+	}
+
+	public void freezeEnemy () {
+		frozen = true;
+
+		// Just freeze him
+		Debug.Log ("FREEEEZE BITCH");
+		Invoke ("unfreezeEnemy", enemyFreezeTime);
 	}
 }
