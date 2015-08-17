@@ -22,7 +22,7 @@ public class BuildDefenceObject : MonoBehaviour {
 			thisObject.transform.Translate(transform.forward * 1);
 			//SoundManager.instance.PlaySingle(buildSound);
 		}
-		if (Input.GetKeyDown (KeyCode.Q)) { //Deploy light pylon
+		if (Input.GetKeyDown (KeyCode.Q)) { //Deploy mine
 			
 			Debug.Log(">>>> Place mine");
 			
@@ -41,6 +41,17 @@ public class BuildDefenceObject : MonoBehaviour {
 			
 			GameObject thisObject = Instantiate(Resources.Load("turretPrefab"), playerPosition, Quaternion.identity) as GameObject;
 			thisObject.transform.Translate(transform.forward * 1);
+			//SoundManager.instance.PlaySingle(buildSound);
+		}
+
+		if (Input.GetKeyDown (KeyCode.G)) { //Deploy glowStick
+			
+			Debug.Log(">>>> Place glowStick");
+			
+			Vector3 playerPosition = GameObject.Find("Auron").transform.position;
+			
+			GameObject thisObject = Instantiate(Resources.Load("glowStick"), playerPosition, transform.rotation) as GameObject;
+			//thisObject.transform.Translate(transform.forward * 1);  // Disabled so that glow stick is place underneath player, else it is placed next to him.
 			//SoundManager.instance.PlaySingle(buildSound);
 		}
 	}

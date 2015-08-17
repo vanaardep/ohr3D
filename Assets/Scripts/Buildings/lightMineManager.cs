@@ -1,24 +1,24 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MineDetection : MonoBehaviour {
+public class lightMineManager : MonoBehaviour {
 	private bool timeToExplode = false;
 	// Use this for initialization
 	void Start () {
-		
+	
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+
 	}
-	
+
 	void OnTriggerEnter(Collider other) {
-		Debug.Log ("Leeeeeeerrrooyyy Jenkins!");
+		//Debug.Log ("Leeeeeeerrrooyyy Jenkins!");
 		timeToExplode = true;
-		
+
 	}
-	
+
 	void OnTriggerStay(Collider other) {
 		//Debug.Log ("Leeeeeeerrrooyyy Jenkins!");
 		Debug.Log (other.tag);
