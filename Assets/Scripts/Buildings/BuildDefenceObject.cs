@@ -12,8 +12,9 @@ public class BuildDefenceObject : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		
 
-		if (Input.GetKeyUp (KeyCode.E)) { //Deploy light pylon
+		if (Input.GetKeyDown (KeyCode.E)) { //Deploy light pylon
 			
 			Debug.Log(">>>> Place pylon");
 
@@ -23,7 +24,7 @@ public class BuildDefenceObject : MonoBehaviour {
 			thisObject.transform.Translate(transform.forward * 1);
 			SoundManager.instance.PlaySingle(buildSound);
 		}
-		if (Input.GetKeyUp (KeyCode.Q)) { //Deploy light pylon
+		if (Input.GetKeyDown (KeyCode.Q)) { //Deploy light pylon
 			
 			Debug.Log(">>>> Place mine");
 			
@@ -34,7 +35,7 @@ public class BuildDefenceObject : MonoBehaviour {
 			SoundManager.instance.PlaySingle(buildSound);
 		}
 
-		if (Input.GetKeyUp (KeyCode.R)) { //Deploy light turret
+		if (Input.GetKeyDown (KeyCode.R)) { //Deploy light turret
 			
 			Debug.Log(">>>> Place light turret");
 			
