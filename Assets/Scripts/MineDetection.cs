@@ -19,7 +19,7 @@ public class MineDetection : MonoBehaviour {
 	}
 	
 	void OnTriggerStay(Collider other) {
-		Debug.Log (other.tag);
+		//Debug.Log (other.tag);
 		if (timeToExplode == true && other.tag == "Enemy") {
 			Destroy(other.gameObject);
 			PlayerGUI.batteryPerc+=5; // Everytime a mine kills an enemy gets +5 battery
