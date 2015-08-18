@@ -62,6 +62,6 @@ public class PlayerTeslaGlove : MonoBehaviour {
 	}
 
 	void OnGUI(){
-		GUI.Box (new Rect (0, 200, 120, 40), "COOLDOWN: " + cooldown);
+		//GUI.Box (new Rect (0, 200, 120, 40), "COOLDOWN: " + cooldown);
 	}
 }

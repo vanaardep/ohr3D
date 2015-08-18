@@ -43,7 +43,7 @@ public class ItemCollection : MonoBehaviour {
 	}
 
 	void OnGUI(){
-		GUI.Box (new Rect (0, 0, 100, 40), "Batteries: " + batteryCount);
-		GUI.Box (new Rect (0, 50, 100, 40), "Lightbulbs: " + lightbulbCount);
+		//GUI.Box (new Rect (0, 0, 100, 40), "Batteries: " + batteryCount);
+		//GUI.Box (new Rect (0, 50, 100, 40), "Lightbulbs: " + lightbulbCount);
 	}
 }
