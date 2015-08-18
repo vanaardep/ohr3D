@@ -4,7 +4,10 @@ using System.Collections;
 public class PlayerTeslaGlove : MonoBehaviour {
 
 	public bool gloveActive;
-	public AudioClip shootSound;
+	public AudioClip shootSound1;
+	public AudioClip shootSound2;
+	public AudioClip shootSound3;
+	public AudioClip shootSound4;
 	private int cooldown;
 	public float bulletSpeed = 1000;
 
@@ -30,7 +33,7 @@ public class PlayerTeslaGlove : MonoBehaviour {
 				thisObject.GetComponent<Rigidbody>().AddForce(transform.up * 300);
 
 				//
-				SoundManager.instance.PlaySingle(shootSound);
+				SoundManager.instance.RandomizeSfx(shootSound1, shootSound2, shootSound3, shootSound4);
 				//this.GetComponent<Light> ().intensity = 200;
 				gloveActive = true;
 				cooldown = 5;
