@@ -28,8 +28,8 @@ public class PlayerHealth : MonoBehaviour {
     	}
 	}
 
-	void OnGUI(){
-		GUI.Box (new Rect (Screen.width/2 - 400, Screen.height/2 - 120, 100, 40), "Health: " + playerHealth);
-	}
+	/*void OnGUI(){
+		GUI.Box (new Rect (Screen.width/2 - 300, Screen.height/2 - 150, 120, 40), "Health: " + playerHealth);
+	}*/
 
 }

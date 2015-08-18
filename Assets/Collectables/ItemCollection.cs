@@ -26,6 +26,7 @@ public class ItemCollection : MonoBehaviour {
 
 		if (other.tag == "BatteryCollider") { 
 			batteryCount += 1;
+			PlayerGUI.batteryPerc +=20;
 			SoundManager.instance.PlaySingle(pickupSound);
 			Destroy(other.gameObject); //destroys the sprite's collider
 			Debug.Log("Player touched Battery");

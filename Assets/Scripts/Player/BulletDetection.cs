@@ -2,14 +2,18 @@
 using System.Collections;
 
 public class BulletDetection : MonoBehaviour {
-
 	// Use this for initialization
+	public int timeDelay = 2;
 	void Start () {
-	
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		/*timeDelay -= Time.deltaTime;
+		if (timeDelay < 0) {
+			PlayerGUI.batteryPerc --;
+			timeDelay = 2;
+		}*/
 	
 	}
 
@@ -18,6 +22,7 @@ public class BulletDetection : MonoBehaviour {
     {
         if(col.gameObject.tag == "Enemy")
         {
+			PlayerGUI.batteryPerc +=5;
             Destroy(col.gameObject);
             Destroy(this.gameObject);
         }
