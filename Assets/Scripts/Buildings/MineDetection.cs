@@ -2,7 +2,11 @@
 using System.Collections;
 
 public class MineDetection : MonoBehaviour {
+
 	private bool timeToExplode = false;
+	public float mineExplosionDelay;
+	private bool timerActivated = false;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -10,11 +14,18 @@ public class MineDetection : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (timerActivated) {
+			mineExplosionDelay -= Time.deltaTime;
 		
+			if (mineExplosionDelay <= 0.0f) {
+				timeToExplode = true;
+			}
+			Debug.Log(mineExplosionDelay);
+		}
 	}
 	
 	void OnTriggerEnter(Collider other) {
-		timeToExplode = true;
+		timerActivated = true;
 		
 	}
 	
