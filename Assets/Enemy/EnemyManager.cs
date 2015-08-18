@@ -5,14 +5,15 @@ public class EnemyManager : MonoBehaviour {
 
 	public GameObject enemy;
 	public float spawntime = 3f;
-	public float startTime = 1f;
+	public float startTime = 30f;
 	public Transform[] spawnPoints;
 	public AudioClip hordeSpawnSound;
+	private bool soundplayed;
 	int numberOfEnemies = 1;
 	
 	void Start () {
 		//This function calls the spawn method repeatedly every 3 seconds
-		SoundManager.instance.PlaySingle(hordeSpawnSound);
+		soundplayed = false;
 		InvokeRepeating ("spawn", startTime, spawntime);
 	}
 
@@ -38,6 +39,9 @@ public class EnemyManager : MonoBehaviour {
 	}
 	
 	void Update () {
-		
+		if ((Time.time >= 30) && (soundplayed == false)) {
+			SoundManager.instance.PlaySingle(hordeSpawnSound);
+			soundplayed = true;
+		}
 	}
 }

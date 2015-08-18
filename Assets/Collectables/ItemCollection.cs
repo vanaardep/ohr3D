@@ -22,20 +22,20 @@ public class ItemCollection : MonoBehaviour {
 	}
 
 	//Increment battery count and remove battery from the game
-	void OnTriggerEnter(Collider other) { 
-
-		if (other.tag == "BatteryCollider") { 
+	void OnCollisionEnter (Collision col)
+    {
+		if (col.gameObject.tag == "BatteryCollider") { 
 			batteryCount += 1;
 			PlayerGUI.batteryPerc +=20;
 			SoundManager.instance.PlaySingle(pickupSound);
-			Destroy(other.gameObject); //destroys the sprite's collider
+			Destroy(col.gameObject); //destroys the sprite's collider
 			Debug.Log("Player touched Battery");
 			Debug.Log (batteryCount);
 
-		} else if (other.tag == "LightbulbCollider") { 
+		} else if (col.gameObject.tag  == "LightbulbCollider") { 
 			lightbulbCount += 1;
 			SoundManager.instance.PlaySingle(pickupSound);
-			Destroy(other.gameObject); //destroys the sprite's collider
+			Destroy(col.gameObject); //destroys the sprite's collider
 			Debug.Log("Player touched Battery");
 			Debug.Log (batteryCount);
 
