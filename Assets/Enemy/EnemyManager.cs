@@ -14,6 +14,9 @@ public class EnemyManager : MonoBehaviour {
 	void Start () {
 		//This function calls the spawn method repeatedly every 3 seconds
 		soundplayed = false;
+		spawntime = 3f;
+		startTime = 30f;
+		numberOfEnemies = 1;
 		InvokeRepeating ("spawn", startTime, spawntime);
 	}
 
@@ -39,7 +42,7 @@ public class EnemyManager : MonoBehaviour {
 	}
 	
 	void Update () {
-		if ((Time.time >= 30) && (soundplayed == false)) {
+		if ((Time.time >= startTime) && (soundplayed == false)) {
 			SoundManager.instance.PlaySingle(hordeSpawnSound);
 			soundplayed = true;
 		}
