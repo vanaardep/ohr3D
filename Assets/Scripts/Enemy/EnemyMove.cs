@@ -10,17 +10,17 @@ public class EnemyMove : MonoBehaviour {
 	 Transform baseCar;
 	
 	public float speed = 1.2f;
-	float angleSpread = 20;
+	//float angleSpread = 20;
 	float enemyFreezeTime = 5;
 
 	// Distances and light	
 	bool frozen = false;
-	bool playingSound = false;
+	//bool playingSound = false;
 	float distanceToPlayer;
 	float distanceToCar;
-	Vector3 playerZRotation;
-	Vector3 enemyPosition;
-	Vector3 facing;
+	//Vector3 playerZRotation;
+	//Vector3 enemyPosition;
+	//Vector3 facing;
 
 	// Use this for initialization
 	void Start () {
@@ -85,7 +85,7 @@ public class EnemyMove : MonoBehaviour {
 		distanceToCar = (this.transform.position - baseCar.position).sqrMagnitude;//Vector2.Distance (this.transform.position, baseCar.transform.position);
 		
 		// Player z
-		playerZRotation = player.rotation.eulerAngles;
+		//playerZRotation = player.rotation.eulerAngles;
 		
 		// Angle to player
 		//================
@@ -103,10 +103,10 @@ public class EnemyMove : MonoBehaviour {
 		//float angle = SignedAngleBetween(this.transform.position, player.position, player.position);
 		
 		//Grab the current mouse position on the screen
-		enemyPosition = this.transform.position;//camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x,Input.mousePosition.y, Input.mousePosition.z - camera.transform.position.z));
+		//enemyPosition = this.transform.position;//camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x,Input.mousePosition.y, Input.mousePosition.z - camera.transform.position.z));
 		
 		//Rotates toward the mouse
-		facing = new Vector3(0,0,Mathf.Atan2((enemyPosition.y - player.position.y), (enemyPosition.x - player.position.x))*Mathf.Rad2Deg + 270);
+		//facing = new Vector3(0,0,Mathf.Atan2((enemyPosition.y - player.position.y), (enemyPosition.x - player.position.x))*Mathf.Rad2Deg + 270);
 		
 		//Debug.Log (facing.z + " VS " + playerZRotation.z);
 	}
@@ -119,9 +119,6 @@ public class EnemyMove : MonoBehaviour {
 
 	public void freezeEnemy () {
 		frozen = true;
-
-		// Just freeze him
-		Debug.Log ("FREEEEZE BITCH");
 		Invoke ("unfreezeEnemy", enemyFreezeTime);
 	}
 }

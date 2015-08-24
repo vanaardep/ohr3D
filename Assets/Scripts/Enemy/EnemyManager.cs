@@ -4,8 +4,8 @@ using System.Collections;
 public class EnemyManager : MonoBehaviour {
 
 	public GameObject enemy;
-	public float spawntime = 3f;
-	public float startTime = 30f;
+	public float spawntime;
+	public float startTime;
 	public Transform[] spawnPoints;
 	public AudioClip hordeSpawnSound;
 	private bool soundplayed;
@@ -14,8 +14,8 @@ public class EnemyManager : MonoBehaviour {
 	void Start () {
 		//This function calls the spawn method repeatedly every 3 seconds
 		soundplayed = false;
-		spawntime = 3f;
-		startTime = 30f;
+		//spawntime = 3f;
+		//startTime = 30f;
 		numberOfEnemies = 1;
 		InvokeRepeating ("spawn", startTime, spawntime);
 	}

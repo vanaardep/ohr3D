@@ -33,8 +33,6 @@ public class GUIHealth : Graphic
 			float rad = Mathf.Deg2Rad * i;
 			float c = Mathf.Cos(rad);
 			float s = Mathf.Sin(rad);
-			float x = outer * c;
-			float y = inner * c;
 			vert.color = color;
 			vert.position = prevX;
 			vbo.Add(vert);

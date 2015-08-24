@@ -13,22 +13,14 @@ public class PlayerTorch : MonoBehaviour {
 	
 	}
 
-	void OnTriggerEnter(Collider other) {
-
-		Debug.Log ("FHRITP");
-
+	void OnTriggerEnter(Collider other)
+	{
 		string objectName = other.name.Replace("(Clone)", "");
-
-		if (objectName == "ghoulprefab") {
-			//Destroy (other.gameObject);
-
-			other.GetComponent<Animator>().Play("idleEnemy");
-
-
-
-
-			EnemyMove enemyScript = other.GetComponent<EnemyMove> ();
-			enemyScript.freezeEnemy();
-		}
+		if (objectName == "ghoulprefab") 
+			{
+				other.GetComponent<Animator>().Play("idleEnemy");
+				EnemyMove enemyScript = other.GetComponent<EnemyMove> ();
+				enemyScript.freezeEnemy();
+			}
 	}
 }

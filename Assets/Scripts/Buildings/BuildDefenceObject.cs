@@ -4,7 +4,6 @@ using System.Collections;
 public class BuildDefenceObject : MonoBehaviour {
 
 	public static int signalCount;
-	//public Transform pylon;
 	public AudioClip buildSound;
 	// Use this for initialization
 	void Start () {
@@ -15,7 +14,7 @@ public class BuildDefenceObject : MonoBehaviour {
 	void LateUpdate () {
 		if (Input.GetKeyDown (KeyCode.E)) { //Deploy light pylon
 			
-			Debug.Log(">>>> Place pylon");
+			//Debug.Log(">>>> Place pylon");
 			if(PlayerGUI.batteryPerc > 15)
 			{
 
@@ -29,7 +28,7 @@ public class BuildDefenceObject : MonoBehaviour {
 		}
 		if (Input.GetKeyDown (KeyCode.Q)) { //Deploy mine
 			
-			Debug.Log(">>>> Place mine");
+			//Debug.Log(">>>> Place mine");
 			if( PlayerGUI.batteryPerc > 10)
 			{
 			
@@ -44,7 +43,7 @@ public class BuildDefenceObject : MonoBehaviour {
 
 		if (Input.GetKeyDown (KeyCode.R)) { //Deploy light turret
 			
-			Debug.Log(">>>> Place light turret");
+			//Debug.Log(">>>> Place light turret");
 			if(PlayerGUI.batteryPerc > 10)
 			{
 				Vector3 playerPosition = GameObject.Find("Auron").transform.position;
@@ -59,7 +58,7 @@ public class BuildDefenceObject : MonoBehaviour {
 
 		if (Input.GetKeyDown (KeyCode.G)) { //Deploy glowStick
 			
-			Debug.Log(">>>> Place glowStick");
+			//Debug.Log(">>>> Place glowStick");
 			if(signalCount >=0)
 			{
 				Vector3 playerPosition = GameObject.Find("Auron").transform.position;
