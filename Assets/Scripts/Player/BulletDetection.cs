@@ -23,6 +23,7 @@ public class BulletDetection : MonoBehaviour {
         if(col.gameObject.tag == "Enemy")
         {
 			PlayerGUI.batteryPerc +=5;
+			EnemyManager.enemyKillCount--;
             Destroy(col.gameObject);
             Destroy(this.gameObject);
         }

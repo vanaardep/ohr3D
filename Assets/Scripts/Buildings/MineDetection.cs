@@ -50,7 +50,9 @@ public class MineDetection : MonoBehaviour {
 		if (timeToExplode == true && other.tag == "Enemy") {
 			Destroy(other.gameObject);
 			Destroy(gameObject);
+			EnemyManager.enemyKillCount--;
 			PlayerGUI.batteryPerc+=5; // Everytime a mine kills an enemy gets +5 battery
+
 
 		}
 		

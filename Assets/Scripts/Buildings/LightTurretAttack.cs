@@ -36,6 +36,7 @@ public class LightTurretAttack : MonoBehaviour {
         if((col.gameObject.tag == "Enemy") && (Time.time > fireStart + fireCooldown) && (PlayerGUI.batteryPerc > 0)) {
      			fireStart = Time.time;
 	   			Debug.Log("LIGHTTURRET ATTACKKKKKKKKKKKKKKKK");
+	   			EnemyManager.enemyKillCount--;
 			    PlayerGUI.batteryPerc +=5;
 	            Destroy(col.gameObject);
 	            this.GetComponentInChildren<Light> ().intensity = 8;
