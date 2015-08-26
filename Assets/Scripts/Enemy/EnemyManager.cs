@@ -8,68 +8,85 @@ public class EnemyManager : MonoBehaviour {
 	//Horde comes after 30 seconds starting from when the last enemy died from the last horde wave
 
 	public GameObject enemy;
-	public float spawntime;
+	public float spawnrate;
 	public float startTime;
 	public Transform[] spawnPoints;
 	public AudioClip hordeSpawnSound;
-	private bool soundplayed = false;
 	int numberOfEnemies = 0;
 
 	//edits
 	public float hordeSpawnTime;
-	public float hordeWaveCount = 1;
-	public static int enemyKillCount = 20;
+	public float hordeWaveCount = 0;
+	public static int enemyKillCount = 0;
+	private float timestamp;
+
+	private bool flag1 = false;
 	
 	void Start () {
-		//This function calls the spawn method repeatedly every 3 seconds
-		soundplayed = false;
-		spawntime = 3f;
-		startTime = 30f;
+		spawnrate = 3.0f;
+		startTime = 30.0f;
 		numberOfEnemies = 0;
-		InvokeRepeating ("spawn", startTime, spawntime);
+		hordeWaveCount = 0;
+		timestamp = 0.0f;
 	}
 
 	/**
 	 * function spawn() creates an enemy at one of the spawn points
 	 * */
-	void spawn()
+	private void spawn()
 	{
-		 //will stop the spawning function once player or base health reaches 0
-		/*if (PlayerHealth.playerHealth <= 0 || BaseCarHealth.baseCarHealth <=0) 
-		{
-			return;
-		}*/
 		int spawnPointIndex = Random.Range (0, spawnPoints.Length);
 		Instantiate (enemy, spawnPoints [spawnPointIndex].position, spawnPoints [spawnPointIndex].rotation);
 		numberOfEnemies++;
-
-		if (numberOfEnemies >= 20) {
-			numberOfEnemies = 0;
-			CancelInvoke ("spawn");
-			return;
-		}
-		//Debug.Log ("Spawned enemy");
 	}
 	
-	void Update () {
+	void FixedUpdate () {
 
-		hordeSpawnTime = 0;
-		if ((Time.time >= startTime) && (enemyKillCount == 0) && (!IsInvoking("spawn"))) {
-			
+		if(hordeSpawnTime >= 0){
+			hordeSpawnTime = Mathf.FloorToInt(startTime - Time.time);
+		}
+		else {
+			//hordeSpawnTime =  0;
+		}
+		
+
+		//iterates once a wave
+		if ((Time.time >= startTime)  && (numberOfEnemies == 0) && flag1 == false) {
 			enemyKillCount = 20;
-			hordeSpawnTime = startTime - Time.time;
-			startTime = Time.time + startTime;
-			InvokeRepeating ("spawn", startTime, spawntime);
+			timestamp = spawnrate + Time.time;	
 			SoundManager.instance.PlaySingle(hordeSpawnSound);
-			soundplayed = false;
 			hordeWaveCount++;
+			flag1 = true;
+		}
+
+		//iterates for every enemy spawned in wave
+		if((Time.time >= timestamp)&& (numberOfEnemies != 20) && (flag1 == true)) {	
+			spawn();
+			timestamp += spawnrate;
+				
+		}
+
+		//iterates after last enemy in a wave has spawned
+		if(numberOfEnemies == 20 && enemyKillCount == 0) {
+			flag1 = false;
+			hordeSpawnTime = 30.0f;
+			numberOfEnemies = 0;
+			startTime = Time.time + startTime;
+
+			BatterySpawnManager batterySpawnManager = GetComponent<BatterySpawnManager>();
+			batterySpawnManager.batterySpawnLoad();
+			LightbulbSpawnManager lightbulbSpawnManager = GetComponent<LightbulbSpawnManager>();
+			lightbulbSpawnManager.lightbulbSpawnLoad();
+
 			
+
+			Debug.Log ("RESEEEEEEEEEEEEEEEEEEEEET :D");
 		}
 	}
 
 	void OnGUI(){
-		GUI.Box (new Rect (0, 200, 100, 50), "Horde wave: " + hordeWaveCount + "/6");
-		GUI.Box (new Rect (0, 250, 170, 50), "Next Horde wave spawns in: " + hordeSpawnTime);
-		GUI.Box (new Rect (0, 300, 170, 50), "Enemies left: " + enemyKillCount);
+		GUI.Box (new Rect (0, 200, 190, 50), "Horde wave: " + hordeWaveCount + "/6" + "timestamp:" + timestamp);
+		GUI.Box (new Rect (0, 250, 190, 50), "Next Horde wave spawns in: " + hordeSpawnTime);
+		GUI.Box (new Rect (0, 300, 200, 50), "Enemies left: " + enemyKillCount + "num: " + numberOfEnemies);
 	}
 }
