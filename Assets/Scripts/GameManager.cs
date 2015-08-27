@@ -19,6 +19,5 @@ public class GameManager : MonoBehaviour {
 		{
 			Application.LoadLevel("GameOver");
 		}
-	
 	}
 }
