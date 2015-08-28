@@ -35,7 +35,7 @@ public class EnemyManager : MonoBehaviour {
 		//edit these to adjust difficulty of the game
 		spawnrate = 3.0f;
 		startTime = 30.0f;
-		startTimeReset = 30.0f; //must be the same as startTime always
+		startTimeReset = 30.0f; //must be the same as startTime always changed from 30
 		enemiesPerWave = 20;
 		maxHordeWaves = 6;
 	}

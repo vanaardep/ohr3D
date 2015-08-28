@@ -11,6 +11,12 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         public ThirdPersonCharacter character { get; private set; } // the character we are controlling
         public Transform target; // target to aim for
 
+		//OWN rules
+		public Transform player;
+		public Transform baseCar;
+		float distanceToPlayer;
+		float distanceToCar;
+
         // Use this for initialization
         private void Start()
         {
@@ -19,15 +25,30 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             character = GetComponent<ThirdPersonCharacter>();
 
 	        agent.updateRotation = false;
+
 	        agent.updatePosition = true;
+
+			player = GameObject.Find ("Auron").transform;
+			baseCar = GameObject.Find ("baseCar").transform;
+			target = player;
+			InvokeRepeating ("checkDistances", 0, 1.0f);
         }
 
 
         // Update is called once per frame
         private void Update()
         {
+
             if (target != null)
             {
+				if (distanceToPlayer < distanceToCar) 
+				{
+					target = player;
+				}
+				else
+				{
+					target = baseCar;
+				}
                 agent.SetDestination(target.position);
 
 				
@@ -48,5 +69,11 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         {
             this.target = target;
         }
+
+		void checkDistances(){
+
+			distanceToPlayer = (this.transform.position - player.position).sqrMagnitude;//Vector2.Distance (this.transform.position, player.transform.position);
+			distanceToCar = (this.transform.position - baseCar.position).sqrMagnitude;//Vector2.Distance (this.transform.position, baseCar.transform.position);
+		}
     }
 }
