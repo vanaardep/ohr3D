@@ -18,8 +18,11 @@ public class GameOverScreen : MonoBehaviour {
 	bool loading = false;
 	public GUIStyle mainFont;
 
-	void Start () {
 
+	private float FadeinDelay = 0f;
+
+	void Start () {
+		FadeinDelay = 0f;
 		Renderer rend = this.GetComponent<Renderer>();
 		rend.material.mainTexture = Texture2D.blackTexture;
 
@@ -28,10 +31,11 @@ public class GameOverScreen : MonoBehaviour {
 		}
 		
 		Object[] textures  = Resources.LoadAll(imageFolderName);
-		for(var i = 0; i <= 167; i += 3) // Put 3 to load less images, faster load, changed to 167 to not load text images
+		for(var i = 0; i <= 177; i += 2) // Put 3 to load less images, faster load, changed to 167 to not load text images
 		{
 			pictures.Add(textures[i]);
 		}
+
 	
 	}
 	
@@ -50,14 +54,33 @@ public class GameOverScreen : MonoBehaviour {
 			{
 				Debug.Log ("DONE");
 				imageSeqDone = true;
+
 			}
-		}		
+		}
+
+		FadeinDelay += Time.deltaTime;
 	}
 
-	void OnGUI () {
-		if (imageSeqDone) {
 
-			//Debug.Log ("Add button");
+
+	void OnGUI () {
+
+		//GUI.color.a = alpha;
+		if (imageSeqDone) {
+		/*Color thisColor = GUI.color;
+		thisColor.a = 0;
+		GUI.color = thisColor;
+
+		if (FadeinDelay > 7 ) {
+
+			//Fade in
+			//GUI.color.a = 
+			//Debug.Log ("Inside");
+			//Debug.Log ("Time : " + Time.deltaTime);
+			thisColor.a = (Time.time - 3)/5;
+			//thisColor.a = 
+			GUI.color = thisColor;
+		}*/
 
 			if (GUI.Button (new Rect (Screen.width / 2 - 50, Screen.height / 2 - 50, 100, 50), "RESTART", mainFont)) {
 				// Start game
@@ -75,6 +98,8 @@ public class GameOverScreen : MonoBehaviour {
 			if (loading) {
 				GUI.DrawTexture (new Rect (0, 0, Screen.width, Screen.height), load_screen, ScaleMode.ScaleAndCrop, true, 0F);
 			}
+
+
 		}
 	}
 }
