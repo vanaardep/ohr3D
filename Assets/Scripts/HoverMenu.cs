@@ -17,6 +17,8 @@ public class HoverMenu : MonoBehaviour {
 	private float timer;
 	private bool checkPos;
 
+	private bool toggleOnOff = true;
+
 	void Start()
 	{
 		thisObj = this.gameObject;
@@ -60,23 +62,38 @@ public class HoverMenu : MonoBehaviour {
 				checkPos = true;
 			}
 			MenuTimer -=Time.deltaTime;
-			//Rect rect = new Rect(posx-50, posy-50,200,200);
-			//GUI.Box( new Rect(posx-50, posy-50,200,200),"here");
+			//Rect rect = new Rect(posx-50, posy-50,200,200);//FOR OPTION2
+			//GUI.Box( new Rect(posx-50, posy-50,200,200),"here");//FOR OPTION2
 			GUI.Box(new Rect(posx+menuDistanceFromObj, posy-10,100,100),objName); //after objName there is another parameter you can add to add a layout skin eg objname,"layoutskin"); the " " is NB also can change settings via the GUI.Skin would recommend that
 			//Inside GuiSkin (Temp one i created in materials) u can add Custom Styles so choose that
 
 			//if(GUI.Button (new Rect (posx+menuDistanceFromObj, posy + 70,70,20), "Exit") || !rect.Contains(Input.mousePosition))// Option 2 : Buggy code that checks if the mouse is still in range of the object
-	      if(GUI.Button (new Rect (posx+menuDistanceFromObj, posy + 70,70,20), "Exit") || MenuTimer <= 0) //Two options  : Option 1 : one that uses a Timer but then the menu is only available for 10 seconds 
-		   {
-				exitBool = true;
-				MenuTimer = timer;
-				checkPos = false;
+	      
+			if(thisObj.tag == "Pylon")
+			{
+				toggleOnOff = GUI.Toggle(new Rect(posx+menuDistanceFromObj, posy+10,70,20), toggleOnOff, "On/Off");
+				PylonManager script = thisObj.GetComponent<PylonManager>();
+				script.setStatus(toggleOnOff);
+				if(toggleOnOff)
+				{
+					//Debug.Log ("On");
+					thisObj.GetComponent<Collider>().isTrigger = false;
+					thisObj.GetComponentInChildren<Light>().enabled = true;
+				
+				}
+				else if(!toggleOnOff)
+				{
+					//Debug.Log ("Off");
+					thisObj.GetComponent<Collider>().isTrigger = true;
+					thisObj.GetComponentInChildren<Light>().enabled = false;
+				}
+
 			}
-			if(GUI.Button (new Rect (posx+menuDistanceFromObj, posy + 20,70,20), "Upgrade"))
+			if(GUI.Button (new Rect (posx+menuDistanceFromObj, posy + 35,70,30), "Upgrade"))
 			{
 
 			}
-			if(GUI.Button (new Rect (posx+menuDistanceFromObj, posy + 40,70,20), "Destroy"))
+			if(GUI.Button (new Rect (posx+menuDistanceFromObj, posy + 60,70,20), "Destroy"))
 			{
 				if(thisObj.tag == "Pylon")
 				{
@@ -89,6 +106,13 @@ public class HoverMenu : MonoBehaviour {
 					PlayerGUI.batteryPerc +=5;
 				}
 
+			}
+			Debug.Log ("Menu Timer : " + MenuTimer);
+			if(GUI.Button (new Rect (posx+menuDistanceFromObj, posy + 90,70,20), "Exit") || MenuTimer <= 0) //Two options  : Option 1 : one that uses a Timer but then the menu is only available for 10 seconds 
+			{
+				exitBool = true;
+				MenuTimer = timer;
+				checkPos = false;
 			}
 		}
 	}
