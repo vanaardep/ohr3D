@@ -7,6 +7,10 @@ public class EnemyManager : MonoBehaviour {
 	//Once done, player has 30 seconds to collect droppables
 	//Horde comes after 30 seconds starting from when the last enemy died from the last horde wave
 
+	public GUIStyle mainFont;
+	public GUIStyle smallFont;
+	public GUIStyle waveFont;
+
 	public GameObject enemy;
 	public float spawnrate;
 	public float startTime;
@@ -33,11 +37,11 @@ public class EnemyManager : MonoBehaviour {
 		timestamp = 0.0f;
 
 		//edit these to adjust difficulty of the game
-		spawnrate = 3.0f;
-		startTime = 30.0f;
-		startTimeReset = 30.0f; //must be the same as startTime always changed from 30
-		enemiesPerWave = 20;
-		maxHordeWaves = 6;
+		//spawnrate = 3.0f;
+		//startTime = 30.0f;
+		//startTimeReset = 30.0f; //must be the same as startTime always changed from 30
+		//enemiesPerWave = 20;
+		//maxHordeWaves = 6;
 	}
 
 	/**
@@ -95,9 +99,13 @@ public class EnemyManager : MonoBehaviour {
 	}
 
 	void OnGUI(){
-		GUI.Box (new Rect (0, 200, 190, 50), "Horde wave: " + hordeWaveCount + "/6" );
-		GUI.Box (new Rect (0, 250, 190, 50), "Next Horde wave spawns in: " + hordeSpawnTime);
-		GUI.Box (new Rect (0, 300, 200, 50), "Enemies left: " + enemyKillCount + "num: " + numberOfEnemies);
-		GUI.Box (new Rect (0, 350, 190, 50), "startTime:" + startTime + "TIME: " + Time.time);
+		//GUI.Box (new Rect (0, 200, 190, 50), "Horde wave: " + hordeWaveCount + "/6" );
+		//GUI.Box (new Rect (0, 250, 190, 50), "Next Horde wave spawns in: " + hordeSpawnTime);
+		//GUI.Box (new Rect (0, 300, 200, 50), "Enemies left: " + enemyKillCount + "num: " + numberOfEnemies);
+		//GUI.Box (new Rect (0, 350, 190, 50), "startTime:" + startTime + "TIME: " + Time.time);
+
+		GUI.Label (new Rect (Screen.width - 100, 0, 100, 80), "" + hordeSpawnTime, mainFont);
+		GUI.Label (new Rect (Screen.width - 100, 40, 100, 100), "NEXT WAVE", smallFont);
+		GUI.Label (new Rect (Screen.width / 2 - 50, 0, 100, 70), "WAVE " + hordeWaveCount + "/6", waveFont);
 	}
 }
