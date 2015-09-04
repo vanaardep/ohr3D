@@ -5,10 +5,11 @@ public class PlayerHealth : MonoBehaviour {
 
 	public static int playerHealth = 10;
 	public AudioClip hurtSound;
-
+	public Animator m_Animator;
 	// Use this for initialization
 	void Start () {
 		playerHealth = 10;
+		m_Animator = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -23,6 +24,7 @@ public class PlayerHealth : MonoBehaviour {
     	        SoundManager.instance.PlaySingle(hurtSound); //player getting hurt
         	}
         	else{
+
         		//GameObject.Destroy("Player");
         	}
     	}

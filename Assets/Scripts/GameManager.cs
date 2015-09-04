@@ -2,7 +2,8 @@
 using System.Collections;
 
 public class GameManager : MonoBehaviour {
-
+	public Animator m_Animator;
+	public GameObject auron;
 	// Use this for initialization
 	void Start () {
 		PlayerHealth.playerHealth = 10;
@@ -10,6 +11,7 @@ public class GameManager : MonoBehaviour {
 		PlayerGUI.batteryPerc = 100;
 		ItemCollection.batteryCount = 0;
 		ItemCollection.lightbulbCount = 0;
+		m_Animator = auron.GetComponent<Animator>();
 	
 	}
 	
@@ -17,7 +19,18 @@ public class GameManager : MonoBehaviour {
 	void Update () {
 		if (PlayerHealth.playerHealth == 0 || BaseCarHealth.baseCarHealth == 0)
 		{
-			Application.LoadLevel("GameOver");
+			if(PlayerHealth.playerHealth == 0){
+				auron.GetComponent<Rigidbody> ().Sleep ();
+			
+				m_Animator.SetBool("Dead",true);
+				Invoke("callGameOver",5f);
+			}
+
+
 		}
+	}
+
+	void callGameOver(){
+		Application.LoadLevel("GameOver");
 	}
 }
