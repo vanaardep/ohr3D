@@ -4,7 +4,9 @@ using System.Collections;
 public class BulletDetection : MonoBehaviour {
 	// Use this for initialization
 	public int timeDelay = 2;
+	public int bulletLifetime = 5;
 	void Start () {
+		Destroy (gameObject, bulletLifetime);
 	}
 	
 	// Update is called once per frame
