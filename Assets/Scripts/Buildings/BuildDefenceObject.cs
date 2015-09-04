@@ -15,26 +15,26 @@ public class BuildDefenceObject : MonoBehaviour {
 	}
 
 	//Construction Time for a pylon
-	IEnumerator PylonConstructionTime(Vector3 playerPosition) {
+	IEnumerator PylonConstructionTime(Vector3 playerPosition, Vector3 playerRelative, GameObject constructor) {
         print(Time.time);
         yield return new WaitForSeconds(constructionTime);
-
+        Destroy(constructor);
 		GameObject thisObject = Instantiate(Resources.Load("pylon"), playerPosition, Quaternion.identity) as GameObject;
-		thisObject.transform.Translate(transform.forward * 1);
-			
+	
+		thisObject.transform.position = playerPosition + playerRelative * 1;
 		SoundManager.instance.PlaySingle(constructionTimeSoundEnd);
 
         print(Time.time);
     }
 
     //Construction Time for a light turret
-    IEnumerator LightTurretConstructionTime(Vector3 playerPosition) {
+    IEnumerator LightTurretConstructionTime(Vector3 playerPosition, Vector3 playerRelative, GameObject constructor) {
         print(Time.time);
         yield return new WaitForSeconds(constructionTime);
-	
+		Destroy(constructor);
 		GameObject thisObject = Instantiate(Resources.Load("turretPrefab"), playerPosition, Quaternion.identity) as GameObject;
-		thisObject.transform.Translate(transform.forward * 1);
-		
+
+		thisObject.transform.position = playerPosition + playerRelative * 1;
 		SoundManager.instance.PlaySingle(constructionTimeSoundEnd);
 
         print(Time.time);
@@ -46,18 +46,30 @@ public class BuildDefenceObject : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.E)) { //Deploy light pylon
 			if(PlayerGUI.batteryPerc > 15) {
 				Vector3 playerPosition = GameObject.Find("Auron").transform.position;
+				Vector3 playerRelative = GameObject.Find("Auron").transform.forward;
+				GameObject constructor = Instantiate(Resources.Load("Construction"), playerPosition, Quaternion.identity) as GameObject;
+
+				constructor.transform.position = playerPosition + playerRelative * 1;
+
 				PlayerGUI.batteryPerc -=15;
 				SoundManager.instance.PlaySingle(constructionTimeSoundBegin);
-				StartCoroutine(PylonConstructionTime(playerPosition));
+
+				StartCoroutine(PylonConstructionTime(playerPosition, playerRelative, constructor));
 			}
 		}
 
 		if (Input.GetKeyDown (KeyCode.R)) { //Deploy light turret
 			if(PlayerGUI.batteryPerc > 10) {
 				Vector3 playerPosition = GameObject.Find("Auron").transform.position;
-				PlayerGUI.batteryPerc-=10;
+				Vector3 playerRelative = GameObject.Find("Auron").transform.forward;
+				GameObject constructor = Instantiate(Resources.Load("Construction"), playerPosition, Quaternion.identity) as GameObject;
+
+				constructor.transform.position = playerPosition + playerRelative * 1;
+
+				PlayerGUI.batteryPerc -=10;
 				SoundManager.instance.PlaySingle(constructionTimeSoundBegin);
-				StartCoroutine(LightTurretConstructionTime(playerPosition));
+
+				StartCoroutine(LightTurretConstructionTime(playerPosition, playerRelative, constructor));
 			}
 		}
 
