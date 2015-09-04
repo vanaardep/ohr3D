@@ -5,12 +5,10 @@ public class MineDetection : MonoBehaviour {
 
 
 
-
-
-
-
 	public ParticleSystem ps;
-
+	public EnemyMove currentEnemies;
+	//m_someOtherScriptOnAnotherGameObject = GameObject.FindObjectOfType(typeof(ScriptA)) as ScriptA;
+	//m_someOtherScriptOnAnotherGameObject.Test();
 
 	private Vector3 minePosition;
 	private bool timeToExplode = false;
@@ -22,6 +20,7 @@ public class MineDetection : MonoBehaviour {
 	void Start () {
 		resetValue = mineExplosionDelay;
 		 minePosition = gameObject.transform.position ;
+		//currentEnemies = GameObject.FindObjectOfType (typeof(EnemyMove)) as EnemyMove;
 	}
 	
 	// Update is called once per frame
@@ -48,7 +47,12 @@ public class MineDetection : MonoBehaviour {
 	void OnTriggerStay(Collider other) {
 		//Debug.Log (other.tag);
 		if (timeToExplode == true && other.tag == "Enemy") {
-			Destroy(other.gameObject);
+			//Destroy(other.gameObject);
+		
+			((EnemyMove)other.gameObject.GetComponent(typeof(EnemyMove))).killGhoul();
+
+
+			//other.gameObject.killGhoul();
 			Destroy(gameObject);
 			EnemyManager.enemyKillCount--;
 			PlayerGUI.batteryPerc+=5; // Everytime a mine kills an enemy gets +5 battery

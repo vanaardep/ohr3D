@@ -24,7 +24,8 @@ public class BulletDetection : MonoBehaviour {
         {
 			PlayerGUI.batteryPerc +=5;
 			EnemyManager.enemyKillCount--;
-            Destroy(col.gameObject);
+			((EnemyMove)col.gameObject.GetComponent(typeof(EnemyMove))).killGhoul();
+           // Destroy(col.gameObject);
             Destroy(this.gameObject);
         }
     }

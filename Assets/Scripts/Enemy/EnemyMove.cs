@@ -121,4 +121,15 @@ public class EnemyMove : MonoBehaviour {
 		frozen = true;
 		Invoke ("unfreezeEnemy", enemyFreezeTime);
 	}
+
+	public void killGhoul(){
+		this.GetComponent<Animator> ().Play ("die");
+		frozen = true;
+		this.GetComponent<Rigidbody> ().Sleep ();
+		//Destroy (gameObject, 24); //24 is length of death animation
+	}
+
+	public void removeEnemy(){
+		Destroy (gameObject,0.3f);
+	}
 }

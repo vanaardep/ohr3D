@@ -38,7 +38,8 @@ public class LightTurretAttack : MonoBehaviour {
 	   			Debug.Log("LIGHTTURRET ATTACKKKKKKKKKKKKKKKK");
 	   			EnemyManager.enemyKillCount--;
 			    PlayerGUI.batteryPerc +=5;
-	            Destroy(col.gameObject);
+	            //Destroy(col.gameObject);
+			((EnemyMove)col.gameObject.GetComponent(typeof(EnemyMove))).killGhoul();
 	            this.GetComponentInChildren<Light> ().intensity = 8;
 	    }
          
