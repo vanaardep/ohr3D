@@ -30,7 +30,7 @@ public class PlayerGUI : MonoBehaviour {
 		GUI.Label(new Rect(50, 50, 100, 100), batteryPerc+"%", mainFont);
 
 		// Hotkeys
-		GUI.DrawTexture(new Rect(Screen.width / 2 - 125, Screen.height - 60, 250, 55), gui_hotkeys, ScaleMode.StretchToFill, true, 0F);
+		GUI.DrawTexture(new Rect(Screen.width / 2 - 145, Screen.height - 55, 290, 55), gui_hotkeys, ScaleMode.StretchToFill, true, 0F);
 
 		// Lightbulbs
 		GUI.DrawTexture(new Rect(170, 20, 50, 50), gui_lightbulbs, ScaleMode.ScaleToFit, true, 0F);
