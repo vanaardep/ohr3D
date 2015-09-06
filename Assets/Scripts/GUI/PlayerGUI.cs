@@ -8,13 +8,19 @@ public class PlayerGUI : MonoBehaviour {
 	public Texture2D gui_hotkeys;
 	public Texture2D gui_lightbulbs;
 	public Texture2D gui_baseCar;
+	public Texture2D gui_health;
 	public GUIStyle mainFont;
 	public GUIStyle smallFont;
+
+	public string imageFolderName = "Health circle pieces";
+	//public ArrayList pictures = new ArrayList();
+	public Texture2D[] textures;
 
 	// Use this for initialization
 	void Start () {
 		batteryPerc = 100;
-	
+
+		textures = System.Array.ConvertAll(Resources.LoadAll(imageFolderName, typeof(Texture2D)),o=>(Texture2D)o);
 	}
 	
 	// Update is called once per frame
@@ -28,6 +34,11 @@ public class PlayerGUI : MonoBehaviour {
 		// Main circle
 		GUI.DrawTexture(new Rect(20, 20, 150, 150), gui_main, ScaleMode.ScaleToFit, true, 0F);
 		GUI.Label(new Rect(50, 50, 100, 100), batteryPerc+"%", mainFont);
+
+		// Health bar
+		Debug.Log (PlayerHealth.playerHealth);
+		gui_health = textures [PlayerHealth.playerHealth];
+		GUI.DrawTexture(new Rect(20, 20, 150, 150), gui_health, ScaleMode.ScaleToFit, true, 0F);
 
 		// Hotkeys
 		GUI.DrawTexture(new Rect(Screen.width / 2 - 145, Screen.height - 55, 290, 55), gui_hotkeys, ScaleMode.StretchToFill, true, 0F);
