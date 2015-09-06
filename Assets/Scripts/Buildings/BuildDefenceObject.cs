@@ -22,7 +22,7 @@ public class BuildDefenceObject : MonoBehaviour {
 		GameObject thisObject = Instantiate(Resources.Load("pylon"), playerPosition, Quaternion.identity) as GameObject;
 	
 		thisObject.transform.position = playerPosition + playerRelative * 1;
-		SoundManager.instance.PlaySingle(constructionTimeSoundEnd);
+		SoundManager.instance.PlayBuildingAudio(constructionTimeSoundEnd);
 
         print(Time.time);
     }
@@ -35,7 +35,7 @@ public class BuildDefenceObject : MonoBehaviour {
 		GameObject thisObject = Instantiate(Resources.Load("turretPrefab"), playerPosition, Quaternion.identity) as GameObject;
 
 		thisObject.transform.position = playerPosition + playerRelative * 1;
-		SoundManager.instance.PlaySingle(constructionTimeSoundEnd);
+		SoundManager.instance.PlayBuildingAudio(constructionTimeSoundEnd);
 
         print(Time.time);
     }
@@ -52,7 +52,7 @@ public class BuildDefenceObject : MonoBehaviour {
 				constructor.transform.position = playerPosition + playerRelative * 1;
 
 				PlayerGUI.batteryPerc -=15;
-				SoundManager.instance.PlaySingle(constructionTimeSoundBegin);
+				SoundManager.instance.PlayBuildingAudio(constructionTimeSoundBegin);
 
 				StartCoroutine(PylonConstructionTime(playerPosition, playerRelative, constructor));
 			}
@@ -67,7 +67,7 @@ public class BuildDefenceObject : MonoBehaviour {
 				constructor.transform.position = playerPosition + playerRelative * 1;
 
 				PlayerGUI.batteryPerc -=10;
-				SoundManager.instance.PlaySingle(constructionTimeSoundBegin);
+				SoundManager.instance.PlayBuildingAudio(constructionTimeSoundBegin);
 
 				StartCoroutine(LightTurretConstructionTime(playerPosition, playerRelative, constructor));
 			}
@@ -85,7 +85,7 @@ public class BuildDefenceObject : MonoBehaviour {
 				thisObject.transform.Translate(transform.forward * 1);
 				PlayerGUI.batteryPerc -=10;
 			}
-			SoundManager.instance.PlaySingle(buildSound);
+			SoundManager.instance.PlayBuildingAudio(buildSound);
 		}
 
 		if (Input.GetKeyDown (KeyCode.G)) { //Deploy glowStick
@@ -99,7 +99,7 @@ public class BuildDefenceObject : MonoBehaviour {
 				signalCount--;
 			}
 			//thisObject.transform.Translate(transform.forward * 1);  // Disabled so that glow stick is place underneath player, else it is placed next to him.
-			SoundManager.instance.PlaySingle(buildSound);
+			SoundManager.instance.PlayBuildingAudio(buildSound);
 		}
 	}
 }

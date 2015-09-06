@@ -3,56 +3,88 @@ using System.Collections;
 
     public class SoundManager : MonoBehaviour 
     {
-        public AudioSource efxSource;                   //Drag a reference to the audio source which will play the sound effects.
-        public AudioSource musicSource;                 //Drag a reference to the audio source which will play the music.
-        public static SoundManager instance = null;     //Allows other scripts to call functions from SoundManager.             
-        public float lowPitchRange = .95f;              //The lowest a sound effect will be randomly pitched.
-        public float highPitchRange = 1.05f;            //The highest a sound effect will be randomly pitched.
+        public AudioSource environmentAudio;
+        public AudioSource playerMoveAudio;
+        public AudioSource playerShootAudio;
+        public AudioSource playerDamageAudio;  
+        public AudioSource buildingAudio;
+        public AudioSource itemPickupAudio;
+        public AudioSource musicSource;   
+
+        public static SoundManager instance = null;                
+        public float lowPitchRange = .95f;              
+        public float highPitchRange = 1.05f;      
+
+
+        void Start() {
+            AudioSource[] audios = GetComponents<AudioSource>();
+            environmentAudio = audios[0];
+            playerMoveAudio = audios[1];
+            playerShootAudio = audios[2];
+            playerDamageAudio = audios[3];
+            buildingAudio = audios[4];
+            itemPickupAudio = audios[5];
+        }     
         
         
         void Awake ()
         {
-            //Check if there is already an instance of SoundManager
             if (instance == null)
-                //if not, set it to this.
                 instance = this;
-            //If instance already exists:
             else if (instance != this)
-                //Destroy this, this enforces our singleton pattern so there can only be one instance of SoundManager.
                 Destroy (gameObject);
             
-            //Set SoundManager to DontDestroyOnLoad so that it won't be destroyed when reloading our scene.
             DontDestroyOnLoad (gameObject);
         }
-        
-        
-        //Used to play single sound clips.
-        public void PlaySingle(AudioClip clip)
+
+
+        //Plays audio related to environment noises
+        public void PlayEnvironmentAudio(AudioClip clip)
         {
-            //Set the clip of our efxSource audio source to the clip passed in as a parameter.
-            efxSource.clip = clip;
-            
-            //Play the clip.
-            efxSource.Play ();
+            environmentAudio.clip = clip;
+            environmentAudio.Play ();
         }
-        
-        
-        //RandomizeSfx chooses randomly between various audio clips and slightly changes their pitch.
-        public void RandomizeSfx (params AudioClip[] clips)
+
+        //Plays audio related to playermovement
+        public void PlayPlayerMoveAudio(params AudioClip[] clips)
         {
-            //Generate a random number between 0 and the length of our array of clips passed in.
             int randomIndex = Random.Range(0, clips.Length);
-            
-            //Choose a random pitch to play back our clip at between our high and low pitch ranges.
             float randomPitch = Random.Range(lowPitchRange, highPitchRange);
             
-            //Set the pitch of the audio source to the randomly chosen pitch.
-            efxSource.pitch = randomPitch;
+            playerMoveAudio.pitch = randomPitch;
+            playerMoveAudio.clip = clips[randomIndex];
+            playerMoveAudio.Play();
+        }
+
+        //Plays audio related to player shoot
+        public void PlayPlayerShootAudio(params AudioClip[] clips)
+        {
+            int randomIndex = Random.Range(0, clips.Length);
+            float randomPitch = Random.Range(lowPitchRange, highPitchRange);
             
-            //Set the clip to the clip at our randomly chosen index.
-            efxSource.clip = clips[randomIndex];
-            
-            //Play the clip.
-            efxSource.Play();
+            playerShootAudio.pitch = randomPitch;
+            playerShootAudio.clip = clips[randomIndex];
+            playerShootAudio.Play();
+        }
+
+        //Plays audio related to player damage
+        public void PlayPlayerDamageAudio(AudioClip clip)
+        {
+            playerDamageAudio.clip = clip;
+            playerDamageAudio.Play ();
+        }
+
+        //Plays audio related to building noises
+        public void PlayBuildingAudio(AudioClip clip)
+        {
+            buildingAudio.clip = clip;
+            buildingAudio.Play ();
+        }
+
+        //Plays audio related to environment noises
+        public void PlayItemPickupAudio(AudioClip clip)
+        {
+            itemPickupAudio.clip = clip;
+            itemPickupAudio.Play ();
         }
 }

@@ -27,14 +27,14 @@ public class ItemCollection : MonoBehaviour {
 		if (col.gameObject.tag == "BatteryCollider") { 
 			batteryCount += 1;
 			PlayerGUI.batteryPerc +=20;
-			SoundManager.instance.PlaySingle(pickupSound);
+			SoundManager.instance.PlayItemPickupAudio(pickupSound);
 			Destroy(col.gameObject); //destroys the sprite's collider
 			Debug.Log("Player touched Battery");
 			Debug.Log (batteryCount);
 
 		} else if (col.gameObject.tag  == "LightbulbCollider") { 
 			lightbulbCount += 1;
-			SoundManager.instance.PlaySingle(pickupSound);
+			SoundManager.instance.PlayItemPickupAudio(pickupSound);
 			Destroy(col.gameObject); //destroys the sprite's collider
 			Debug.Log("Player touched Battery");
 			Debug.Log (batteryCount);

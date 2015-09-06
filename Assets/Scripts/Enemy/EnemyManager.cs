@@ -71,7 +71,7 @@ public class EnemyManager : MonoBehaviour {
 			if ((Time.time >= startTime)  && (numberOfEnemies == 0) && flag1 == false) {
 				enemyKillCount = enemiesPerWave;
 				timestamp = spawnrate + Time.time;	
-				SoundManager.instance.PlaySingle(hordeSpawnSound);
+				SoundManager.instance.PlayEnvironmentAudio(hordeSpawnSound);
 				hordeWaveCount++;
 				flag1 = true;
 			}

@@ -21,7 +21,7 @@ public class PlayerHealth : MonoBehaviour {
         if(coll.gameObject.tag=="Enemy") {
         	if(playerHealth != 0){
     	        playerHealth -= 1;
-    	        SoundManager.instance.PlaySingle(hurtSound); //player getting hurt
+    	        SoundManager.instance.PlayPlayerDamageAudio(hurtSound); //player getting hurt
         	}
         	else{
 

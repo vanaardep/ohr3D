@@ -21,12 +21,12 @@ public class PlayerSounds : MonoBehaviour {
 	
 	}
 	public void playJump(){
-		SoundManager.instance.PlaySingle (Jump);
+		SoundManager.instance.PlayPlayerMoveAudio(Jump);
 	}
 	public void playLand(){
-		SoundManager.instance.PlaySingle (Land);
+		SoundManager.instance.PlayPlayerMoveAudio(Land);
 	}
 	public void playFootsteps(){
-		SoundManager.instance.RandomizeSfx(Footstep1,Footstep2,Footstep3,Footstep4);
+		SoundManager.instance.PlayPlayerMoveAudio(Footstep1,Footstep2,Footstep3,Footstep4);
 	}
 }
