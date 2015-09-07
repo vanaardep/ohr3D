@@ -36,7 +36,7 @@ public class PlayerGUI : MonoBehaviour {
 		GUI.Label(new Rect(50, 50, 100, 100), batteryPerc+"%", mainFont);
 
 		// Health bar
-		Debug.Log (PlayerHealth.playerHealth);
+		//Debug.Log (PlayerHealth.playerHealth);
 		gui_health = textures [PlayerHealth.playerHealth];
 		GUI.DrawTexture(new Rect(20, 20, 150, 150), gui_health, ScaleMode.ScaleToFit, true, 0F);
 

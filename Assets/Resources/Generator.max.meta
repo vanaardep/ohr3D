@@ -1,0 +1,143 @@
+fileFormatVersion: 2
+guid: 5b89dd982f5807f4995053d92f579f25
+timeCreated: 1441649306
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Base
+    100002: Box001
+    100004: Cylinder001
+    100006: Cylinder002
+    100008: Cylinder003
+    100010: //RootNode
+    100012: Joint002
+    100014: Joint1
+    100016: pole003
+    100018: pole004
+    100020: pole005
+    100022: pole2
+    100024: PoleBase003
+    100026: PoleBase004
+    100028: PoleBase1
+    100030: PoleBase2
+    400000: Base
+    400002: Box001
+    400004: Cylinder001
+    400006: Cylinder002
+    400008: Cylinder003
+    400010: //RootNode
+    400012: Joint002
+    400014: Joint1
+    400016: pole003
+    400018: pole004
+    400020: pole005
+    400022: pole2
+    400024: PoleBase003
+    400026: PoleBase004
+    400028: PoleBase1
+    400030: PoleBase2
+    2300000: Base
+    2300002: Box001
+    2300004: Cylinder001
+    2300006: Cylinder002
+    2300008: Cylinder003
+    2300010: Joint002
+    2300012: Joint1
+    2300014: pole003
+    2300016: pole004
+    2300018: pole005
+    2300020: pole2
+    2300022: PoleBase003
+    2300024: PoleBase004
+    2300026: PoleBase1
+    2300028: PoleBase2
+    3300000: Base
+    3300002: Box001
+    3300004: Cylinder001
+    3300006: Cylinder002
+    3300008: Cylinder003
+    3300010: Joint002
+    3300012: Joint1
+    3300014: pole003
+    3300016: pole004
+    3300018: pole005
+    3300020: pole2
+    3300022: PoleBase003
+    3300024: PoleBase004
+    3300026: PoleBase1
+    3300028: PoleBase2
+    4300000: Box001
+    4300002: Cylinder001
+    4300004: Cylinder002
+    4300006: Base
+    4300008: PoleBase1
+    4300010: PoleBase2
+    4300012: PoleBase003
+    4300014: PoleBase004
+    4300016: Cylinder003
+    4300018: pole2
+    4300020: pole003
+    4300022: Joint1
+    4300024: Joint002
+    4300026: pole004
+    4300028: pole005
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

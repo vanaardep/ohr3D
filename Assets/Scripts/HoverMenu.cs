@@ -25,6 +25,9 @@ public class HoverMenu : MonoBehaviour {
 	private float timer;
 	private bool checkPos;
 
+	public bool upgradeShortcut;
+	private bool AlreadyUpgraded;
+
 	private bool toggleOnOff = true;
 
 
@@ -35,6 +38,7 @@ public class HoverMenu : MonoBehaviour {
 		h.enabled = false;
 		checkPos = false;
 		timer = MenuTimer;
+		AlreadyUpgraded = false;
 		//Debug.Log ("Screen Width : " + Screen.width);
 		//Debug.Log ("Screen Height : " + Screen.height);
 	}
@@ -119,7 +123,23 @@ public class HoverMenu : MonoBehaviour {
 			}
 			if(GUI.Button (new Rect (posx, posy + 45, 30, 30), gui_upgrade, mainFont))
 			{
+				if(thisObj.tag == "Pylon")
+				{
+					if(upgradeShortcut || ItemCollection.lightbulbCount >=2 && !AlreadyUpgraded)
+					{
+						Vector3 position = thisObj.transform.position;
+						Destroy(this.gameObject);
+						GameObject thisObject = Instantiate(Resources.Load("pylonAlpha"), position, Quaternion.identity) as GameObject;
+						thisObject.transform.Translate(transform.forward * 1);
+						AlreadyUpgraded = true;
+						ItemCollection.lightbulbCount -=2;
+					}
+					else
+					{
+						//PUT message dialog or sound to state the user cant upgrade Insufficint Resources
 
+					}
+				}
 			}
 			if(GUI.Button (new Rect (posx + 45, posy + 45, 30, 30), gui_destroy, mainFont))
 			{
