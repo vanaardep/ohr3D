@@ -14,7 +14,7 @@ public class GameOverScreen : MonoBehaviour {
 	private float nextPic = 1f;
 
 	private bool imageSeqDone = false;
-	public Texture2D load_screen;
+	MovieTexture loading_video;
 	bool loading = false;
 	public GUIStyle mainFont;
 
@@ -36,7 +36,7 @@ public class GameOverScreen : MonoBehaviour {
 			pictures.Add(textures[i]);
 		}
 
-	
+		loading_video = (MovieTexture) Resources.Load( "loading" , typeof( MovieTexture ) );
 	}
 	
 
@@ -85,7 +85,9 @@ public class GameOverScreen : MonoBehaviour {
 			if (GUI.Button (new Rect (Screen.width / 2 - 50, Screen.height / 2 - 50, 100, 50), "RESTART", mainFont)) {
 				// Start game
 				loading = true;
-				Application.LoadLevel("Level1");
+				loading_video.Play();
+				loading_video.loop = true;
+				Application.LoadLevelAsync ("Level1");
 			}
 
 			if (GUI.Button (new Rect (Screen.width / 2 - 50, Screen.height / 2 - 0, 100, 50), "MAIN MENU", mainFont)) {
@@ -96,7 +98,7 @@ public class GameOverScreen : MonoBehaviour {
 
 			// Loading
 			if (loading) {
-				GUI.DrawTexture (new Rect (0, 0, Screen.width, Screen.height), load_screen, ScaleMode.ScaleAndCrop, true, 0F);
+				GUI.DrawTexture (new Rect (0, 0, Screen.width, Screen.height), loading_video, ScaleMode.ScaleAndCrop, true, 0F);
 			}
 
 

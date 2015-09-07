@@ -4,7 +4,7 @@ using System.Collections;
 public class GUIPauseMenu : MonoBehaviour {
 
 	public Texture2D pause_background;
-	public Texture2D load_screen;
+	MovieTexture loading_video;
 	public GUIStyle mainFont;
 	public GUIStyle titleFont;
 
@@ -15,6 +15,7 @@ public class GUIPauseMenu : MonoBehaviour {
 	void Start () {
 		paused = false;
 		//loading = false;
+		loading_video = (MovieTexture) Resources.Load( "loading" , typeof( MovieTexture ) );
 	}
 	
 	// Update is called once per frame
@@ -33,6 +34,14 @@ public class GUIPauseMenu : MonoBehaviour {
 	void OnGUI () {
 
 		if (paused) {
+
+			if (loading) {
+				GUI.DrawTexture (new Rect (0, 0, Screen.width, Screen.height), loading_video, ScaleMode.ScaleAndCrop, true, 0F);
+				loading_video.Play();
+				loading_video.loop = true;
+				Application.LoadLevelAsync (Application.loadedLevel);
+			}
+
 			// Background
 			GUI.DrawTexture (new Rect (Screen.width / 2 - 125, Screen.height / 2 - 125, 250, 250), pause_background, ScaleMode.ScaleToFit, true, 0F);
 
@@ -53,11 +62,6 @@ public class GUIPauseMenu : MonoBehaviour {
 				// Restart level
 				//paused = false;
 				loading = true;
-			}
-
-			if (loading) {
-				GUI.DrawTexture (new Rect (0, 0, Screen.width, Screen.height), load_screen, ScaleMode.ScaleAndCrop, true, 0F);
-				Application.LoadLevel (Application.loadedLevel);
 			}
 		}
 	}

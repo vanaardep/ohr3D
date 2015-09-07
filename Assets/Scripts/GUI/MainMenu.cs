@@ -5,7 +5,7 @@ public class MainMenu : MonoBehaviour {
 
 	public Texture2D menu_background;
 	public Texture2D menu_splash;
-	public Texture2D load_screen;
+	MovieTexture loading_video;
 
 	public GUIStyle mainFont;
 	public GUIStyle loadFont;
@@ -16,7 +16,9 @@ public class MainMenu : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		Invoke ("disableSplash", 2);
+		Invoke ("disableSplash", 4);
+
+		loading_video = (MovieTexture) Resources.Load( "loading" , typeof( MovieTexture ) );
 	}
 	
 	// Update is called once per frame
@@ -40,7 +42,7 @@ public class MainMenu : MonoBehaviour {
 		if (GUI.Button (new Rect (Screen.width - 120, Screen.height - 120, 100, 50), "START", mainFont)) {
 			// Start game
 			loading = true;
-			Application.LoadLevel("Level1");
+			Application.LoadLevelAsync("Level1");
 		}
 
 		// Splash
@@ -50,7 +52,9 @@ public class MainMenu : MonoBehaviour {
 
 		// Loading
 		if (loading) {
-			GUI.DrawTexture (new Rect (0, 0, Screen.width, Screen.height), load_screen, ScaleMode.ScaleAndCrop, true, 0F);
+			GUI.DrawTexture (new Rect (0, 0, Screen.width, Screen.height), loading_video, ScaleMode.ScaleAndCrop, true, 0F);
+			loading_video.Play();
+			loading_video.loop = true;
 		}
 	}
 }
