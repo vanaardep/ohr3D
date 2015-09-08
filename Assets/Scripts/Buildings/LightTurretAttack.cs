@@ -5,7 +5,7 @@ public class LightTurretAttack : MonoBehaviour {
 
  	private float fireStart = 0f;
 	public float PowerUsageDelay = 2;
- 	private float fireCooldown = 5f; // 5cd of turret
+ 	public float fireCooldown = 5f; // 5cd of turret
 
  	private float fireAnimStart = 0f;
  	private float fireAnimCooldown = 1f; // 1 second light pulse animation

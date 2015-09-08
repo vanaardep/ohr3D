@@ -26,7 +26,8 @@ public class HoverMenu : MonoBehaviour {
 	private bool checkPos;
 
 	public bool upgradeShortcut;
-	private bool AlreadyUpgraded;
+	private bool AlreadyUpgradedPylon;
+	private bool AlreadyUpgradedTurret;
 
 	private bool toggleOnOff = true;
 
@@ -38,7 +39,8 @@ public class HoverMenu : MonoBehaviour {
 		h.enabled = false;
 		checkPos = false;
 		timer = MenuTimer;
-		AlreadyUpgraded = false;
+		AlreadyUpgradedPylon = false;
+		AlreadyUpgradedTurret = false;
 		//Debug.Log ("Screen Width : " + Screen.width);
 		//Debug.Log ("Screen Height : " + Screen.height);
 	}
@@ -125,19 +127,36 @@ public class HoverMenu : MonoBehaviour {
 			{
 				if(thisObj.tag == "Pylon")
 				{
-					if(upgradeShortcut || ItemCollection.lightbulbCount >=2 && !AlreadyUpgraded)
+					if(upgradeShortcut || ItemCollection.lightbulbCount >=2 && !AlreadyUpgradedPylon)
 					{
 						Vector3 position = thisObj.transform.position;
 						Destroy(this.gameObject);
 						GameObject thisObject = Instantiate(Resources.Load("pylonAlpha"), position, Quaternion.identity) as GameObject;
 						thisObject.transform.Translate(transform.forward * 1);
-						AlreadyUpgraded = true;
+						AlreadyUpgradedPylon = true;
 						ItemCollection.lightbulbCount -=2;
 					}
 					else
 					{
 						//PUT message dialog or sound to state the user cant upgrade Insufficint Resources
 
+					}
+				}
+				if(thisObj.tag == "Turret")
+				{
+					if(upgradeShortcut || ItemCollection.lightbulbCount >=2 && !AlreadyUpgradedTurret)
+					{
+						Vector3 position = thisObj.transform.position;
+						Destroy(this.gameObject);
+						GameObject thisObject = Instantiate(Resources.Load("turretAlpha"), position, Quaternion.identity) as GameObject;
+						thisObject.transform.Translate(transform.forward * 1);
+						AlreadyUpgradedTurret = true;
+						ItemCollection.lightbulbCount -=2;
+					}
+					else
+					{
+						//PUT message dialog or sound to state the user cant upgrade Insufficint Resources
+						
 					}
 				}
 			}
