@@ -59,6 +59,9 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 				
                 	// use the values to move the character
                 	character.Move(agent.desiredVelocity, false, false);
+				} else {
+					//agent.SetDestination();
+					//character.Move(Vector3.zero, false, false);
 				}
             }
             else
@@ -89,8 +92,6 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		}
 		
 		public void freezeEnemy () {
-
-			Debug.Log ("FREEZE");
 
 			frozen = true;
 			Invoke ("unfreezeEnemy", enemyFreezeTime);

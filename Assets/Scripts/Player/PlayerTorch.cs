@@ -20,11 +20,11 @@ public class PlayerTorch : MonoBehaviour {
 		if (objectName == "ghoulprefab") 
 			{
 				other.GetComponent<Animator>().Play("idleEnemy");
-				//EnemyMove enemyScript = other.GetComponent<EnemyMove> ();
-				//enemyScript.freezeEnemy();
-
-				AICharacterControl enemyScript = other.GetComponent<AICharacterControl> ();
+				EnemyMove enemyScript = other.GetComponent<EnemyMove> ();
 				enemyScript.freezeEnemy();
+
+				//AICharacterControl enemyScript = other.GetComponent<AICharacterControl> ();
+				//enemyScript.freezeEnemy();
 			}
 	}
 }
