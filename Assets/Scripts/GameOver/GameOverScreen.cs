@@ -17,6 +17,7 @@ public class GameOverScreen : MonoBehaviour {
 	MovieTexture loading_video;
 	bool loading = false;
 	public GUIStyle mainFont;
+	public AudioClip gameOverMenuClickSound;
 
 
 	private float FadeinDelay = 0f;
@@ -84,6 +85,7 @@ public class GameOverScreen : MonoBehaviour {
 
 			if (GUI.Button (new Rect (Screen.width / 2 - 50, Screen.height / 2 - 50, 100, 50), "RESTART", mainFont)) {
 				// Start game
+				SoundManagerMenu.instance.PlayMainMenuClickAudio(gameOverMenuClickSound);
 				loading = true;
 				loading_video.Play();
 				loading_video.loop = true;
@@ -92,6 +94,7 @@ public class GameOverScreen : MonoBehaviour {
 
 			if (GUI.Button (new Rect (Screen.width / 2 - 50, Screen.height / 2 - 0, 100, 50), "MAIN MENU", mainFont)) {
 				// Start game
+				SoundManagerMenu.instance.PlayMainMenuClickAudio(gameOverMenuClickSound);
 				loading = true;
 				Application.LoadLevel("Menu");
 			}

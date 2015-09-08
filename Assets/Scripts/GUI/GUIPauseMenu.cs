@@ -7,6 +7,7 @@ public class GUIPauseMenu : MonoBehaviour {
 	MovieTexture loading_video;
 	public GUIStyle mainFont;
 	public GUIStyle titleFont;
+	public AudioClip pauseMenuClickSound;
 
 	bool paused;
 	bool loading;
@@ -50,17 +51,20 @@ public class GUIPauseMenu : MonoBehaviour {
 
 			if (GUI.Button (new Rect (Screen.width / 2 - 50, Screen.height / 2 + 10, 100, 50), "Save and Quit", mainFont)) {
 				// Save and Quit game
+				SoundManagerMenu.instance.PlayMainMenuClickAudio(pauseMenuClickSound);
 				Application.Quit ();
 			}
 
 			if (GUI.Button (new Rect (Screen.width / 2 - 50, Screen.height / 2 - 50, 100, 50), "Resume", mainFont)) {
 				// Resume game
+				SoundManagerMenu.instance.PlayMainMenuClickAudio(pauseMenuClickSound);
 				paused = false;
 			}
 
 			if (GUI.Button (new Rect (Screen.width / 2 - 50, Screen.height / 2 - 20, 100, 50), "Restart Level", mainFont)) {
 				// Restart level
 				//paused = false;
+				SoundManagerMenu.instance.PlayMainMenuClickAudio(pauseMenuClickSound);
 				loading = true;
 			}
 		}
