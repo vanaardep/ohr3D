@@ -9,13 +9,16 @@ namespace UnityStandardAssets.Characters.ThirdPerson
     {
         public NavMeshAgent agent { get; private set; } // the navmesh agent required for the path finding
         public ThirdPersonCharacter character { get; private set; } // the character we are controlling
-        public Transform target; // target to aim for
+        Transform target; // target to aim for
 
 		//OWN rules
 		public Transform player;
 		public Transform baseCar;
 		float distanceToPlayer;
 		float distanceToCar;
+
+		bool frozen = false;
+		public float enemyFreezeTime = 5;
 
         // Use this for initialization
         private void Start()
@@ -49,12 +52,14 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 				{
 					target = baseCar;
 				}
-                agent.SetDestination(target.position);
 
+                //freeze enemy
+				if (!frozen) {
+					agent.SetDestination(target.position);
 				
-				
-                // use the values to move the character
-                character.Move(agent.desiredVelocity, false, false);
+                	// use the values to move the character
+                	character.Move(agent.desiredVelocity, false, false);
+				}
             }
             else
             {
@@ -74,6 +79,21 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
 			distanceToPlayer = (this.transform.position - player.position).sqrMagnitude;//Vector2.Distance (this.transform.position, player.transform.position);
 			distanceToCar = (this.transform.position - baseCar.position).sqrMagnitude;//Vector2.Distance (this.transform.position, baseCar.transform.position);
+		}
+
+		//
+		void unfreezeEnemy () {
+			frozen = false;
+			
+			this.GetComponent<Animator>().Play("walk");
+		}
+		
+		public void freezeEnemy () {
+
+			Debug.Log ("FREEZE");
+
+			frozen = true;
+			Invoke ("unfreezeEnemy", enemyFreezeTime);
 		}
     }
 }
