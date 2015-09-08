@@ -5,6 +5,7 @@ public class MainMenu : MonoBehaviour {
 
 	public Texture2D menu_background;
 	public Texture2D menu_splash;
+	public AudioClip mainMenuClickSound;
 	MovieTexture loading_video;
 
 	public GUIStyle mainFont;
@@ -36,12 +37,14 @@ public class MainMenu : MonoBehaviour {
 
 		if (GUI.Button (new Rect (Screen.width - 120, Screen.height - 60, 100, 50), "EXIT", mainFont)) {
 			// Exit game
+			SoundManagerMenu.instance.PlayMainMenuClickAudio(mainMenuClickSound);
 			Application.Quit();
 		}
 
 		if (GUI.Button (new Rect (Screen.width - 120, Screen.height - 120, 100, 50), "START", mainFont)) {
 			// Start game
 			loading = true;
+			SoundManagerMenu.instance.PlayMainMenuClickAudio(mainMenuClickSound);
 			Application.LoadLevelAsync("Level1");
 		}
 
