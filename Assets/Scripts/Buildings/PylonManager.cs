@@ -3,22 +3,25 @@ using System.Collections;
 
 public class PylonManager : MonoBehaviour {
 	public float pylonUsageDelay = 5;
-	public bool status = true;
+	public bool status;
 
 	// Use this for initialization
 	void Start () {
-		status = true;
+		//status = true;
+		Debug.Log("HERE NAME : "+ this.gameObject.tag);
 		pylonUsageDelay = 5;
 	}
 
-	public void setStatus(bool _status)
+	public void setStatus(bool Getstatus)
 	{
-		status = _status;
+		status = Getstatus;
+		Debug.Log("INSIDE SET STATUS" + status);
 		pylonUsageDelay = 5;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		Debug.Log("INSIDE update STATUS" + status);
 		if (status) {
 			//Debug.Log ("INSIDE status");
 			pylonUsageDelay -= Time.deltaTime;

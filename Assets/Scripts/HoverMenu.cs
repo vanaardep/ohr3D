@@ -37,6 +37,7 @@ public class HoverMenu : MonoBehaviour {
 	{
 		thisObj = this.gameObject;
 	    h = (Behaviour)GetComponent ("Halo");
+
 		h.enabled = false;
 		checkPos = false;
 		timer = MenuTimer;
@@ -74,6 +75,8 @@ public class HoverMenu : MonoBehaviour {
 
 		if (displayObjName) 
 		{ 
+			//Debug.Log("INSIDE" + thisObj.tag);
+			 //thisObj.GetComponentInChildren<Halo>().enabled = true;
 			if(!checkPos)
 			{
 				posx = Event.current.mousePosition.x;
@@ -108,31 +111,41 @@ public class HoverMenu : MonoBehaviour {
 			{
 				toggleOnOff = GUI.Toggle(new Rect(posx, posy, 60, 60), toggleOnOff, gui_on);
 
-				PylonManager script = thisObj.GetComponent<PylonManager>();
+				//PylonManager script = thisObj.GetComponent<PylonManager>();
+				PylonManager script  = thisObj.GetComponentInParent<PylonManager>();
 				script.setStatus(toggleOnOff);
 				if(toggleOnOff)
 				{
-					//Debug.Log ("On");
-					thisObj.GetComponent<Collider>().isTrigger = false;
-					thisObj.GetComponentInChildren<Light>().enabled = true;
+					Debug.Log ("On");
+					//thisObj.GetComponent<Collider>().isTrigger = false;
+					thisObj.transform.parent.GetComponent<Collider>().isTrigger = false;
+					//thisObj.GetComponentInParent<Collider>().isTrigger = false;
+					//thisObj.root.GetComponentInChildren<Light>().enabled = true;
+						thisObj.transform.parent.GetComponentInChildren<Light>().enabled = true;
+					//thisObj.GetComponent("P1").enabled = true;
+					
 				
 				}
 				else if(!toggleOnOff)
 				{
-					//Debug.Log ("Off");
-					thisObj.GetComponent<Collider>().isTrigger = true;
-					thisObj.GetComponentInChildren<Light>().enabled = false;
+					Debug.Log ("Off");
+					//thisObj.transform.parent.GetComponent<Collider>().isTrigger = false;
+					thisObj.GetComponentInParent<Collider>().isTrigger = true;
+					thisObj.transform.parent.GetComponentInChildren<Light>().enabled = false;
+					//thisObj.root.GetComponentInChildren<Light>().enabled = false;
+					//thisObj.GetComponent("P1").enabled = false;
 				}
 
 			}
 			if(GUI.Button (new Rect (posx, posy + 45, 30, 30), gui_upgrade, mainFont))
 			{
-				if(thisObj.tag == "Pylon")
+				if(thisObj.tag == "Pylon" && !AlreadyUpgradedPylon)
 				{
 					if(upgradeShortcut || ItemCollection.lightbulbCount >=2 && !AlreadyUpgradedPylon)
 					{
 						Vector3 position = thisObj.transform.position;
-						Destroy(this.gameObject);
+						//Destroy(this.gameObject.transform.parent);
+						Destroy(transform.parent.gameObject);
 						GameObject thisObject = Instantiate(Resources.Load("pylonAlpha"), position, Quaternion.identity) as GameObject;
 						thisObject.transform.Translate(transform.forward * 1);
 						AlreadyUpgradedPylon = true;
@@ -149,7 +162,8 @@ public class HoverMenu : MonoBehaviour {
 					if(upgradeShortcut || ItemCollection.lightbulbCount >=2 && !AlreadyUpgradedTurret)
 					{
 						Vector3 position = thisObj.transform.position;
-						Destroy(this.gameObject);
+						//Destroy(this.gameObject);
+						Destroy(transform.parent.gameObject);
 						GameObject thisObject = Instantiate(Resources.Load("turretAlpha"), position, Quaternion.identity) as GameObject;
 						thisObject.transform.Translate(transform.forward * 1);
 						AlreadyUpgradedTurret = true;
@@ -166,7 +180,7 @@ public class HoverMenu : MonoBehaviour {
 					if(upgradeShortcut || ItemCollection.lightbulbCount >=2 && !AlreadyUpgradedMine)
 					{
 						Vector3 position = thisObj.transform.position;
-						Destroy(this.gameObject);
+						Destroy(transform.parent.gameObject);
 						GameObject thisObject = Instantiate(Resources.Load("lightMineAlpha"), position, Quaternion.identity) as GameObject;
 						thisObject.transform.Translate(transform.forward * 1);
 						AlreadyUpgradedMine = true;
@@ -183,22 +197,22 @@ public class HoverMenu : MonoBehaviour {
 			{
 				if(thisObj.tag == "Pylon")
 				{
-				   Destroy(this.gameObject);
+				  Destroy(transform.parent.gameObject);
 				   PlayerGUI.batteryPerc +=10;
 				}
 				else if(thisObj.tag == "Turret")
 				{
-					Destroy(this.gameObject);
+					Destroy(transform.parent.gameObject);
 					PlayerGUI.batteryPerc +=5;
 				}
 				else if(thisObj.tag =="glowStick")
 				{
-					Destroy (this.gameObject);
+					Destroy(transform.parent.gameObject);
 					BuildDefenceObject.signalCount++;
 				}
 				else if(thisObj.tag =="Mine")
 				{
-					Destroy(this.gameObject);
+					Destroy(transform.parent.gameObject);
 					PlayerGUI.batteryPerc +=5;
 				}
 
