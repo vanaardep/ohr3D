@@ -32,7 +32,6 @@ public class HoverMenu : MonoBehaviour {
 
 	private bool toggleOnOff = true;
 
-
 	void Start()
 	{
 		thisObj = this.gameObject;
@@ -112,11 +111,11 @@ public class HoverMenu : MonoBehaviour {
 				toggleOnOff = GUI.Toggle(new Rect(posx, posy, 60, 60), toggleOnOff, gui_on);
 
 				//PylonManager script = thisObj.GetComponent<PylonManager>();
-				PylonManager script  = thisObj.GetComponentInParent<PylonManager>();
-				script.setStatus(toggleOnOff);
+				PylonManager script  = thisObj.GetComponent<PylonManager>();
+
 				if(toggleOnOff)
 				{
-					Debug.Log ("On");
+					//Debug.Log ("On");
 					//thisObj.GetComponent<Collider>().isTrigger = false;
 					thisObj.transform.parent.GetComponent<Collider>().isTrigger = false;
 					//thisObj.GetComponentInParent<Collider>().isTrigger = false;
@@ -124,16 +123,18 @@ public class HoverMenu : MonoBehaviour {
 						thisObj.transform.parent.GetComponentInChildren<Light>().enabled = true;
 					//thisObj.GetComponent("P1").enabled = true;
 					
-				
+					script.onStatus = true;
 				}
 				else if(!toggleOnOff)
 				{
-					Debug.Log ("Off");
+					//Debug.Log ("Off");
 					//thisObj.transform.parent.GetComponent<Collider>().isTrigger = false;
 					thisObj.GetComponentInParent<Collider>().isTrigger = true;
 					thisObj.transform.parent.GetComponentInChildren<Light>().enabled = false;
 					//thisObj.root.GetComponentInChildren<Light>().enabled = false;
 					//thisObj.GetComponent("P1").enabled = false;
+
+					script.onStatus = false;
 				}
 
 			}
@@ -193,6 +194,7 @@ public class HoverMenu : MonoBehaviour {
 					}
 				}
 			}
+
 			if(GUI.Button (new Rect (posx + 45, posy + 45, 30, 30), gui_destroy, mainFont))
 			{
 				if(thisObj.tag == "Pylon")
