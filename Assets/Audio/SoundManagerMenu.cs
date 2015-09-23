@@ -5,6 +5,7 @@ using System.Collections;
     {
         public AudioSource mainMenuClickAudio;
         public AudioSource mainMenuHoverAudio;
+        public AudioSource menuDenyAudio;
         public AudioSource musicSource;   
         public static SoundManagerMenu instance = null;                    
 
@@ -13,6 +14,7 @@ using System.Collections;
             AudioSource[] audios = GetComponents<AudioSource>();
             mainMenuClickAudio = audios[0];
             mainMenuHoverAudio = audios[1];
+            menuDenyAudio = audios[2];
         }     
         
         
@@ -27,18 +29,22 @@ using System.Collections;
         }
 
 
-        //Plays audio related to environment noises
         public void PlayMainMenuClickAudio(AudioClip clip)
         {
             mainMenuClickAudio.clip = clip;
             mainMenuClickAudio.Play ();
         }
 
-        //Plays audio related to environment noises
         public void PlayMainMenuHoverAudio(AudioClip clip)
         {
             mainMenuHoverAudio.clip = clip;
             mainMenuHoverAudio.Play ();
+        }
+
+        public void PlayMenuDenyAudio(AudioClip clip)
+        {
+            menuDenyAudio.clip = clip;
+            menuDenyAudio.Play ();
         }
 
 }

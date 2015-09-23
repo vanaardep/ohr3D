@@ -12,6 +12,9 @@ public class HoverMenu : MonoBehaviour {
 	public Texture2D gui_on;
 	public Texture2D gui_upgrade;
 
+	public AudioClip hoverMenuClickSound;
+	public AudioClip denyMenuSound;
+
 	//public float menuDistanceFromObj;
 	
 	public string objName;
@@ -67,6 +70,7 @@ public class HoverMenu : MonoBehaviour {
 		h.enabled = true;
 		displayObjName = true; 
 		exitBool = false;
+		SoundManagerMenu.instance.PlayMainMenuClickAudio(hoverMenuClickSound);
 	}
 
 	public void displayMenu()
@@ -134,14 +138,14 @@ public class HoverMenu : MonoBehaviour {
 						Vector3 position = thisObj.transform.position;
 						Destroy(this.gameObject);
 						GameObject thisObject = Instantiate(Resources.Load("pylonAlpha"), position, Quaternion.identity) as GameObject;
-						thisObject.transform.Translate(transform.forward * 1);
+						SoundManagerMenu.instance.PlayMainMenuClickAudio(hoverMenuClickSound);
 						AlreadyUpgradedPylon = true;
 						ItemCollection.lightbulbCount -=2;
 					}
 					else
 					{
 						//PUT message dialog or sound to state the user cant upgrade Insufficint Resources
-
+						SoundManagerMenu.instance.PlayMenuDenyAudio(denyMenuSound);
 					}
 				}
 				if(thisObj.tag == "Turret")
@@ -151,14 +155,14 @@ public class HoverMenu : MonoBehaviour {
 						Vector3 position = thisObj.transform.position;
 						Destroy(this.gameObject);
 						GameObject thisObject = Instantiate(Resources.Load("turretAlpha"), position, Quaternion.identity) as GameObject;
-						thisObject.transform.Translate(transform.forward * 1);
+						SoundManagerMenu.instance.PlayMainMenuClickAudio(hoverMenuClickSound);
 						AlreadyUpgradedTurret = true;
 						ItemCollection.lightbulbCount -=2;
 					}
 					else
 					{
 						//PUT message dialog or sound to state the user cant upgrade Insufficint Resources
-						
+						SoundManagerMenu.instance.PlayMenuDenyAudio(denyMenuSound);	
 					}
 				}
 				if(thisObj.tag == "Mine")
@@ -168,19 +172,20 @@ public class HoverMenu : MonoBehaviour {
 						Vector3 position = thisObj.transform.position;
 						Destroy(this.gameObject);
 						GameObject thisObject = Instantiate(Resources.Load("lightMineAlpha"), position, Quaternion.identity) as GameObject;
-						thisObject.transform.Translate(transform.forward * 1);
+						SoundManagerMenu.instance.PlayMainMenuClickAudio(hoverMenuClickSound);
 						AlreadyUpgradedMine = true;
 						ItemCollection.lightbulbCount -=1;
 					}
 					else
 					{
 						//PUT message dialog or sound to state the user cant upgrade Insufficint Resources
-						
+						SoundManagerMenu.instance.PlayMenuDenyAudio(denyMenuSound);
 					}
 				}
 			}
 			if(GUI.Button (new Rect (posx + 45, posy + 45, 30, 30), gui_destroy, mainFont))
 			{
+				SoundManagerMenu.instance.PlayMainMenuClickAudio(hoverMenuClickSound);
 				if(thisObj.tag == "Pylon")
 				{
 				   Destroy(this.gameObject);
