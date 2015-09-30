@@ -35,10 +35,12 @@ public class GUITut_Objectives : MonoBehaviour {
 		// 1st dialog
 		if (dialogTimer < 3) {
 			bottomText = "Light.";
-		} else if (dialogTimer < 6) {
+		} else if (dialogTimer < 10) {
 			bottomText = "Your primary objective is to protect yourself.";
-		} else if (dialogTimer < 9) {
-			bottomText = "Your secondary objective is to protect your base vehicle. It stores all of your resources in the form of batteries";
+		} else if (dialogTimer < 15) {
+			bottomText = "Your secondary objective is to protect your base vehicle. It stores the power for your weapons in the form of batteries.";
+		} else if (dialogTimer < 25) {
+			bottomText = "Your enemy is darkness itself.";
 		}
 		
 		// Draw label
