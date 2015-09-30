@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class ConstructionProgressBar : MonoBehaviour {
+public class ConstructionProgressBarBack : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -12,6 +12,7 @@ public class ConstructionProgressBar : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		Image image = GetComponent<Image>();
-		image.fillAmount = Mathf.MoveTowards(image.fillAmount, 1f, Time.deltaTime * .2f);
+		image.color = Color.gray;
+		image.fillAmount = 1f;
 	}
 }
