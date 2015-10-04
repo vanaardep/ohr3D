@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class EnemyMove : MonoBehaviour {
 
 	public AudioClip hurtSound2;
+	public EnemyResourceGain erg;
 
      Transform player;
 	 Transform TeslaSpotlight;
@@ -24,6 +26,7 @@ public class EnemyMove : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		erg = FindObjectOfType(typeof(EnemyResourceGain)) as EnemyResourceGain;
 		player = GameObject.Find ("Auron").transform;
 		frozen = false;
 		//TeslaSpotlight = GameObject.Find ("TeslaSpotlight").transform;
@@ -123,6 +126,13 @@ public class EnemyMove : MonoBehaviour {
 	}
 
 	public void killGhoul(){
+
+		//resource gain show
+		erg.showResource();
+
+		
+
+
 		this.GetComponent<Animator> ().Play ("die");
 		//frozen = true;
 		this.GetComponent<Rigidbody> ().Sleep ();
