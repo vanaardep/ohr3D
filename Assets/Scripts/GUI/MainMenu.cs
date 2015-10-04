@@ -45,7 +45,7 @@ public class MainMenu : MonoBehaviour {
 			// Start game
 			loading = true;
 			SoundManagerMenu.instance.PlayMainMenuClickAudio(mainMenuClickSound);
-			Application.LoadLevelAsync("Tutorial");
+			Application.LoadLevelAsync("Tutorial_Objectives");
 		}
 
 		// Splash
