@@ -127,6 +127,9 @@ public class EnemyMove : MonoBehaviour {
 		//frozen = true;
 		this.GetComponent<Rigidbody> ().Sleep ();
 		//Destroy (gameObject, 24); //24 is length of death animation
+
+		// Tell enemy manager this enemy died
+
 	}
 
 	public void removeEnemy(){
