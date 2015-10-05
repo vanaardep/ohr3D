@@ -134,7 +134,7 @@ public class EnemyMove : MonoBehaviour {
 
 
 		this.GetComponent<Animator> ().Play ("die");
-		//frozen = true;
+		frozen = true;
 		this.GetComponent<Rigidbody> ().Sleep ();
 		//Destroy (gameObject, 24); //24 is length of death animation
 
