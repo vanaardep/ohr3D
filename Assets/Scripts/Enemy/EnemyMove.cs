@@ -5,7 +5,6 @@ using System.Collections;
 public class EnemyMove : MonoBehaviour {
 
 	public AudioClip hurtSound2;
-	public EnemyResourceGain erg;
 
      Transform player;
 	 Transform TeslaSpotlight;
@@ -24,9 +23,12 @@ public class EnemyMove : MonoBehaviour {
 	//Vector3 enemyPosition;
 	//Vector3 facing;
 
+	bool ghoulDead = false;
+	public GUIStyle mainFont;
+
 	// Use this for initialization
 	void Start () {
-		erg = FindObjectOfType(typeof(EnemyResourceGain)) as EnemyResourceGain;
+
 		player = GameObject.Find ("Auron").transform;
 		frozen = false;
 		//TeslaSpotlight = GameObject.Find ("TeslaSpotlight").transform;
@@ -127,12 +129,9 @@ public class EnemyMove : MonoBehaviour {
 
 	public void killGhoul(){
 
-		//resource gain show
-		erg.showResource();
-
+		// Resource gain show
+		ghoulDead = true;
 		
-
-
 		this.GetComponent<Animator> ().Play ("die");
 		frozen = true;
 		this.GetComponent<Rigidbody> ().Sleep ();
@@ -144,5 +143,14 @@ public class EnemyMove : MonoBehaviour {
 
 	public void removeEnemy(){
 		Destroy (gameObject,0.3f);
+	}
+
+	void OnGUI () {
+		if (ghoulDead) {
+			Vector3 screenPos = Camera.main.WorldToScreenPoint (transform.position);
+			//Debug.Log("target is " + screenPos.x + " pixels from the left");
+		
+			GUI.Label (new Rect (screenPos.x - 70, (Screen.height - screenPos.y) - 90, 100, 100), "+5%", mainFont);
+		}
 	}
 }

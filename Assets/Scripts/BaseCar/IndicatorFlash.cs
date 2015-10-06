@@ -18,7 +18,7 @@ public class IndicatorFlash : MonoBehaviour {
 	}
 
 	void toggleLight () {
-		Debug.Log ("CALL");
+	
 		if (lightOn) {
 			lightInd.enabled = false;
 			lightOn = false;
