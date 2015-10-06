@@ -35,7 +35,7 @@ public class HoverMenu : MonoBehaviour {
 
 	private bool toggleOnOff = true;
 
-
+    public AudioClip pylonDestroySound;
 	void Start()
 	{
 		thisObj = this.gameObject;
@@ -189,6 +189,7 @@ public class HoverMenu : MonoBehaviour {
 				if(thisObj.tag == "Pylon")
 				{
 				   Destroy(this.gameObject);
+                   SoundManager.instance.PlayBuildingAudio(pylonDestroySound);
 				   PlayerGUI.batteryPerc +=10;
 				}
 				else if(thisObj.tag == "Turret")
