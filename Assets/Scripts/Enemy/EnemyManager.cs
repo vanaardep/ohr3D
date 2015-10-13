@@ -65,7 +65,15 @@ public class EnemyManager : MonoBehaviour {
 			maxHordeWaves = 2;
 		}
 
-
+		//=======
+		//LEVEL 2
+		//=======
+		if (Application.loadedLevelName == "Level3") {
+			spawnrate = 3.0f;
+			startTime = 60.0f;
+			enemiesPerWave = 12;
+			maxHordeWaves = 2;
+		}
 
 		startTimeReset = startTime;
 	}

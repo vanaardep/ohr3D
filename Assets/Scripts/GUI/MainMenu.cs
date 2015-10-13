@@ -22,9 +22,6 @@ public class MainMenu : MonoBehaviour {
 	void Start () {
 		Invoke ("disableSplash", 4);
 		loading_video = (MovieTexture) Resources.Load( "loading" , typeof( MovieTexture ) );
-
-		//TAKE THIS OUT
-		splash = false;
 	}
 	
 	// Update is called once per frame

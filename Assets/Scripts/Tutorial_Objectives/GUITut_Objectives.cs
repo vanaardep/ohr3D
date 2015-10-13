@@ -12,15 +12,25 @@ public class GUITut_Objectives : MonoBehaviour {
 	
 	MovieTexture loading_video;
 	bool loading = false;
+	float loadTimer = 0;
 	
 	// Use this for initialization
 	void Start () {
 		loading_video = (MovieTexture) Resources.Load( "loading" , typeof( MovieTexture ) );
 	}
-	
+
+	void OnLevelWasLoaded(int level) {
+		if (level == 1) {
+			print ("TUT objectives loaded");
+
+			loadTimer = Time.time;
+		}
+		
+	}
+
 	// Update is called once per frame
 	void Update () {
-		dialogTimer = Time.time;
+		dialogTimer = Time.time - loadTimer;
 		
 		// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> SKIP TUT 
 		if (Input.GetKeyUp (KeyCode.Space)) {
@@ -44,15 +54,14 @@ public class GUITut_Objectives : MonoBehaviour {
 		} else if (dialogTimer < 30) {
 			bottomText = "Light bulbs are used to upgrade your defences, batteries are used to power them.";
 		} else if (dialogTimer < 35) {
-			bottomText = "They can be found near cars.";
+			bottomText = "They can be found near cars, buildings and rubish heaps.";
+		} else {
+			bottomText = "";
 
 			// Show gui
 			GameObject theOwner = GameObject.Find("GUIObj");
 			PlayerGUI_Tut script = theOwner.GetComponent<PlayerGUI_Tut>();
 			script.showGUI = true;
-
-		} else {
-			bottomText = "";
 		}
 		
 		// Draw label
@@ -66,7 +75,7 @@ public class GUITut_Objectives : MonoBehaviour {
 		}
 	}
 	
-	void endTutorial () {
+	public void endTutorial () {
 		loading = true;
 		Application.LoadLevel ("Level1"); // Make it the next tut screen
 	}
