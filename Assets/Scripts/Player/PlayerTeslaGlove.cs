@@ -12,6 +12,11 @@ public class PlayerTeslaGlove : MonoBehaviour
     private int cooldown;
     public float bulletSpeed = 30;
     Vector3 direction;
+
+	public Texture2D cursorTexture;
+	public CursorMode cursorMode = CursorMode.Auto;
+	public Vector2 hotSpot = Vector2.zero;
+
     // Use this for initialization
     void Start()
     {
@@ -23,16 +28,19 @@ public class PlayerTeslaGlove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.F))
-        {
-            //Debug.Log("Tesla shot!!!!!!!!!!!!!!!!!!!");
+		if (Input.GetKeyDown (KeyCode.F)) {
+			Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+		}
+
+        if (Input.GetKeyUp(KeyCode.F)) {
+            
+			Cursor.SetCursor(null, Vector2.zero, cursorMode);
+
             if (cooldown == 0 && gloveActive == false)
             {
                 //tesla shot creation
                 Vector3 playerPosition = GameObject.Find("Auron").transform.position;
                 GameObject thisObject = Instantiate(Resources.Load("bulletPrefab"), playerPosition, Quaternion.identity) as GameObject;
-
-
 
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
