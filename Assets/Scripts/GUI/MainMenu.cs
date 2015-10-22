@@ -47,14 +47,20 @@ public class MainMenu : MonoBehaviour {
 				Application.Quit ();
 			}
 
-			if (GUI.Button (new Rect (Screen.width - 120, Screen.height - 120, 100, 50), "LEVELS", mainFont)) {
+			if (GUI.Button (new Rect (Screen.width - 120, Screen.height - 120, 100, 50), "SOUND", mainFont)) {
+				// Level Select
+				SoundManagerMenu.instance.PlayMainMenuClickAudio (mainMenuClickSound);
+				menuSelect = true;
+			}
+
+			if (GUI.Button (new Rect (Screen.width - 120, Screen.height - 180, 100, 50), "LEVELS", mainFont)) {
 				// Level Select
 				SoundManagerMenu.instance.PlayMainMenuClickAudio (mainMenuClickSound);
 				menuSelect = true;
 				menu_logo = menu_logo_levels;
 			}
 
-			if (GUI.Button (new Rect (Screen.width - 120, Screen.height - 180, 100, 50), "START", mainFont)) {
+			if (GUI.Button (new Rect (Screen.width - 120, Screen.height - 240, 100, 50), "START", mainFont)) {
 				// Start game
 				loading = true;
 				SoundManagerMenu.instance.PlayMainMenuClickAudio (mainMenuClickSound);
