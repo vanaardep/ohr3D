@@ -16,6 +16,7 @@ public class MineDetection : MonoBehaviour {
 	private bool timerActivated = false;
 	private float resetValue; //If script needs to be reset
 	private ParticleSystem tempPs; // temporaryParticleSystem
+    private bool played = false;
 	// Use this for initialization
 	void Start () {
 		resetValue = mineExplosionDelay;
@@ -28,7 +29,7 @@ public class MineDetection : MonoBehaviour {
 		if (timerActivated) {
 			mineExplosionDelay -= Time.deltaTime;
 		
-			if (mineExplosionDelay <= 0.0f) {
+			if (mineExplosionDelay <= 0.5f) {
 				timeToExplode = true;
 			}
 			Debug.Log(mineExplosionDelay);
@@ -36,11 +37,14 @@ public class MineDetection : MonoBehaviour {
 	}
 	
 	void OnTriggerEnter(Collider other) {
-		if (other.tag == "Enemy") {
+		if (other.tag == "Enemy" && played == false) {
+            played = true;
 			timerActivated = true;
 			tempPs = Instantiate(ps, new Vector3(minePosition.x, minePosition.y +1, minePosition.z), Quaternion.identity) as ParticleSystem;
 			tempPs.Play();
+            Debug.Log(tempPs.duration + "Ps duration");
 			Destroy(tempPs,tempPs.duration);
+
 			}
 	}
 	
