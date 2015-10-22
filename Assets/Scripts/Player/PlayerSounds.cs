@@ -6,6 +6,12 @@ public class PlayerSounds : MonoBehaviour {
 	public AudioClip Footstep2;
 	public AudioClip Footstep3;
 	public AudioClip Footstep4;
+	public AudioClip Grasstep1;
+	public AudioClip Grasstep2;
+	public AudioClip Grasstep3;
+	public AudioClip Grasstep4;
+	public AudioClip Grasstep5;
+	public AudioClip Grasstep6;
 	public AudioClip Jump;
 	public AudioClip Land;
 	// Use this for initialization
@@ -27,6 +33,12 @@ public class PlayerSounds : MonoBehaviour {
 		SoundManager.instance.PlayPlayerMoveAudio(Land);
 	}
 	public void playFootsteps(){
-		SoundManager.instance.PlayPlayerMoveAudio(Footstep1,Footstep2,Footstep3,Footstep4);
+		if(Application.loadedLevelName == "Level1" || Application.loadedLevelName == "Level3" || Application.loadedLevelName == "Tutorial") {
+			SoundManager.instance.PlayPlayerMoveAudio(Footstep1,Footstep2,Footstep3,Footstep4);
+		}
+		else {
+			SoundManager.instance.PlayPlayerMoveAudio(Grasstep1,Grasstep2,Grasstep3,Grasstep4,Grasstep5, Grasstep6);
+			Debug.Log("called");
+		}
 	}
 }
