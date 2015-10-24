@@ -36,8 +36,11 @@ public class HoverMenu : MonoBehaviour {
 	private bool toggleOnOff = true;
 
     public AudioClip pylonDestroySound;
+    public SoundManagerPylon buzzSound;
+   
 	void Start()
 	{
+
 		thisObj = this.gameObject;
 	    h = (Behaviour)GetComponent ("Halo");
 		h.enabled = false;
@@ -46,8 +49,7 @@ public class HoverMenu : MonoBehaviour {
 		AlreadyUpgradedPylon = false;
 		AlreadyUpgradedTurret = false;
 		AlreadyUpgradedMine = false;
-		//Debug.Log ("Screen Width : " + Screen.width);
-		//Debug.Log ("Screen Height : " + Screen.height);
+		buzzSound = thisObj.GetComponent<SoundManagerPylon>();
 	}
 	void OnGUI()
 	{
@@ -119,13 +121,14 @@ public class HoverMenu : MonoBehaviour {
 					//Debug.Log ("On");
 					thisObj.GetComponent<Collider>().isTrigger = false;
 					thisObj.GetComponentInChildren<Light>().enabled = true;
-				
+					buzzSound.instance.PlayLightpylonBuzz();
 				}
 				else if(!toggleOnOff)
 				{
 					//Debug.Log ("Off");
 					thisObj.GetComponent<Collider>().isTrigger = true;
 					thisObj.GetComponentInChildren<Light>().enabled = false;
+					buzzSound.instance.MuteLightpylonBuzz();
 				}
 
 			}
@@ -156,6 +159,7 @@ public class HoverMenu : MonoBehaviour {
 						Destroy(this.gameObject);
 						GameObject thisObject = Instantiate(Resources.Load("turretAlpha"), position, Quaternion.identity) as GameObject;
 						SoundManagerMenu.instance.PlayMainMenuClickAudio(hoverMenuClickSound);
+						
 						AlreadyUpgradedTurret = true;
 						ItemCollection.lightbulbCount -=2;
 					}
