@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour {
 		ItemCollection.lightbulbCount = 0;
 		m_Animator = auron.GetComponent<Animator>();
 	
+		// Set the loaded level name
+		PlayerPrefs.SetString("LoadedLevel", Application.loadedLevelName);		
 	}
 	
 	// Update is called once per frame
