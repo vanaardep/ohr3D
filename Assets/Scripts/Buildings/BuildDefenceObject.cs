@@ -8,11 +8,16 @@ public class BuildDefenceObject : MonoBehaviour {
 	public AudioClip buildSound;
 	public AudioClip constructionTimeSoundBegin;
 	public AudioClip constructionTimeSoundEnd;
-	// Use this for initialization
-	void Start () {
+    public GameInputManager gameInputScript;//= GetComponent<GameInputManager>();;
+    
+    // Use this for initialization
+    void Start () {
 		signalCount = 4;
 		constructionTime = 5;
-	}
+       
+        gameInputScript = gameObject.GetComponent<GameInputManager>(); //get Script
+      
+     }
 
 	//Construction Time for a pylon
 	IEnumerator PylonConstructionTime(Vector3 playerPosition, Vector3 playerRelative, GameObject constructor) {
@@ -42,8 +47,8 @@ public class BuildDefenceObject : MonoBehaviour {
 
 
 	void LateUpdate () {
-
-		if (Input.GetKeyDown (KeyCode.E)) { //Deploy light pylon
+      
+		if (Input.GetKeyDown (gameInputScript.pylonKey)) { //Deploy light pylon
 			if(PlayerGUI.batteryPerc > 15) {
 				Vector3 playerPosition = GameObject.Find("Auron").transform.position;
 				Vector3 playerRelative = GameObject.Find("Auron").transform.forward;
@@ -58,7 +63,7 @@ public class BuildDefenceObject : MonoBehaviour {
 			}
 		}
 
-		if (Input.GetKeyDown (KeyCode.R)) { //Deploy light turret
+		if (Input.GetKeyDown (gameInputScript.turretKey)) { //Deploy light turret
 			if(PlayerGUI.batteryPerc > 10) {
 				Vector3 playerPosition = GameObject.Find("Auron").transform.position;
 				Vector3 playerRelative = GameObject.Find("Auron").transform.forward;
@@ -73,7 +78,7 @@ public class BuildDefenceObject : MonoBehaviour {
 			}
 		}
 
-		if (Input.GetKeyDown (KeyCode.Q)) { //Deploy mine
+		if (Input.GetKeyDown (gameInputScript.mineKey)) { //Deploy mine
 			
 			//Debug.Log(">>>> Place mine");
 			if( PlayerGUI.batteryPerc > 10)
@@ -88,7 +93,7 @@ public class BuildDefenceObject : MonoBehaviour {
 			SoundManager.instance.PlayBuildingAudio(buildSound);
 		}
 
-		if (Input.GetKeyDown (KeyCode.G)) { //Deploy glowStick
+	/*	if (Input.GetKeyDown (KeyCode.G)) { //Deploy glowStick
 			
 			//Debug.Log(">>>> Place glowStick");
 			if(signalCount >=0)
@@ -100,6 +105,6 @@ public class BuildDefenceObject : MonoBehaviour {
 			}
 			//thisObject.transform.Translate(transform.forward * 1);  // Disabled so that glow stick is place underneath player, else it is placed next to him.
 			SoundManager.instance.PlayBuildingAudio(buildSound);
-		}
+		}*/
 	}
 }

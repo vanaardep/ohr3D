@@ -16,10 +16,12 @@ public class PlayerTeslaGlove : MonoBehaviour
 	public Texture2D cursorTexture;
 	public CursorMode cursorMode = CursorMode.Auto;
 	public Vector2 hotSpot = Vector2.zero;
+    public GameInputManager gameInputScript;
 
     // Use this for initialization
     void Start()
     {
+        gameInputScript = gameObject.GetComponent<GameInputManager>();
         //this.GetComponent<Light> ().intensity = 0;
         gloveActive = false;
         cooldown = 0;
@@ -28,11 +30,11 @@ public class PlayerTeslaGlove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		if (Input.GetKeyDown (KeyCode.F)) {
+		if (Input.GetKeyDown (gameInputScript.teslaKey)) {
 			Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
 		}
 
-        if (Input.GetKeyUp(KeyCode.F)) {
+        if (Input.GetKeyUp(gameInputScript.teslaKey)) {
             
 			Cursor.SetCursor(null, Vector2.zero, cursorMode);
 
