@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour {
 				Invoke("callGameOver",5f);
 			}
 
-
+           
 		}
 	}
 

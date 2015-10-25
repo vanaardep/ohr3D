@@ -14,9 +14,10 @@ public class PlayerSounds : MonoBehaviour {
 	public AudioClip Grasstep6;
 	public AudioClip Jump;
 	public AudioClip Land;
+    public Animator _animator;
 	// Use this for initialization
 	void Start () {
-	
+        _animator = GetComponent<Animator>();
 	}
 	/*
 	 * All of the functions are called as animation events
@@ -33,12 +34,20 @@ public class PlayerSounds : MonoBehaviour {
 		SoundManager.instance.PlayPlayerMoveAudio(Land);
 	}
 	public void playFootsteps(){
-		if(Application.loadedLevelName == "Level1" || Application.loadedLevelName == "Level3" || Application.loadedLevelName == "Tutorial") {
-			SoundManager.instance.PlayPlayerMoveAudio(Footstep1,Footstep2,Footstep3,Footstep4);
-		}
-		else {
-			SoundManager.instance.PlayPlayerMoveAudio(Grasstep1,Grasstep2,Grasstep3,Grasstep4,Grasstep5, Grasstep6);
-			Debug.Log("called");
-		}
+        if (_animator.GetFloat("Forward") > 0.2)
+        {
+            if (Application.loadedLevelName == "Level1" || Application.loadedLevelName == "Level3" || Application.loadedLevelName == "Tutorial")
+            {
+                SoundManager.instance.PlayPlayerMoveAudio(Footstep1, Footstep2, Footstep3, Footstep4);
+            }
+            else
+            {
+                SoundManager.instance.PlayPlayerMoveAudio(Grasstep1, Grasstep2, Grasstep3, Grasstep4, Grasstep5, Grasstep6);
+                Debug.Log("called");
+            }
+        }
 	}
+    public void playNothing(){
+
+    }
 }
