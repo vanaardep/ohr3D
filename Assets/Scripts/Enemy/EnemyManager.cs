@@ -190,9 +190,10 @@ public class EnemyManager : MonoBehaviour {
 
                         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
                         foreach (GameObject enemy in enemies) {
-                            //enemy.GetComponent<Animator>().Play("die");
+
+                            enemy.GetComponent<Animator>().Play("die");
                             //enemy.GetComponent<Rigidbody>().Sleep();
-                            GameObject.Destroy(enemy);
+                            //GameObject.Destroy(enemy);
                         }
 
                         waveTimeLimit = 10f;
