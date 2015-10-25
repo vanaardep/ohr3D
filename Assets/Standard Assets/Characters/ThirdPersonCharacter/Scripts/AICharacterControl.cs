@@ -18,7 +18,9 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		float distanceToCar;
 
 		bool frozen = false;
-		public float enemyFreezeTime = 5;
+
+        bool ghoulDead = false;
+        public GUIStyle mainFont;
 
         // Use this for initialization
         private void Start()
@@ -28,8 +30,11 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             character = GetComponent<ThirdPersonCharacter>();
 
 	        agent.updateRotation = false;
+            frozen = false;
 
-	        agent.updatePosition = true;
+            ghoulDead = false;
+
+            agent.updatePosition = true;
 
 			player = GameObject.Find ("Auron").transform;
 			baseCar = GameObject.Find ("baseCar").transform;
@@ -44,14 +49,17 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
             if (target != null)
             {
-				if (distanceToPlayer < distanceToCar) 
-				{
-					target = player;
-				}
-				else
-				{
-					target = baseCar;
-				}
+                if (!frozen)
+                {
+                    if (distanceToPlayer < distanceToCar)
+                    {
+                        target = player;
+                    }
+                    else
+                    {
+                        target = baseCar;
+                    }
+                }
 
                 
             }
@@ -74,6 +82,37 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			distanceToPlayer = (this.transform.position - player.position).sqrMagnitude;//Vector2.Distance (this.transform.position, player.transform.position);
 			distanceToCar = (this.transform.position - baseCar.position).sqrMagnitude;//Vector2.Distance (this.transform.position, baseCar.transform.position);
 		}
+
+        public void killGhoul()
+        {
+
+            // Resource gain show
+            ghoulDead = true;
+
+            this.GetComponent<Animator>().Play("die");
+            frozen = true;
+            this.GetComponent<Rigidbody>().Sleep();
+            //Destroy (gameObject, 24); //24 is length of death animation
+
+            // Tell enemy manager this enemy died
+
+        }
+
+        public void removeEnemy()
+        {
+            Destroy(gameObject, 0.3f);
+        }
+
+        void OnGUI()
+        {
+            if (ghoulDead)
+            {
+                Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
+                //Debug.Log("target is " + screenPos.x + " pixels from the left");
+
+                GUI.Label(new Rect(screenPos.x - 70, (Screen.height - screenPos.y) - 90, 100, 100), "+5%", mainFont);
+            }
+        }
 
     }
 }

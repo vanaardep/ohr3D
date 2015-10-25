@@ -7,6 +7,8 @@ public class EnemyManager : MonoBehaviour {
 	public GUIStyle waveFont;
 
 	public GameObject enemy;
+    public GameObject Goliath;
+
 	public float spawnrate;
 	public float startTime;
 	public float startTimeReset;
@@ -27,6 +29,14 @@ public class EnemyManager : MonoBehaviour {
 	public BatterySpawnManager bsm;
 	public LightbulbSpawnManager lsm;
 
+    //JP
+    public int GoliathLimit;
+    private string nxtLvl;
+    private int numGoliath;
+    private bool doneForWave;
+    private float waveTimeLimit;
+    private bool flag2;
+
 	// Loading screen
 	MovieTexture loading_video;
 	bool loading = false;
@@ -39,40 +49,51 @@ public class EnemyManager : MonoBehaviour {
 		hordeWaveCount = 0;
 		timestamp = 0.0f;
 		flag1 = false;
+        flag2 = false;
 		enemyKillCount = 0;
 		barTime = 0f;
 		aliveNumberOfEnemies = 0;
+        numGoliath = 0;
 
-		loading_video = (MovieTexture) Resources.Load( "loading" , typeof( MovieTexture ) );
+        waveTimeLimit = 10f;//PERIOD TO LAST AFTER EVERY ENEMY HAS SPAWNED
+
+        loading_video = (MovieTexture) Resources.Load( "loading" , typeof( MovieTexture ) );
 
 		//=======
 		//LEVEL 1
 		//=======
 		if (Application.loadedLevelName == "Level1") {
-			spawnrate = 5.0f;
-			startTime = 60.0f;
+			spawnrate = 7.0f;//5
+			startTime = 10.0f;
 			enemiesPerWave = 5;
-			maxHordeWaves = 2;
+			maxHordeWaves = 2;//2
+            GoliathLimit = 1;
+            nxtLvl = "Level2";
 		}
 
 		//=======
 		//LEVEL 2
 		//=======
 		if (Application.loadedLevelName == "Level2") {
-			spawnrate = 3.0f;
-			startTime = 60.0f;
-			enemiesPerWave = 8;
-			maxHordeWaves = 2;
+			spawnrate = 5.0f;
+			startTime = 10.0f;
+			enemiesPerWave = 10;
+			maxHordeWaves = 1;//2
+            GoliathLimit = 2;
+            nxtLvl = "Level_3";
 		}
 
 		//=======
 		//LEVEL 2
 		//=======
-		if (Application.loadedLevelName == "Level3") {
+		if (Application.loadedLevelName == "Level_3") {
 			spawnrate = 3.0f;
 			startTime = 60.0f;
 			enemiesPerWave = 12;
 			maxHordeWaves = 2;
+            GoliathLimit = 3;
+
+            //NB NB NB Add epilogue video
 		}
 
 		startTimeReset = startTime;
@@ -89,11 +110,19 @@ public class EnemyManager : MonoBehaviour {
 		aliveNumberOfEnemies++;
 	}
 
-	void FixedUpdate () {
+    private void spawnGoliath()
+    {
+        int spawnPointIndex = Random.Range(0, spawnPoints.Length);
+        Instantiate(Goliath, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
+    }
+
+    void FixedUpdate () {
 		
 		barTime += Time.deltaTime;
+        
 
-		if (hordeWaveCount == maxHordeWaves + 1) {
+		if (hordeWaveCount == maxHordeWaves + 1)
+        {
 			// Win level
 			levelComplete = true;
 			Time.timeScale = 0;
@@ -104,7 +133,8 @@ public class EnemyManager : MonoBehaviour {
 		// if (hordeWaveCount != maxHordeWaves) { 
 
 			//countdown timer of next wave
-			if (hordeSpawnTime >= 0) {
+			if (hordeSpawnTime >= 0)
+            {
 				hordeSpawnTime = Mathf.FloorToInt (startTime - barTime + 1f);
 			} else {
 				//hordeSpawnTime = Mathf.FloorToInt(1f);
@@ -112,34 +142,69 @@ public class EnemyManager : MonoBehaviour {
 			
 			//iterates once a wave
 			//sets up wave
-			if ((barTime >= startTime) && (numberOfEnemies == 0) && flag1 == false) {
-				enemyKillCount = enemiesPerWave;
-				timestamp = spawnrate + barTime;	
-				SoundManager.instance.PlayEnvironmentAudio (hordeSpawnSound);
-				hordeWaveCount++;
-				flag1 = true;
+			if ((barTime >= startTime) && (numberOfEnemies == 0) && flag1 == false)
+            {
+                if (!flag2)
+                {
+                    enemyKillCount = enemiesPerWave;
+                    timestamp = spawnrate + barTime;
+                    SoundManager.instance.PlayEnvironmentAudio(hordeSpawnSound);
+                    hordeWaveCount++;
+                    flag1 = true;
+                    flag2 = true;
+                }
 			}
 
 			//iterates for every enemy spawned in wave
 			//spawns an enemy
-			if ((barTime >= timestamp) && (numberOfEnemies != enemiesPerWave) && (flag1 == true)) {	
+			if ((barTime >= timestamp) && (numberOfEnemies != enemiesPerWave) && (flag1 == true))
+            {	
 				spawn ();
 				timestamp += spawnrate;
+                int ranGen = Random.Range(0, 4);
+                Debug.Log("Rand Gen Goliath : " + ranGen);
+                    if (numGoliath!=GoliathLimit && ranGen ==1 && !doneForWave)
+                    {
+                         Debug.Log("Created GOLIATH");
+                         numGoliath++;
+                         spawnGoliath();
+                         doneForWave = true;
+                    }
 					
 			}
 
 			//iterates after last enemy in a wave has spawned
-			//resets the wave so first if statement will execute
+			//resets the wave so first if statement will execute and after a wave time limit has been reached (to counteract the time taken for enemy to reach player)
 
-			if (numberOfEnemies == enemiesPerWave) {
-				//if (aliveNumberOfEnemies == 0 && numberOfEnemies == enemiesPerWave)
+			if (numberOfEnemies == enemiesPerWave)
+            {
+				
 				flag1 = false;
-				numberOfEnemies = 0;
-				hordeSpawnTime = startTimeReset;
-				startTime = startTimeReset;
-				startTime = barTime + startTime;
-				bsm.batterySpawnLoad ();
-				lsm.lightbulbSpawnLoad ();
+                waveTimeLimit -= Time.deltaTime;
+                 Debug.Log("Wave time limit : " + waveTimeLimit);
+            if (waveTimeLimit <= 0)
+                    {
+                         flag2 = false;
+                        waveTimeLimit = 10f;
+                        doneForWave = false;
+
+                        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+                        foreach (GameObject enemy in enemies)
+                        {
+                            //enemy.GetComponent<Animator>().Play("die");
+                            //enemy.GetComponent<Rigidbody>().Sleep();
+                            GameObject.Destroy(enemy);
+
+                        }
+
+                        waveTimeLimit = 10f;
+                        numberOfEnemies = 0;
+                        hordeSpawnTime = startTimeReset;
+                        startTime = startTimeReset;
+                        startTime = barTime + startTime;
+                        bsm.batterySpawnLoad();
+                        lsm.lightbulbSpawnLoad();
+                    }
 			}
 	}
 
@@ -186,11 +251,12 @@ public class EnemyManager : MonoBehaviour {
 
 		// Loading
 		if (loading) {
-			GUI.depth = 0;
+            Time.timeScale = 0;
+            GUI.depth = 0;
 			GUI.DrawTexture (new Rect (0, 0, Screen.width, Screen.height), loading_video, ScaleMode.ScaleAndCrop, true, 0F);
 			loading_video.Play();
 			loading_video.loop = true;
-			Application.LoadLevelAsync("Level2");
+			Application.LoadLevelAsync(nxtLvl);
 		}
 	}
 }
