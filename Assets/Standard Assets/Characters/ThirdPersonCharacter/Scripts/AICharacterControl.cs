@@ -53,16 +53,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 					target = baseCar;
 				}
 
-                //freeze enemy
-				if (!frozen) {
-					agent.SetDestination(target.position);
-				
-                	// use the values to move the character
-                	character.Move(agent.desiredVelocity, false, false);
-				} else {
-					//agent.SetDestination();
-					//character.Move(Vector3.zero, false, false);
-				}
+                
             }
             else
             {
@@ -84,17 +75,5 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			distanceToCar = (this.transform.position - baseCar.position).sqrMagnitude;//Vector2.Distance (this.transform.position, baseCar.transform.position);
 		}
 
-		//
-		void unfreezeEnemy () {
-			frozen = false;
-			
-			this.GetComponent<Animator>().Play("walk");
-		}
-		
-		public void freezeEnemy () {
-
-			frozen = true;
-			Invoke ("unfreezeEnemy", enemyFreezeTime);
-		}
     }
 }
