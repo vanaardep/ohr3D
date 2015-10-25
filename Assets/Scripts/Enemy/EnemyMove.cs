@@ -12,7 +12,7 @@ public class EnemyMove : MonoBehaviour {
 	
 	public float speed = 1.2f;
 	//float angleSpread = 20;
-	float enemyFreezeTime = 5;
+	float enemyFreezeTime = 2f;
 
 	// Distances and light	
 	bool frozen = false;
@@ -31,45 +31,46 @@ public class EnemyMove : MonoBehaviour {
 
 		player = GameObject.Find ("Auron").transform;
 		frozen = false;
+        distanceToCar = 10;
+        distanceToPlayer = 10;
 		//TeslaSpotlight = GameObject.Find ("TeslaSpotlight").transform;
 		baseCar = GameObject.Find ("baseCar").transform;
 
 		InvokeRepeating ("checkDistances", 0, 1.0f);
 	}
 	
+
+    void Attack()
+    {
+        Debug.Log("Calling ATTACK");
+        this.GetComponent<Animator>().Play("Attack");
+        Debug.Log("Distance to Player: " + distanceToPlayer);
+        frozen = true;
+        if (distanceToPlayer >= 2 && distanceToCar >= 2)
+        {
+            Debug.Log("Start Moving inside IF");
+            this.GetComponent<Animator>().Play("walk");
+            frozen = false;
+        }
+    }
 	// Update is called once per frame
 	void Update () {
 
-		//if (distanceToPlayer <= 25 && ((facing.z - angleSpread) < playerZRotation.z && playerZRotation.z < (facing.z + angleSpread))) {
-			//frozen = true;
-			
-			// Are we killing this guy?
-			//PlayerTeslaGlove gloveScript = TeslaSpotlight.GetComponent<PlayerTeslaGlove> ();
-			//Debug.Log (gloveScript.gloveActive);
-			
-			/*if (gloveScript.gloveActive) {
-				// Kill enemy
-				Debug.Log ("Finish Him!!");
-				if (!playingSound) {
-					//playingSound = true;
-					SoundManager.instance.PlaySingle(hurtSound2);
-				}
+        //Debug.Log("Distance to Player : " + distanceToPlayer);
 
-				Destroy (this.gameObject);
-			}
-		}*/
+       /* if(distanceToPlayer <= 1.5 || distanceToCar <= 1.5)
+        {
+             Debug.Log("IN ATTACK");
+          
+            //freezeEnemy();
+            // this.GetComponent<Animator>().Play("Attack");
+
+            InvokeRepeating("Attack", 0, 2.0f);
+
+        }*/
 
 		if (!frozen) {
-			// Check if enemy in angle
-			//========================
-			/*if (distanceToPlayer <= 25 && ((facing.z - angleSpread) < playerZRotation.z && playerZRotation.z < (facing.z + angleSpread))) {
-				frozen = true;
 
-				// Just freeze him
-				Debug.Log ("FREEEEZE BITCH");
-				Invoke ("unfreezeEnemy", enemyFreezeTime);
-			}*/
-			
 			if (distanceToPlayer < distanceToCar) 
 				{
 					// Move towards player
@@ -85,47 +86,27 @@ public class EnemyMove : MonoBehaviour {
 	}
 
 	void checkDistances(){
-		// Distance from player
+        Debug.Log("Still Calling");
 		distanceToPlayer = (this.transform.position - player.position).sqrMagnitude;//Vector2.Distance (this.transform.position, player.transform.position);
 		distanceToCar = (this.transform.position - baseCar.position).sqrMagnitude;//Vector2.Distance (this.transform.position, baseCar.transform.position);
 		
-		// Player z
-		//playerZRotation = player.rotation.eulerAngles;
 		
-		// Angle to player
-		//================
-		//Vector3 directionToTarget = player.position - this.transform.position;
-		//float angle = Vector3.Angle (player.forward, directionToTarget);
-		
-		//Vector3 targetDir = player.position - this.transform.position;
-		//Vector3 forward = this.transform.forward;
-		//float angle = Vector3.Angle(targetDir, forward);
-		
-		/*Vector2 heading = this.transform.position - player.position;
-		float distance2 = heading.magnitude;
-		Vector2 angle = heading / distance2; // This is now the normalized direction.*/
-		
-		//float angle = SignedAngleBetween(this.transform.position, player.position, player.position);
-		
-		//Grab the current mouse position on the screen
-		//enemyPosition = this.transform.position;//camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x,Input.mousePosition.y, Input.mousePosition.z - camera.transform.position.z));
-		
-		//Rotates toward the mouse
-		//facing = new Vector3(0,0,Mathf.Atan2((enemyPosition.y - player.position.y), (enemyPosition.x - player.position.x))*Mathf.Rad2Deg + 270);
-		
-		//Debug.Log (facing.z + " VS " + playerZRotation.z);
 	}
 	
-	void unfreezeEnemy () {
-		frozen = false;
+	/*void unfreezeEnemy () {
+        if (distanceToPlayer >= 2 && distanceToCar >= 2)
+        {
+            frozen = false;
 
-		this.GetComponent<Animator>().Play("walk");
+            Debug.Log("INSIDE IF CAN START MOVING");
+            this.GetComponent<Animator>().Play("walk");
+        }
 	}
 
 	public void freezeEnemy () {
 		frozen = true;
 		Invoke ("unfreezeEnemy", enemyFreezeTime);
-	}
+	}*/
 
 	public void killGhoul(){
 

@@ -35,6 +35,7 @@ public class EnemyManager : MonoBehaviour {
     private int numGoliath;
     private bool doneForWave;
     private float waveTimeLimit;
+    private float waveTimeConst;
     private bool flag2;
 
 	// Loading screen
@@ -55,7 +56,8 @@ public class EnemyManager : MonoBehaviour {
 		aliveNumberOfEnemies = 0;
         numGoliath = 0;
 
-        waveTimeLimit = 10f;//PERIOD TO LAST AFTER EVERY ENEMY HAS SPAWNED
+        waveTimeConst = 150f;
+        waveTimeLimit = waveTimeConst;//PERIOD TO LAST AFTER EVERY ENEMY HAS SPAWNED
 
         loading_video = (MovieTexture) Resources.Load( "loading" , typeof( MovieTexture ) );
 
@@ -65,7 +67,7 @@ public class EnemyManager : MonoBehaviour {
 		if (Application.loadedLevelName == "Level1") {
 			spawnrate = 7.0f;//5
 			startTime = 10.0f;
-			enemiesPerWave = 5;
+			enemiesPerWave = 1;
 			maxHordeWaves = 2;//2
             GoliathLimit = 1;
             nxtLvl = "Level2";
@@ -162,10 +164,8 @@ public class EnemyManager : MonoBehaviour {
 				spawn ();
 				timestamp += spawnrate;
                 int ranGen = Random.Range(0, 4);
-                Debug.Log("Rand Gen Goliath : " + ranGen);
                     if (numGoliath!=GoliathLimit && ranGen ==1 && !doneForWave)
                     {
-                         Debug.Log("Created GOLIATH");
                          numGoliath++;
                          spawnGoliath();
                          doneForWave = true;
@@ -180,12 +180,11 @@ public class EnemyManager : MonoBehaviour {
 				
 				flag1 = false;
                 waveTimeLimit -= Time.deltaTime;
-                Debug.Log("Wave time limit : " + waveTimeLimit);
 
             	if (waveTimeLimit <= 0) {
 
                         flag2 = false;
-                        waveTimeLimit = 10f;
+                        waveTimeLimit = waveTimeConst;
                         doneForWave = false;
 
                         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
