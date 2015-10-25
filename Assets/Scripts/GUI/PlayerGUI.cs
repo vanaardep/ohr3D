@@ -37,8 +37,10 @@ public class PlayerGUI : MonoBehaviour {
 
 		// Health bar
 		//Debug.Log (PlayerHealth.playerHealth);
-		gui_health = textures [PlayerHealth.playerHealth];
-		GUI.DrawTexture(new Rect(20, 20, 150, 150), gui_health, ScaleMode.ScaleToFit, true, 0F);
+		if (PlayerHealth.playerHealth > 0) {
+			gui_health = textures [PlayerHealth.playerHealth - 1];
+			GUI.DrawTexture (new Rect (22.5f, 22, 145, 145), gui_health, ScaleMode.ScaleToFit, true, 0F);
+		}
 
 		// Hotkeys
 		GUI.DrawTexture(new Rect(Screen.width / 2 - 145, Screen.height - 55, 290, 55), gui_hotkeys, ScaleMode.StretchToFill, true, 0F);

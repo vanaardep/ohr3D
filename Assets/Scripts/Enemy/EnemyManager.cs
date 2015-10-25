@@ -176,25 +176,23 @@ public class EnemyManager : MonoBehaviour {
 			//iterates after last enemy in a wave has spawned
 			//resets the wave so first if statement will execute and after a wave time limit has been reached (to counteract the time taken for enemy to reach player)
 
-			if (numberOfEnemies == enemiesPerWave)
-            {
+			if (numberOfEnemies == enemiesPerWave) {
 				
 				flag1 = false;
                 waveTimeLimit -= Time.deltaTime;
-                 Debug.Log("Wave time limit : " + waveTimeLimit);
-            if (waveTimeLimit <= 0)
-                    {
-                         flag2 = false;
+                Debug.Log("Wave time limit : " + waveTimeLimit);
+
+            	if (waveTimeLimit <= 0) {
+
+                        flag2 = false;
                         waveTimeLimit = 10f;
                         doneForWave = false;
 
                         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-                        foreach (GameObject enemy in enemies)
-                        {
+                        foreach (GameObject enemy in enemies) {
                             //enemy.GetComponent<Animator>().Play("die");
                             //enemy.GetComponent<Rigidbody>().Sleep();
                             GameObject.Destroy(enemy);
-
                         }
 
                         waveTimeLimit = 10f;
