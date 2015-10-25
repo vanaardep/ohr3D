@@ -49,7 +49,13 @@ public class GUIPauseMenu : MonoBehaviour {
 			// Paused
 			GUI.Label (new Rect (Screen.width / 2 - 50, Screen.height / 2 - 110, 100, 50), "PAUSED", titleFont);
 
-			if (GUI.Button (new Rect (Screen.width / 2 - 50, Screen.height / 2 + 10, 100, 50), "Save and Quit", mainFont)) {
+			if (GUI.Button (new Rect (Screen.width / 2 - 50, Screen.height / 2 + 10, 100, 50), "Quit to Menu", mainFont)) {
+				// Save and Quit game
+				SoundManagerMenu.instance.PlayMainMenuClickAudio(pauseMenuClickSound);
+				Application.LoadLevel("Menu");
+			}
+
+			if (GUI.Button (new Rect (Screen.width / 2 - 50, Screen.height / 2 + 40, 100, 50), "Exit Game", mainFont)) {
 				// Save and Quit game
 				SoundManagerMenu.instance.PlayMainMenuClickAudio(pauseMenuClickSound);
 				Application.Quit ();
