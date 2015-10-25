@@ -10,7 +10,7 @@ public class PlayerTeslaGlove : MonoBehaviour
     public AudioClip shootSound3;
     public AudioClip shootSound4;
     private int cooldown;
-    public float bulletSpeed = 30;
+    public float bulletSpeed = 30f;
     Vector3 direction;
 
 	public Texture2D cursorTexture;
@@ -56,7 +56,9 @@ public class PlayerTeslaGlove : MonoBehaviour
 
                 thisObject.transform.Translate(direction * 0.1f);
                 thisObject.transform.LookAt(direction);
-                thisObject.GetComponent<Rigidbody>().AddForce(direction * bulletSpeed);
+                //Debug.Log(direction);
+                //bulletSpeed = bulletSpeed * 0.8f;
+                thisObject.GetComponent<Rigidbody>().AddForce(direction * 0.3f *bulletSpeed);
                 thisObject.GetComponent<Rigidbody>().AddForce(transform.up * 300);
                 SoundManager.instance.PlayPlayerShootAudio(shootSound1, shootSound2, shootSound3, shootSound4);
                 gloveActive = true;

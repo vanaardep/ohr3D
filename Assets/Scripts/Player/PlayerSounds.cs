@@ -21,7 +21,7 @@ public class PlayerSounds : MonoBehaviour {
 	}
 	/*
 	 * All of the functions are called as animation events
-	 * 
+	 * Called in blend tree under playerwalk
 	 * */
 	// Update is called once per frame
 	void Update () {
