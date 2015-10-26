@@ -4,7 +4,7 @@ using System.Collections;
 public class BaseCarHealth : MonoBehaviour {
 
 	public static int baseCarHealth = 10;
-
+	public AudioClip carHurtSound;
 	// Use this for initialization
 	void Start () {
 		baseCarHealth = 10;
@@ -20,6 +20,7 @@ public class BaseCarHealth : MonoBehaviour {
         if(coll.gameObject.tag=="Enemy") {
         	if(baseCarHealth != 0){
     	        baseCarHealth -= 1;
+    	        SoundManager.instance.PlayBaseDamageAudio(carHurtSound); 
         	}
         	else{
         		//Base car needs to die here

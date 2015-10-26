@@ -9,6 +9,7 @@ using System.Collections;
         public AudioSource playerDamageAudio;  
         public AudioSource buildingAudio;
         public AudioSource itemPickupAudio;
+        public AudioSource baseDamageAudio;
         public AudioSource musicSource;   
 
         public static SoundManager instance = null;                
@@ -24,6 +25,7 @@ using System.Collections;
             playerDamageAudio = audios[3];
             buildingAudio = audios[4];
             itemPickupAudio = audios[5];
+            baseDamageAudio = audios[6];
         }     
         
         
@@ -86,5 +88,13 @@ using System.Collections;
         {
             itemPickupAudio.clip = clip;
             itemPickupAudio.Play ();
+        }
+
+
+        //Plays audio related to base
+        public void PlayBaseDamageAudio(AudioClip clip)
+        {
+            baseDamageAudio.clip = clip;
+            baseDamageAudio.Play ();
         }
 }
