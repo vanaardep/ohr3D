@@ -16,13 +16,20 @@ public class MineDetection : MonoBehaviour {
 	private bool timerActivated = false;
 	private float resetValue; //If script needs to be reset
 	private ParticleSystem tempPs; // temporaryParticleSystem
+    public MeshRenderer rend;
+    public Light redSpot;
+
+    public AudioSource explosionAudioSource;
+    public AudioClip mineExplosionClip;
     private bool played = false;
 	// Use this for initialization
 	void Start () {
 		resetValue = mineExplosionDelay;
 		 minePosition = gameObject.transform.position ;
-		//currentEnemies = GameObject.FindObjectOfType (typeof(EnemyMove)) as EnemyMove;
-	}
+        explosionAudioSource = GetComponent<AudioSource>();
+        rend = GetComponent<MeshRenderer>();
+        //currentEnemies = GameObject.FindObjectOfType (typeof(EnemyMove)) as EnemyMove;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -42,6 +49,9 @@ public class MineDetection : MonoBehaviour {
 			timerActivated = true;
 			tempPs = Instantiate(ps, new Vector3(minePosition.x, minePosition.y +1, minePosition.z), Quaternion.identity) as ParticleSystem;
 			tempPs.Play();
+            explosionAudioSource.PlayOneShot(mineExplosionClip);
+            rend.enabled = false; //Hide from view while audio clip plays
+            redSpot.enabled = false; //also hide light
             //Debug.Log(tempPs.duration + "Ps duration");
 			Destroy(tempPs,tempPs.duration);
 
@@ -57,7 +67,7 @@ public class MineDetection : MonoBehaviour {
 
 
 			//other.gameObject.killGhoul();
-			Destroy(gameObject);
+			Destroy(gameObject,mineExplosionClip.length - 2.2f);
 			EnemyManager.enemyKillCount--;
 			PlayerGUI.batteryPerc+=5; // Everytime a mine kills an enemy gets +5 battery
 
