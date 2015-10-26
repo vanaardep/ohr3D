@@ -10,7 +10,7 @@ public class PlayerTeslaGlove : MonoBehaviour
     public AudioClip shootSound3;
     public AudioClip shootSound4;
     private int cooldown;
-    public float bulletSpeed = 30f;
+    public float bulletSpeed = 1f;
     Vector3 direction;
 
 	public Texture2D cursorTexture;
