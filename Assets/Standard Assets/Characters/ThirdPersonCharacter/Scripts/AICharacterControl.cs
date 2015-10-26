@@ -46,11 +46,13 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         // Update is called once per frame
         private void Update()
         {
+            Debug.Log("DISTNCE : " + distanceToPlayer);
 
             if (target != null)
             {
                 if (!frozen)
                 {
+                    Debug.Log("Inside not frozen");
                     if (distanceToPlayer < distanceToCar)
                     {
                         target = player;
@@ -78,12 +80,12 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         }
 
 		void checkDistances(){
-
+            Debug.Log("Calling check Distances");
 			distanceToPlayer = (this.transform.position - player.position).sqrMagnitude;//Vector2.Distance (this.transform.position, player.transform.position);
 			distanceToCar = (this.transform.position - baseCar.position).sqrMagnitude;//Vector2.Distance (this.transform.position, baseCar.transform.position);
 		}
 
-        public void killGhoul()
+        /*public void killGhoul()
         {
 
             // Resource gain show
@@ -92,9 +94,6 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             this.GetComponent<Animator>().Play("die");
             frozen = true;
             this.GetComponent<Rigidbody>().Sleep();
-            //Destroy (gameObject, 24); //24 is length of death animation
-
-            // Tell enemy manager this enemy died
 
         }
 
@@ -112,7 +111,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
                 GUI.Label(new Rect(screenPos.x - 70, (Screen.height - screenPos.y) - 90, 100, 100), "+5%", mainFont);
             }
-        }
+        }*/
 
     }
 }

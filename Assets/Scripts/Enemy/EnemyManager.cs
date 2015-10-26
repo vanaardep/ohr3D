@@ -68,7 +68,7 @@ public class EnemyManager : MonoBehaviour {
 		if (Application.loadedLevelName == "Level1") {
 			spawnrate = 2.0f;//5
 			startTime = 2.0f;
-			enemiesPerWave = 5;
+			enemiesPerWave = 1;
 			maxHordeWaves = 2;//2
             GoliathLimit = 1;
             nxtLvl = "Level2";
@@ -192,8 +192,7 @@ public class EnemyManager : MonoBehaviour {
                         foreach (GameObject enemy in enemies) {
 
                             enemy.GetComponent<Animator>().Play("die");
-                            //enemy.GetComponent<Rigidbody>().Sleep();
-                            //GameObject.Destroy(enemy);
+
                         }
 
                         waveTimeLimit = 10f;
@@ -255,15 +254,15 @@ public class EnemyManager : MonoBehaviour {
 			GUI.DrawTexture (new Rect (0, 0, Screen.width, Screen.height), loading_video, ScaleMode.ScaleAndCrop, true, 0F);
 			loading_video.Play();
 			loading_video.loop = true;
-			async = Application.LoadLevelAsync(nxtLvl);
-			//Invoke ("showLoadedScene", 5);
-			//async.allowSceneActivation = false;
+            //async = Application.LoadLevelAsync(nxtLvl);
+            Application.LoadLevel(nxtLvl);
+            //Invoke ("showLoadedScene", 5);
+            //async.allowSceneActivation = false;
 
-		}
+        }
 	}
 
 	void showLoadedScene () {
-		Debug.Log ("CALLED");
 		async.allowSceneActivation = true;
 	}
 }
