@@ -54,9 +54,10 @@ public class MainMenu : MonoBehaviour {
 			}
             if (GUI.Button(new Rect(Screen.width - 120, Screen.height - 180, 100, 50), "CONTROLS", mainFont))
             {
-                // Level Select
+                // Controls
                 SoundManagerMenu.instance.PlayMainMenuClickAudio(mainMenuClickSound);
-                menuSelect = true;
+                Application.LoadLevel ("Controls");
+                //menuSelect = true;
             }
 
 
