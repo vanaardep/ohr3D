@@ -9,12 +9,18 @@ public class LightTurretAttack : MonoBehaviour {
 
  	private float fireAnimStart = 0f;
  	private float fireAnimCooldown = 1f; // 1 second light pulse animation
+ 	GameObject thisObj;
+ 	public SoundManagerLightTurret lightTurretAttackSoundObj;
+ 	public AudioClip lightTurretAttackSound;
+
 
 	void Start () {
+		thisObj = this.gameObject;
 		PowerUsageDelay = 3;
 		fireCooldown = 5f;
 		fireAnimStart = 0f;
 		fireAnimCooldown = 1f;
+		lightTurretAttackSoundObj = thisObj.GetComponent<SoundManagerLightTurret>();
 	}
 	
 	void Update () {
@@ -36,6 +42,7 @@ public class LightTurretAttack : MonoBehaviour {
         if((col.gameObject.tag == "Enemy") && (Time.time > fireStart + fireCooldown) && (PlayerGUI.batteryPerc > 0)) {
      			fireStart = Time.time;
 	   			Debug.Log("LIGHTTURRET ATTACKKKKKKKKKKKKKKKK");
+	   			lightTurretAttackSoundObj.instance.PlayLightTurretAttack(lightTurretAttackSound);
 	   			EnemyManager.enemyKillCount--;
 			    PlayerGUI.batteryPerc +=5;
 	            //Destroy(col.gameObject);

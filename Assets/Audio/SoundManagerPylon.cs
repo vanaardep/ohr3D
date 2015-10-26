@@ -9,6 +9,7 @@ public class SoundManagerPylon : MonoBehaviour
     void Start() 
     {
         audios = this.GetComponent<AudioSource>();
+
     }
 
 
