@@ -44,11 +44,18 @@ public class EnemyMove : MonoBehaviour {
     {
         Debug.Log("Calling ATTACK");
         this.GetComponent<Animator>().Play("Attack");
-        Debug.Log("Distance to Player: " + distanceToPlayer);
+
+            if(distanceToCar <=3)
+            {
+            //this.GetComponent<Animator>().Play("die");
+            this.GetComponent<Animator>().Play("die");
+            Destroy(this.gameObject, 1f);
+
+             }
         frozen = true;
-        if (distanceToPlayer >= 2 && distanceToCar >= 2)
+        if (distanceToPlayer >= 2.1 && distanceToCar >= 3.5)
         {
-            Debug.Log("Start Moving inside IF");
+            CancelInvoke("Attack");
             this.GetComponent<Animator>().Play("walk");
             frozen = false;
         }
@@ -56,18 +63,11 @@ public class EnemyMove : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        //Debug.Log("Distance to Player : " + distanceToPlayer);
-
-       /* if(distanceToPlayer <= 1.5 || distanceToCar <= 1.5)
+        if(distanceToPlayer <= 1.5 || distanceToCar <= 3)
         {
-             Debug.Log("IN ATTACK");
-          
-            //freezeEnemy();
-            // this.GetComponent<Animator>().Play("Attack");
+            InvokeRepeating("Attack", 0, 1.0f);
 
-            InvokeRepeating("Attack", 0, 2.0f);
-
-        }*/
+        }
 
 		if (!frozen) {
 
@@ -86,7 +86,7 @@ public class EnemyMove : MonoBehaviour {
 	}
 
 	void checkDistances(){
-        Debug.Log("Still Calling");
+
 		distanceToPlayer = (this.transform.position - player.position).sqrMagnitude;//Vector2.Distance (this.transform.position, player.transform.position);
 		distanceToCar = (this.transform.position - baseCar.position).sqrMagnitude;//Vector2.Distance (this.transform.position, baseCar.transform.position);
 		
@@ -112,7 +112,7 @@ public class EnemyMove : MonoBehaviour {
 
 		// Resource gain show
 		ghoulDead = true;
-		
+        Debug.Log("Inside Kill");
 		this.GetComponent<Animator> ().Play ("die");
 		frozen = true;
 		this.GetComponent<Rigidbody> ().Sleep ();
