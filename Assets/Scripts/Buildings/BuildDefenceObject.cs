@@ -8,14 +8,14 @@ public class BuildDefenceObject : MonoBehaviour {
 	public AudioClip buildSound;
 	public AudioClip constructionTimeSoundBegin;
 	public AudioClip constructionTimeSoundEnd;
-    public GameInputManager gameInputScript;//= GetComponent<GameInputManager>();;
+    //public GameInputManager gameInputScript;//= GetComponent<GameInputManager>();;
     
     // Use this for initialization
     void Start () {
 		signalCount = 4;
 		constructionTime = 5;
        
-        gameInputScript = gameObject.GetComponent<GameInputManager>(); //get Script
+       // gameInputScript = gameObject.GetComponent<GameInputManager>(); //get Script
       
      }
 
@@ -48,7 +48,7 @@ public class BuildDefenceObject : MonoBehaviour {
 
 	void LateUpdate () {
       
-		if (Input.GetKeyDown (gameInputScript.pylonKey)) { //Deploy light pylon
+		if (Input.GetKeyDown (GameInputManager.pylonKey)) { //Deploy light pylon
 			if(PlayerGUI.batteryPerc > 15) {
 				Vector3 playerPosition = GameObject.Find("Auron").transform.position;
 				Vector3 playerRelative = GameObject.Find("Auron").transform.forward;
@@ -63,7 +63,7 @@ public class BuildDefenceObject : MonoBehaviour {
 			}
 		}
 
-		if (Input.GetKeyDown (gameInputScript.turretKey)) { //Deploy light turret
+		if (Input.GetKeyDown (GameInputManager.turretKey)) { //Deploy light turret
 			if(PlayerGUI.batteryPerc > 10) {
 				Vector3 playerPosition = GameObject.Find("Auron").transform.position;
 				Vector3 playerRelative = GameObject.Find("Auron").transform.forward;
@@ -78,7 +78,7 @@ public class BuildDefenceObject : MonoBehaviour {
 			}
 		}
 
-		if (Input.GetKeyDown (gameInputScript.mineKey)) { //Deploy mine
+		if (Input.GetKeyDown (GameInputManager.mineKey)) { //Deploy mine
 			
 			//Debug.Log(">>>> Place mine");
 			if( PlayerGUI.batteryPerc > 10)

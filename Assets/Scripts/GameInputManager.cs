@@ -2,10 +2,10 @@
 using System.Collections;
 
 public class GameInputManager : MonoBehaviour {
-    public KeyCode pylonKey;
-    public KeyCode turretKey;
-    public KeyCode mineKey;
-    public KeyCode teslaKey;
+    public static KeyCode pylonKey;
+    public static KeyCode turretKey;
+    public static KeyCode mineKey;
+    public static KeyCode teslaKey;
     // Use this for initialization
     void Start () {
     pylonKey = KeyCode.E;

@@ -30,11 +30,11 @@ public class PlayerTeslaGlove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		if (Input.GetKeyDown (gameInputScript.teslaKey)) {
+		if (Input.GetKeyDown (GameInputManager.teslaKey)) {
 			Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
 		}
 
-        if (Input.GetKeyUp(gameInputScript.teslaKey)) {
+        if (Input.GetKeyUp(GameInputManager.teslaKey)) {
             
 			Cursor.SetCursor(null, Vector2.zero, cursorMode);
 
