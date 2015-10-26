@@ -42,6 +42,7 @@ public class EnemyManager : MonoBehaviour {
 	MovieTexture loading_video;
 	bool loading = false;
 	bool levelComplete = false;
+	AsyncOperation async;
 
 	void Start () {
 		bsm = FindObjectOfType(typeof(BatterySpawnManager)) as BatterySpawnManager;
@@ -56,7 +57,7 @@ public class EnemyManager : MonoBehaviour {
 		aliveNumberOfEnemies = 0;
         numGoliath = 0;
 
-        waveTimeConst = 150f;
+        waveTimeConst = 10f;
         waveTimeLimit = waveTimeConst;//PERIOD TO LAST AFTER EVERY ENEMY HAS SPAWNED
 
         loading_video = (MovieTexture) Resources.Load( "loading" , typeof( MovieTexture ) );
@@ -65,9 +66,9 @@ public class EnemyManager : MonoBehaviour {
 		//LEVEL 1
 		//=======
 		if (Application.loadedLevelName == "Level1") {
-			spawnrate = 7.0f;//5
-			startTime = 10.0f;
-			enemiesPerWave = 1;
+			spawnrate = 2.0f;//5
+			startTime = 2.0f;
+			enemiesPerWave = 5;
 			maxHordeWaves = 2;//2
             GoliathLimit = 1;
             nxtLvl = "Level2";
@@ -254,7 +255,15 @@ public class EnemyManager : MonoBehaviour {
 			GUI.DrawTexture (new Rect (0, 0, Screen.width, Screen.height), loading_video, ScaleMode.ScaleAndCrop, true, 0F);
 			loading_video.Play();
 			loading_video.loop = true;
-			Application.LoadLevelAsync(nxtLvl);
+			async = Application.LoadLevelAsync(nxtLvl);
+			//Invoke ("showLoadedScene", 5);
+			//async.allowSceneActivation = false;
+
 		}
+	}
+
+	void showLoadedScene () {
+		Debug.Log ("CALLED");
+		async.allowSceneActivation = true;
 	}
 }

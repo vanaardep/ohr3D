@@ -32,7 +32,7 @@ public class MineDetection : MonoBehaviour {
 			if (mineExplosionDelay <= 0.5f) {
 				timeToExplode = true;
 			}
-			Debug.Log(mineExplosionDelay);
+			//Debug.Log(mineExplosionDelay);
 		}
 	}
 	
@@ -42,7 +42,7 @@ public class MineDetection : MonoBehaviour {
 			timerActivated = true;
 			tempPs = Instantiate(ps, new Vector3(minePosition.x, minePosition.y +1, minePosition.z), Quaternion.identity) as ParticleSystem;
 			tempPs.Play();
-            Debug.Log(tempPs.duration + "Ps duration");
+            //Debug.Log(tempPs.duration + "Ps duration");
 			Destroy(tempPs,tempPs.duration);
 
 			}
