@@ -57,7 +57,7 @@ public class EnemyManager : MonoBehaviour {
 		aliveNumberOfEnemies = 0;
         numGoliath = 0;
 
-        waveTimeConst = 10f;
+        waveTimeConst =60f;
         waveTimeLimit = waveTimeConst;//PERIOD TO LAST AFTER EVERY ENEMY HAS SPAWNED
 
         loading_video = (MovieTexture) Resources.Load( "loading" , typeof( MovieTexture ) );
@@ -68,7 +68,7 @@ public class EnemyManager : MonoBehaviour {
 		if (Application.loadedLevelName == "Level1") {
 			spawnrate = 2.0f;//5
 			startTime = 2.0f;
-			enemiesPerWave = 1;
+			enemiesPerWave = 7;
 			maxHordeWaves = 2;//2
             GoliathLimit = 1;
             nxtLvl = "Level2";
