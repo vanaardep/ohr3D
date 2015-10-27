@@ -44,8 +44,6 @@ public class GameManager : MonoBehaviour {
                 GameOverFlag = true;
                 Invoke("callGameOver", 5f);
             }
-
-
         }
 	}
 
