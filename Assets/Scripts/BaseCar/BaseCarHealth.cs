@@ -19,11 +19,13 @@ public class BaseCarHealth : MonoBehaviour {
 	void OnCollisionEnter(Collision coll){
         if(coll.gameObject.tag=="Enemy") {
         	if(baseCarHealth != 0){
+               
     	        baseCarHealth -= 1;
     	        SoundManager.instance.PlayBaseDamageAudio(carHurtSound); 
         	}
         	else{
         		//Base car needs to die here
+
         	}
     	}
 	}

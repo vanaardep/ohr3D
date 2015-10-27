@@ -15,7 +15,8 @@ public class MainMenu : MonoBehaviour {
 	public string load = @"";
 
 	bool loading = false;
-	bool splash = true;
+    // public static bool splash = true;
+    public static bool splash = true;
 	bool menuSelect = false;
 
 	// Use this for initialization
@@ -99,7 +100,7 @@ public class MainMenu : MonoBehaviour {
 				// Level 3
 				loading = true;
 				SoundManagerMenu.instance.PlayMainMenuClickAudio (mainMenuClickSound);
-				Application.LoadLevelAsync ("Level3");
+				Application.LoadLevelAsync ("Level_3");
 			}
 		}
 		
