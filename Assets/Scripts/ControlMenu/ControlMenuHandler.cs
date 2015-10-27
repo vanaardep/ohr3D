@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
-//using UnityEditor;
+using UnityEditor;
 
 public class ControlMenuHandler : MonoBehaviour
 {
     public Texture2D menu_background;
     public GUIStyle mainFont;
     public GUIStyle secondaryFont;
+	public GUIStyle secondaryFontGrey;
     public GUIStyle smallText;
 
     private bool changePylon = false;
@@ -14,6 +15,7 @@ public class ControlMenuHandler : MonoBehaviour
     private bool changeTurret = false;
     private bool changeShoot = false;
     private bool showError = false;
+
     // Use this for initialization
     void Start()
     {
@@ -30,67 +32,76 @@ public class ControlMenuHandler : MonoBehaviour
     {
         GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), menu_background, ScaleMode.ScaleAndCrop, true, 0F);
 
-        if (GUI.Button(new Rect(Screen.width - 120, Screen.height - 120, 100, 50), "BACK", mainFont))
+		if (GUI.Button(new Rect(50, Screen.height - 60, 100, 50), "BACK", secondaryFont))
         {
             Application.LoadLevel("Menu");
         }
-        if (GUI.Button(new Rect(Screen.width - 200, Screen.height - 180, 100, 50), "BACK AND SET TO DEFAULTS", smallText))
+        if (GUI.Button(new Rect(Screen.width - 180, Screen.height - 50, 100, 50), "RESET TO DEFAULTS", smallText))
         {
             GameInputManager.mineKey = KeyCode.Q;
             GameInputManager.teslaKey = KeyCode.Mouse1;
             GameInputManager.pylonKey = KeyCode.E;
             GameInputManager.turretKey = KeyCode.R;
-            Application.LoadLevel("Menu");
+            //Application.LoadLevel("Menu");
         }
-        GUI.Label(new Rect(100, 100, 100, 40), "Place Pylon :", secondaryFont);
-        GUI.Label(new Rect(100, 200, 100, 40), "Place Turret :", secondaryFont);
-        GUI.Label(new Rect(100, 300, 100, 40), "Place Mine :", secondaryFont);
-        
+		GUI.Label(new Rect(50, 20, 100, 40), "CONTROLS", mainFont);
+        GUI.Label(new Rect(50, 100, 100, 40), "Place Pylon", secondaryFont);
+		GUI.Label(new Rect(50, 150, 100, 40), "Place Turret", secondaryFont);
+		GUI.Label(new Rect(50, 200, 100, 40), "Place Mine", secondaryFont);
+		GUI.Label(new Rect(50, 250, 100, 40), "Shoot", secondaryFont);
 
-        if (GUI.Button(new Rect(300, 100, 50, 40), GameInputManager.pylonKey.ToString(), secondaryFont))
+		if (GUI.Button(new Rect(220, 100, 50, 40), GameInputManager.pylonKey.ToString(), secondaryFontGrey))
         {
             changePylon = true;
 
         }
-        if (GUI.Button(new Rect(300, 200, 50, 40), GameInputManager.turretKey.ToString(), secondaryFont))
+		if (GUI.Button(new Rect(220, 150, 50, 40), GameInputManager.turretKey.ToString(), secondaryFontGrey))
         {
             changeTurret = true;
         }
-        if (GUI.Button(new Rect(300, 300, 50, 40), GameInputManager.mineKey.ToString(), secondaryFont))
+		if (GUI.Button(new Rect(220, 200, 50, 40), GameInputManager.mineKey.ToString(), secondaryFontGrey))
         {
             changeMine = true;
         }
 
-        
+        string rightMouse = GameInputManager.teslaKey.ToString();
+        if (rightMouse.Equals("Mouse1"))
+        {
+            rightMouse = "RMB";
+        }
+		if (GUI.Button(new Rect(220, 250, 250, 40), rightMouse, secondaryFontGrey))
+        {
+            changeShoot = true;
+        }
         //****************************
+		// Change controls
+
         if (changePylon)
         {
-            GUI.Window(0, new Rect((Screen.width / 2) - 150, (Screen.height / 2) - 75
-            , 300, 300), ShowGUI, "Change Control");
+            GUI.Window(0, new Rect((Screen.width / 2) - 150, 50, 300, 300), ShowGUI, "Press key for Build Pylon...", secondaryFontGrey);
             GUI.FocusWindow(0);
         }
         if (changeMine)
         {
-            GUI.Window(1, new Rect((Screen.width / 2) - 150, (Screen.height / 2) - 75, 300, 300), ShowGUI, "Change Control");
+			GUI.Window(1, new Rect((Screen.width / 2) - 150, 50, 300, 300), ShowGUI, "Press key for Build Mine...", secondaryFontGrey);
             GUI.FocusWindow(1);
         }
-       
+        if (changeShoot)
+        {
+			GUI.Window(2, new Rect((Screen.width / 2) - 150, 50, 300, 300), ShowGUI, "Press key for Shooting...", secondaryFontGrey);
+            GUI.FocusWindow(2);
+        }
         if (changeTurret)
         {
-            GUI.Window(3, new Rect((Screen.width / 2) - 150, (Screen.height / 2) - 75
-            , 300, 300), ShowGUI, "Change Control");
+			GUI.Window(3, new Rect((Screen.width / 2) - 150, 50, 300, 300), ShowGUI, "Press key for Build Turret...", secondaryFontGrey);
             GUI.FocusWindow(3);
-
         }
-
-
     }
 
     void ShowGUI(int windowID)
     {
-        string currentControl = "";
-        // int currentActiveBool = -1 ;
-        Debug.Log(windowID);
+        /*string currentControl = "";
+       
         switch (windowID)
         {
             case 0:
@@ -108,8 +119,7 @@ public class ControlMenuHandler : MonoBehaviour
                 break;
         }
 
-        GUI.Label(new Rect(65, 40, 200, 30), "Enter Key to : " + currentControl + " ", smallText);
-
+        GUI.Label(new Rect(65, 40, 200, 30), "Press key for " + currentControl + " ", smallText);*/
 
         Event e = Event.current;
         if (e.isKey)
@@ -133,15 +143,7 @@ public class ControlMenuHandler : MonoBehaviour
                     GameInputManager.turretKey = e.keyCode;
                     changeTurret = false;
                     break;
-
-
             }
         }
-
-        //changePylon = false;
-
-
-
     }
-
 }
