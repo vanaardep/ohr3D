@@ -77,6 +77,6 @@ public class GUITut_Objectives : MonoBehaviour {
 	
 	public void endTutorial () {
 		loading = true;
-		Application.LoadLevel ("Tutorial_Video"); // Make it the next tut screen
+		Application.LoadLevel ("Tutorial_Video_Title_Part2"); // Make it the next tut screen
 	}
 }

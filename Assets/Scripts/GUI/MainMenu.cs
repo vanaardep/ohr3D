@@ -82,7 +82,7 @@ public class MainMenu : MonoBehaviour {
                 started = true;
                 mainMenuMusic.Stop();
 				SoundManagerMenu.instance.PlayMainMenuClickAudio (mainMenuClickSound);
-				Application.LoadLevelAsync ("Tutorial_Objectives");
+				Application.LoadLevelAsync ("Tutorial_Video_Title_Part1");
 			}
 		} else {
 			// Draw click boxes for levels
@@ -91,7 +91,7 @@ public class MainMenu : MonoBehaviour {
 				// Tutorial
 				loading = true;
 				SoundManagerMenu.instance.PlayMainMenuClickAudio (mainMenuClickSound);
-				Application.LoadLevelAsync ("Tutorial_Objectives");
+				Application.LoadLevelAsync ("Tutorial_Video_Title_Part1");
 			}
 			if (GUI.Button (new Rect ((Screen.width / 2) - 75, (Screen.height / 2) - 160, 45, 45), "")) {
 				// Level 1
@@ -109,7 +109,7 @@ public class MainMenu : MonoBehaviour {
 				// Level 3
 				loading = true;
 				SoundManagerMenu.instance.PlayMainMenuClickAudio (mainMenuClickSound);
-				Application.LoadLevelAsync ("Level_3");
+				Application.LoadLevelAsync ("Level3");
 			}
 		}
 		
