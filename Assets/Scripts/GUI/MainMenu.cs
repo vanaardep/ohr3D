@@ -9,7 +9,7 @@ public class MainMenu : MonoBehaviour {
 	public Texture2D menu_splash;
 	public AudioClip mainMenuClickSound;
 	MovieTexture loading_video;
-
+    public AudioSource mainMenuMusic;
 	public GUIStyle mainFont;
 	public GUIStyle loadFont;
 	public string load = @"";
@@ -18,19 +18,26 @@ public class MainMenu : MonoBehaviour {
     // public static bool splash = true;
     public static bool splash = true;
 	bool menuSelect = false;
+    bool started = false;
 
 	// Use this for initialization
 	void Start () {
 		Invoke ("disableSplash", 4);
+       
 		loading_video = (MovieTexture) Resources.Load( "loading" , typeof( MovieTexture ) );
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
-	}
+        if (started){ // if true, main menu is called from pause menu. Disable splash
+            disableSplash();
+        }
+
+        
+    }
 
 	void disableSplash () {
+        started = true; //Game has already started up
 		splash = false;
 	}
 
@@ -72,6 +79,8 @@ public class MainMenu : MonoBehaviour {
 			if (GUI.Button (new Rect (Screen.width - 120, Screen.height - 300, 100, 50), "START", mainFont)) {
 				// Start game
 				loading = true;
+                started = true;
+                mainMenuMusic.Stop();
 				SoundManagerMenu.instance.PlayMainMenuClickAudio (mainMenuClickSound);
 				Application.LoadLevelAsync ("Tutorial_Objectives");
 			}

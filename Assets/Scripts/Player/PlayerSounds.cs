@@ -36,7 +36,7 @@ public class PlayerSounds : MonoBehaviour {
 	public void playFootsteps(){
         if (_animator.GetFloat("Forward") > 0.2)
         {
-            if (Application.loadedLevelName == "Level1" || Application.loadedLevelName == "Level3" || Application.loadedLevelName == "Tutorial")
+            if (Application.loadedLevelName == "Level1" || Application.loadedLevelName == "Level_3" || Application.loadedLevelName == "Tutorial")
             {
                 SoundManager.instance.PlayPlayerMoveAudio(Footstep1, Footstep2, Footstep3, Footstep4);
             }

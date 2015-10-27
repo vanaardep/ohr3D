@@ -45,7 +45,7 @@ public class ControlMenuHandler : MonoBehaviour
         GUI.Label(new Rect(100, 100, 100, 40), "Place Pylon :", secondaryFont);
         GUI.Label(new Rect(100, 200, 100, 40), "Place Turret :", secondaryFont);
         GUI.Label(new Rect(100, 300, 100, 40), "Place Mine :", secondaryFont);
-        GUI.Label(new Rect(100, 400, 100, 40), "Shoot :", secondaryFont);
+        
 
         if (GUI.Button(new Rect(300, 100, 50, 40), GameInputManager.pylonKey.ToString(), secondaryFont))
         {
@@ -61,15 +61,7 @@ public class ControlMenuHandler : MonoBehaviour
             changeMine = true;
         }
 
-        string rightMouse = GameInputManager.teslaKey.ToString();
-        if (rightMouse.Equals("Mouse1"))
-        {
-            rightMouse = "Right Mouse Button";
-        }
-        if (GUI.Button(new Rect(300, 400, 250, 40), rightMouse, secondaryFont))
-        {
-            changeShoot = true;
-        }
+        
         //****************************
         if (changePylon)
         {
@@ -82,12 +74,7 @@ public class ControlMenuHandler : MonoBehaviour
             GUI.Window(1, new Rect((Screen.width / 2) - 150, (Screen.height / 2) - 75, 300, 300), ShowGUI, "Change Control");
             GUI.FocusWindow(1);
         }
-        if (changeShoot)
-        {
-            GUI.Window(2, new Rect((Screen.width / 2) - 150, (Screen.height / 2) - 75
-            , 300, 300), ShowGUI, "Change Control");
-            GUI.FocusWindow(2);
-        }
+       
         if (changeTurret)
         {
             GUI.Window(3, new Rect((Screen.width / 2) - 150, (Screen.height / 2) - 75
