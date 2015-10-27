@@ -4,12 +4,14 @@ using System.Collections;
 public class GameManager : MonoBehaviour {
 	public Animator m_Animator;
 	public GameObject auron;
-
+    public AudioSource gameOverSource;
+    public AudioClip gameOverSound;
     private bool GameOverFlag;
 
     public GUIStyle mainFont;
     // Use this for initialization
     void Start () {
+
 		PlayerHealth.playerHealth = 10;
 		BaseCarHealth.baseCarHealth = 10;
         GameOverFlag = false;
@@ -26,6 +28,7 @@ public class GameManager : MonoBehaviour {
 	void Update () {
 		if (PlayerHealth.playerHealth == 0 || BaseCarHealth.baseCarHealth == 0)
 		{
+            gameOverSource.PlayOneShot(gameOverSound);
 			if(PlayerHealth.playerHealth == 0){
 				auron.GetComponent<Rigidbody> ().Sleep ();
 			

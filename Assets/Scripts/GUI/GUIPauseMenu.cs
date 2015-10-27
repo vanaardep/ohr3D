@@ -40,6 +40,7 @@ public class GUIPauseMenu : MonoBehaviour {
 				GUI.DrawTexture (new Rect (0, 0, Screen.width, Screen.height), loading_video, ScaleMode.ScaleAndCrop, true, 0F);
 				loading_video.Play();
 				loading_video.loop = true;
+                
 				Application.LoadLevelAsync (Application.loadedLevel);
 			}
 
