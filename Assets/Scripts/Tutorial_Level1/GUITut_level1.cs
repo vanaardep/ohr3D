@@ -31,10 +31,10 @@ public class GUITut_level1 : MonoBehaviour {
 
 		// 1st dialog
 		if (dialogTimer < 20 && !pressedSpace) {
-			bottomText = "HINT: You have 60 seconds. Scavenge as many batteries and light bulbs as you can.";
+			bottomText = "HINT: You have 30 seconds. Scavenge as many batteries and light bulbs as you can.";
 			//Time.timeScale = 0;
-		} else if (dialogTimer > 30 && dialogTimer < 40) {
-			bottomText = "HINT: You have 30 seconds left, get back to base to start placing defences.";
+		} else if (dialogTimer > 20 && dialogTimer < 40) {
+			bottomText = "HINT: You have 10 seconds left, get back to base to start placing defences.";
 		} else if (dialogTimer > 40 && dialogTimer < 50) {
 			bottomText = "HINT: Press E to place a Defence Pylon.";
 		} else if (dialogTimer > 50 && dialogTimer < 60) {

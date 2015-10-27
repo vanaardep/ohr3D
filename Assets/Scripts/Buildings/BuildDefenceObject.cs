@@ -83,7 +83,7 @@ public class BuildDefenceObject : MonoBehaviour {
 			//Debug.Log(">>>> Place mine");
 			if( PlayerGUI.batteryPerc > 10)
 			{
-			
+			    
 				Vector3 playerPosition = GameObject.Find("Auron").transform.position;
 				
 				GameObject thisObject = Instantiate(Resources.Load("lightMine"), playerPosition, Quaternion.identity) as GameObject;
