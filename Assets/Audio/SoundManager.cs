@@ -10,6 +10,8 @@ using System.Collections;
         public AudioSource buildingAudio;
         public AudioSource itemPickupAudio;
         public AudioSource baseDamageAudio;
+        public AudioSource waveCompleteAudio;
+        public AudioSource levelCompleteAudio;
         public AudioSource musicSource;   
 
         public static SoundManager instance = null;                
@@ -26,6 +28,8 @@ using System.Collections;
             buildingAudio = audios[4];
             itemPickupAudio = audios[5];
             baseDamageAudio = audios[6];
+            waveCompleteAudio = audios[7];
+            levelCompleteAudio = audios[8];
         }     
         
         
@@ -96,5 +100,17 @@ using System.Collections;
         {
             baseDamageAudio.clip = clip;
             baseDamageAudio.Play ();
+        }
+
+        public void PlayWaveCompleteAudio(AudioClip clip)
+        {
+            waveCompleteAudio.clip = clip;
+            waveCompleteAudio.Play ();
+        }
+
+         public void PlayLevelCompleteAudio(AudioClip clip)
+        {
+            levelCompleteAudio.clip = clip;
+            levelCompleteAudio.Play ();
         }
 }

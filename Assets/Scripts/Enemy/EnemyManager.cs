@@ -14,6 +14,8 @@ public class EnemyManager : MonoBehaviour {
 	public float startTimeReset;
 	public Transform[] spawnPoints;
 	public AudioClip hordeSpawnSound;
+	public AudioClip levelCompleteAudio;
+	public AudioClip waveCompleteAudio;
 	int numberOfEnemies;
 
 	public int aliveNumberOfEnemies;
@@ -66,7 +68,7 @@ public class EnemyManager : MonoBehaviour {
 		//LEVEL 1
 		//=======
 		if (Application.loadedLevelName == "Level1") {
-			spawnrate = 2f;//5
+			spawnrate = 5f;//5
 			startTime = 30f;
 			enemiesPerWave = 15;
 			maxHordeWaves = 3;//2
@@ -127,6 +129,7 @@ public class EnemyManager : MonoBehaviour {
 		if (hordeWaveCount == maxHordeWaves + 1)
         {
 			// Win level
+			SoundManager.instance.PlayLevelCompleteAudio(levelCompleteAudio);
 			levelComplete = true;
 			Time.timeScale = 0;
 			Invoke ("showLoadingScreen", 3);
@@ -194,7 +197,7 @@ public class EnemyManager : MonoBehaviour {
                             enemy.GetComponent<Animator>().Play("die");
 
                         }
-
+                        
                         waveTimeLimit = 10f;
                         numberOfEnemies = 0;
                         hordeSpawnTime = startTimeReset;
@@ -202,6 +205,7 @@ public class EnemyManager : MonoBehaviour {
                         startTime = barTime + startTime;
                         bsm.batterySpawnLoad();
                         lsm.lightbulbSpawnLoad();
+                        SoundManager.instance.PlayWaveCompleteAudio(waveCompleteAudio);
                     }
 			}
 	}
@@ -239,11 +243,13 @@ public class EnemyManager : MonoBehaviour {
 			// Wave completed
 			if (waveComplete) {
 				GUI.Label (new Rect (30, 50, Screen.width - 60, 70), "Wave Complete!", smallFont);
+				
 			}
 
 			// Win screen
 			if (levelComplete) {
 				GUI.Label (new Rect (Screen.width / 2 - 100, Screen.height / 2 - 100, 100, 100), "Level Complete", mainFont);
+				
 			}
 		}
 
