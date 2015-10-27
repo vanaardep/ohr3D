@@ -18,6 +18,9 @@ public class PlayerTeslaGlove : MonoBehaviour
 	public Vector2 hotSpot = Vector2.zero;
     public GameInputManager gameInputScript;
 
+	public Texture2D gui_cooldown;
+	public Texture2D gui_cooldown_ready;
+
     // Use this for initialization
     void Start()
     {
@@ -93,4 +96,11 @@ public class PlayerTeslaGlove : MonoBehaviour
             CancelInvoke("coolDownDec");
         }
     }
+
+	void OnGUI () {
+		if (cooldown > 0)
+			GUI.DrawTexture(new Rect(20, 170, 50, 50), gui_cooldown, ScaleMode.ScaleToFit, true, 0F);
+		else 
+			GUI.DrawTexture(new Rect(20, 170, 50, 50), gui_cooldown_ready, ScaleMode.ScaleToFit, true, 0F);
+	}
 }
