@@ -88,8 +88,8 @@ public class PlayerGUI_Tut : MonoBehaviour {
 				GUI.Label (new Rect (50, 50, 100, 100), batteryPerc + "%", mainFont);
 		
 				// Health bar
-				gui_health = textures [PlayerHealth.playerHealth];
-				GUI.DrawTexture (new Rect (20, 20, 150, 150), gui_health, ScaleMode.ScaleToFit, true, 0F);
+				gui_health = textures [PlayerHealth.playerHealth - 1];
+				GUI.DrawTexture (new Rect (22.5f, 22, 145, 145), gui_health, ScaleMode.ScaleToFit, true, 0F);
 			
 			// Reset pulse
 			GUI.color = new Color (GUI.color.r, GUI.color.g, GUI.color.b, 1);
@@ -118,7 +118,7 @@ public class PlayerGUI_Tut : MonoBehaviour {
 				GUI.color = new Color (GUI.color.r, GUI.color.g, GUI.color.b, alpha);
 
 				// Hotkeys
-				GUI.DrawTexture (new Rect (Screen.width / 2 - 145, Screen.height - 55, 290, 55), gui_hotkeys, ScaleMode.StretchToFill, true, 0F);
+			GUI.DrawTexture(new Rect(Screen.width / 2 - 115, Screen.height - 55, 230, 55), gui_hotkeys, ScaleMode.StretchToFill, true, 0F);
 		}
 	}
 }

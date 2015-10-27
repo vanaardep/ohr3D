@@ -66,7 +66,7 @@ public class GUITut_Objectives : MonoBehaviour {
 		
 		// Draw label
 		GUI.Label (new Rect (30, Screen.height - 70, Screen.width - 60, 70), bottomText, dialogFont);
-		GUI.Label (new Rect (Screen.width - 140, 10, 130, 70), "Press Space to skip tutorial.", dialogFont);
+		GUI.Label (new Rect (Screen.width - 150, 10, 140, 80), "Press Space to skip tutorial part 1.", dialogFont);
 		
 		if (loading) {
 			GUI.DrawTexture (new Rect (0, 0, Screen.width, Screen.height), loading_video, ScaleMode.ScaleAndCrop, true, 0F);
