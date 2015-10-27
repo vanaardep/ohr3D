@@ -36,14 +36,13 @@ public class PlayerSounds : MonoBehaviour {
 	public void playFootsteps(){
         if (_animator.GetFloat("Forward") > 0.2)
         {
-            if (Application.loadedLevelName == "Level1" || Application.loadedLevelName == "Level_3" || Application.loadedLevelName == "Tutorial")
+            if (Application.loadedLevelName == "Level2")
             {
-                SoundManager.instance.PlayPlayerMoveAudio(Footstep1, Footstep2, Footstep3, Footstep4);
+                SoundManager.instance.PlayPlayerMoveAudio(Grasstep1, Grasstep2, Grasstep3, Grasstep4, Grasstep5, Grasstep6);
             }
             else
             {
-                SoundManager.instance.PlayPlayerMoveAudio(Grasstep1, Grasstep2, Grasstep3, Grasstep4, Grasstep5, Grasstep6);
-                Debug.Log("called");
+                SoundManager.instance.PlayPlayerMoveAudio(Footstep1, Footstep2, Footstep3, Footstep4);
             }
         }
 	}
