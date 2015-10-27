@@ -14,7 +14,10 @@ public class MainMenu : MonoBehaviour {
 	public GUIStyle loadFont;
 	public string load = @"";
 
-	bool loading = false;
+    //BACK BUTTON
+    public GUIStyle secondaryFont;
+
+    bool loading = false;
     // public static bool splash = true;
     public static bool splash = true;
 	bool menuSelect = false;
@@ -84,7 +87,8 @@ public class MainMenu : MonoBehaviour {
 				SoundManagerMenu.instance.PlayMainMenuClickAudio (mainMenuClickSound);
 				Application.LoadLevelAsync ("Tutorial_Video_Title_Part1");
 			}
-		} else {
+		}
+        else {
 			// Draw click boxes for levels
 			GUI.backgroundColor = Color.clear;
 			if (GUI.Button (new Rect ((Screen.width / 2) - 25, (Screen.height / 2) - 190, 45, 45), "")) {
@@ -111,7 +115,13 @@ public class MainMenu : MonoBehaviour {
 				SoundManagerMenu.instance.PlayMainMenuClickAudio (mainMenuClickSound);
 				Application.LoadLevelAsync ("Level3");
 			}
-		}
+
+            //Back BUTTON
+            if (GUI.Button(new Rect(50, Screen.height - 60, 100, 50), "BACK", secondaryFont))
+            {
+                Application.LoadLevel("Menu");
+            }
+        }
 		
 		// Splash
 		if (splash) {
