@@ -13,6 +13,8 @@ public class GUITut_Objectives : MonoBehaviour {
 	MovieTexture loading_video;
 	bool loading = false;
 	float loadTimer = 0;
+
+	private AudioSource[] allAudioSources;
 	
 	// Use this for initialization
 	void Start () {
@@ -77,6 +79,14 @@ public class GUITut_Objectives : MonoBehaviour {
 	
 	public void endTutorial () {
 		loading = true;
+		StopAllAudio ();
 		Application.LoadLevel ("Tutorial_Video_Title_Part2"); // Make it the next tut screen
+	}
+
+	void StopAllAudio() {
+		allAudioSources = FindObjectsOfType(typeof(AudioSource)) as AudioSource[];
+		foreach( AudioSource audioS in allAudioSources) {
+			audioS.Stop();
+		}
 	}
 }
