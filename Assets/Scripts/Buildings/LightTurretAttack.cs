@@ -8,7 +8,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         AICharacterControl aiCharacterControl;
         private float fireStart = 0f;
         public float PowerUsageDelay = 2;
-        public float fireCooldown = 5f; // 5cd of turret
+        public float fireCooldown = 10f; // 5cd of turret
 
         private float fireAnimStart = 0f;
         private float fireAnimCooldown = 1f; // 1 second light pulse animation
@@ -21,7 +21,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         {
             thisObj = this.gameObject;
             PowerUsageDelay = 3;
-            fireCooldown = 5f;
+            fireCooldown = 10f;
             fireAnimStart = 0f;
             fireAnimCooldown = 1f;
             lightTurretAttackSoundObj = thisObj.GetComponent<SoundManagerLightTurret>();

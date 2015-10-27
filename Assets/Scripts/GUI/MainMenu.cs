@@ -29,9 +29,9 @@ public class MainMenu : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (started){ // if true, main menu is called from pause menu. Disable splash
+       /* if (started){ // if true, main menu is called from pause menu. Disable splash
             disableSplash();
-        }
+        }*/
 
         
     }

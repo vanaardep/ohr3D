@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour {
 		{
             gameOverSource.PlayOneShot(gameOverSound);
 			if(PlayerHealth.playerHealth == 0){
+                Debug.Log("entered PLAYERDEATH");
 				auron.GetComponent<Rigidbody> ().Sleep ();
 			
 				m_Animator.SetBool("Dead",true);
