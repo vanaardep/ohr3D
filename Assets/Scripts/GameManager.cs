@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour {
     {
         if (GameOverFlag)
         {
-            GUI.Label(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 100, 100, 100), "Base Car Destroyed", mainFont);
+            GUI.Label(new Rect(Screen.width / 2 - 50, 80, 100, 100), "Base Car Destroyed.", mainFont);
         }
     }
 }
