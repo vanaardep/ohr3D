@@ -59,7 +59,7 @@ public class EnemyManager : MonoBehaviour {
 		aliveNumberOfEnemies = 0;
         numGoliath = 0;
 
-        waveTimeConst =120f;
+        waveTimeConst =100;//120
         waveTimeLimit = waveTimeConst;//PERIOD TO LAST AFTER EVERY ENEMY HAS SPAWNED
 
         loading_video = (MovieTexture) Resources.Load( "loading" , typeof( MovieTexture ) );
@@ -69,8 +69,8 @@ public class EnemyManager : MonoBehaviour {
 		//=======
 		if (Application.loadedLevelName == "Level1") {
 			spawnrate = 5f;//5
-			startTime = 30f;
-			enemiesPerWave = 5;//15
+			startTime = 30;//30
+			enemiesPerWave = 15;//15
 			maxHordeWaves = 3;//3
             GoliathLimit = 3;
             nxtLvl = "Level2";
@@ -97,7 +97,7 @@ public class EnemyManager : MonoBehaviour {
 			enemiesPerWave = 17;
 			maxHordeWaves = 5;
             GoliathLimit = 5;
-            nxtLvl = "Credits_Video";
+            nxtLvl = "Credit_Video";
             //NB NB NB Add epilogue video
 		}
 
@@ -256,7 +256,7 @@ public class EnemyManager : MonoBehaviour {
 			// Win screen
 			if (levelComplete) {
 				GUI.Label (new Rect (Screen.width / 2 - 100, Screen.height / 2 - 50, 100, 100), "Level Complete", mainFont);
-				
+				loading = true;
 			}
 		}
 

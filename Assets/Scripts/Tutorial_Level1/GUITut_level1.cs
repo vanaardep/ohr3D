@@ -6,6 +6,7 @@ public class GUITut_level1 : MonoBehaviour {
 	public Texture2D pause_background;
 	public GUIStyle dialogFont;
 	public float dialogTimer;
+	float loadTimer = 0;
 	
 	public string bottomText;
 
@@ -15,11 +16,20 @@ public class GUITut_level1 : MonoBehaviour {
 	void Start () {
 		pressedSpace = false;
 	}
-	
+
+	void OnLevelWasLoaded(int level) {
+		if (level == 2) {
+			print ("lvl1 loaded");
+			
+			loadTimer = Time.time;
+		}
+		
+	}
+
 	// Update is called once per frame
 	void Update () {
 
-		dialogTimer = Time.time;
+		dialogTimer = Time.time - loadTimer;
 
 		if (Input.GetKey (KeyCode.Escape)) {
 			Time.timeScale = 1;
