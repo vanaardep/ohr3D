@@ -25,7 +25,7 @@ public class GUICredits_Video : MonoBehaviour {
 		
 		// video
 		credit_video.Play ();
-		GUI.DrawTexture (new Rect (0, 0, Screen.width, Screen.height), credit_video, ScaleMode.ScaleToFit, true, 0F);
+		GUI.DrawTexture (new Rect (0, 0, Screen.width, Screen.height), credit_video, ScaleMode.ScaleAndCrop, true, 0F);
 
 		// Skip button
 		GUI.Label (new Rect (Screen.width - 150, Screen.height - 80, 140, 80), "Press Space to skip tutorial part 2.", dialogFont);
