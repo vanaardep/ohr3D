@@ -22,7 +22,7 @@ public class GUITut_Objectives : MonoBehaviour {
 	}
 
 	void OnLevelWasLoaded(int level) {
-		if (level == 1) {
+		if (level == 8) {
 			print ("TUT objectives loaded");
 
 			loadTimer = Time.time;
@@ -42,20 +42,20 @@ public class GUITut_Objectives : MonoBehaviour {
 	
 	void OnGUI () {
 		
-		//Debug.Log (dialogTimer);
+		Debug.Log (dialogTimer);
 		
 		// 1st dialog
-		if (dialogTimer < 3) {
+		if (dialogTimer < 10) {
 			bottomText = "Light.";
-		} else if (dialogTimer < 10) {
-			bottomText = "Your primary objective is to protect yourself.";
 		} else if (dialogTimer < 15) {
-			bottomText = "Your secondary objective is to protect your base vehicle. It stores the power for your weapons in the form of batteries.";
+			bottomText = "Your primary objective is to protect yourself.";
 		} else if (dialogTimer < 20) {
+			bottomText = "Your secondary objective is to protect your base vehicle. It stores the power for your weapons in the form of batteries.";
+		} else if (dialogTimer < 25) {
 			bottomText = "Your enemy is darkness itself.";
-		} else if (dialogTimer < 30) {
-			bottomText = "Light bulbs are used to upgrade your defences, batteries are used to power them.";
 		} else if (dialogTimer < 35) {
+			bottomText = "Light bulbs are used to upgrade your defences, batteries are used to power them.";
+		} else if (dialogTimer < 45) {
 			bottomText = "They can be found near cars, buildings and rubish heaps.";
 		} else {
 			bottomText = "";
