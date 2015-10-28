@@ -12,6 +12,7 @@ public class MainMenu : MonoBehaviour {
     public AudioSource mainMenuMusic;
 	public GUIStyle mainFont;
 	public GUIStyle loadFont;
+	public GUIStyle smallFont;
 	public string load = @"";
 
     //BACK BUTTON
@@ -19,7 +20,7 @@ public class MainMenu : MonoBehaviour {
 
     bool loading = false;
     // public static bool splash = true;
-    public static bool splash = true;
+    public static bool splash = false;
 	bool menuSelect = false;
     bool started = false;
 
@@ -52,18 +53,22 @@ public class MainMenu : MonoBehaviour {
 		GUI.DrawTexture(new Rect((Screen.width / 2) - 90, (Screen.height / 2) - 200, 180, 300), menu_logo, ScaleMode.StretchToFill, true, 0F);
 
 		if (!menuSelect) {
-			if (GUI.Button (new Rect (Screen.width - 120, Screen.height - 60, 100, 50), "EXIT", mainFont)) {
+			if (GUI.Button (new Rect (10, Screen.height - 60, 100, 50), "EXIT", mainFont)) {
 				// Exit game
 				SoundManagerMenu.instance.PlayMainMenuClickAudio (mainMenuClickSound);
 				Application.Quit ();
 			}
 
-			if (GUI.Button (new Rect (Screen.width - 120, Screen.height - 120, 100, 50), "SOUND", mainFont)) {
+			if (GUI.Button (new Rect (Screen.width - 120, Screen.height - 60, 100, 50), "SOUND", smallFont)) {
 				// Level Select
 				SoundManagerMenu.instance.PlayMainMenuClickAudio (mainMenuClickSound);
 				menuSelect = true;
 			}
-            if (GUI.Button(new Rect(Screen.width - 120, Screen.height - 180, 100, 50), "CONTROLS", mainFont))
+
+			// Space line
+			GUI.Button(new Rect(Screen.width - 205, Screen.height - 62, 100, 50), "|", smallFont);
+
+			if (GUI.Button(new Rect(Screen.width - 215, Screen.height - 60, 100, 50), "CONTROLS", smallFont))
             {
                 // Controls
                 SoundManagerMenu.instance.PlayMainMenuClickAudio(mainMenuClickSound);
@@ -71,21 +76,26 @@ public class MainMenu : MonoBehaviour {
                 //menuSelect = true;
             }
 
-
-            if (GUI.Button (new Rect (Screen.width - 120, Screen.height - 240, 100, 50), "LEVELS", mainFont)) {
+			if (GUI.Button (new Rect (Screen.width - 120, Screen.height - 160, 100, 50), "LEVELS", mainFont)) {
 				// Level Select
 				SoundManagerMenu.instance.PlayMainMenuClickAudio (mainMenuClickSound);
 				menuSelect = true;
 				menu_logo = menu_logo_levels;
 			}
 
-			if (GUI.Button (new Rect (Screen.width - 120, Screen.height - 300, 100, 50), "START", mainFont)) {
+			if (GUI.Button (new Rect (Screen.width - 120, Screen.height - 220, 100, 50), "TUTORIAL", mainFont)) {
+				// Level Select
+				SoundManagerMenu.instance.PlayMainMenuClickAudio (mainMenuClickSound);
+				Application.LoadLevelAsync ("Tutorial_Video_Title_Part1");
+			}
+
+			if (GUI.Button (new Rect (Screen.width - 120, Screen.height - 280, 100, 50), "START", mainFont)) {
 				// Start game
 				loading = true;
                 started = true;
                 mainMenuMusic.Stop();
 				SoundManagerMenu.instance.PlayMainMenuClickAudio (mainMenuClickSound);
-				Application.LoadLevelAsync ("Tutorial_Video_Title_Part1");
+				Application.LoadLevelAsync ("Level1");
 			}
 		}
         else {
