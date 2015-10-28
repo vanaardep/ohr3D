@@ -45,17 +45,17 @@ public class GUITut_Objectives : MonoBehaviour {
 		Debug.Log (dialogTimer);
 		
 		// 1st dialog
-		if (dialogTimer < 10) {
+		if (dialogTimer < 6) {
 			bottomText = "Light.";
-		} else if (dialogTimer < 15) {
+		} else if (dialogTimer < 11) {
 			bottomText = "Your primary objective is to protect yourself.";
-		} else if (dialogTimer < 20) {
+		} else if (dialogTimer < 16) {
 			bottomText = "Your secondary objective is to protect your base vehicle. It stores the power for your weapons in the form of batteries.";
-		} else if (dialogTimer < 25) {
+		} else if (dialogTimer < 21) {
 			bottomText = "Your enemy is darkness itself.";
-		} else if (dialogTimer < 35) {
+		} else if (dialogTimer < 31) {
 			bottomText = "Light bulbs are used to upgrade your defences, batteries are used to power them.";
-		} else if (dialogTimer < 45) {
+		} else if (dialogTimer < 41) {
 			bottomText = "They can be found near cars, buildings and rubish heaps.";
 		} else {
 			bottomText = "";

@@ -59,7 +59,7 @@ public class EnemyManager : MonoBehaviour {
 		aliveNumberOfEnemies = 0;
         numGoliath = 0;
 
-        waveTimeConst =100;//120
+        waveTimeConst = 60;//120
         waveTimeLimit = waveTimeConst;//PERIOD TO LAST AFTER EVERY ENEMY HAS SPAWNED
 
         loading_video = (MovieTexture) Resources.Load( "loading" , typeof( MovieTexture ) );
@@ -70,7 +70,7 @@ public class EnemyManager : MonoBehaviour {
 		if (Application.loadedLevelName == "Level1") {
 			spawnrate = 5f;//5
 			startTime = 30;//30
-			enemiesPerWave = 15;//15
+			enemiesPerWave = 10;//15
 			maxHordeWaves = 3;//3
             GoliathLimit = 3;
             nxtLvl = "Level2";
@@ -81,21 +81,21 @@ public class EnemyManager : MonoBehaviour {
 		//=======
 		if (Application.loadedLevelName == "Level2") {
 			spawnrate = 2f;
-			startTime = 30.0f;
+			startTime = 60f;
 			enemiesPerWave = 17;
-			maxHordeWaves = 4;//2
+			maxHordeWaves = 3;//2
             GoliathLimit = 4;
             nxtLvl = "Level3";
 		}
 
 		//=======
-		//LEVEL 2
+		//LEVEL 3
 		//=======
 		if (Application.loadedLevelName == "Level3") {
 			spawnrate = 1f;
 			startTime = 30f;
-			enemiesPerWave = 17;
-			maxHordeWaves = 5;
+			enemiesPerWave = 25;
+			maxHordeWaves = 3;
             GoliathLimit = 5;
             nxtLvl = "Credit_Video";
             //NB NB NB Add epilogue video
@@ -190,31 +190,31 @@ public class EnemyManager : MonoBehaviour {
 
 			if (numberOfEnemies == enemiesPerWave) {
 				
-				flag1 = false;
-                waveTimeLimit -= Time.deltaTime;
+			flag1 = false;
+			waveTimeLimit -= Time.deltaTime;
 
-            	if (waveTimeLimit <= 0) {
+			if (waveTimeLimit <= 0) {
 
-                        flag2 = false;
-                        waveTimeLimit = waveTimeConst;
-                        doneForWave = false;
+				flag2 = false;
+				waveTimeLimit = waveTimeConst;
+				doneForWave = false;
 
-                        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-                        foreach (GameObject enemy in enemies) {
+				GameObject[] enemies = GameObject.FindGameObjectsWithTag ("Enemy");
+				foreach (GameObject enemy in enemies) {
 
-                            enemy.GetComponent<Animator>().Play("die");
+					enemy.GetComponent<Animator> ().Play ("die");
 
-                        }
+				}
                         
-                        numberOfEnemies = 0;
-                        hordeSpawnTime = startTimeReset;
-                        startTime = startTimeReset;
-                        startTime = barTime + startTime;
-                        bsm.batterySpawnLoad();
-                        lsm.lightbulbSpawnLoad();
-                        SoundManager.instance.PlayWaveCompleteAudio(waveCompleteAudio);
-                    }
+				numberOfEnemies = 0;
+				hordeSpawnTime = startTimeReset;
+				startTime = startTimeReset;
+				startTime = barTime + startTime;
+				bsm.batterySpawnLoad ();
+				lsm.lightbulbSpawnLoad ();
+				SoundManager.instance.PlayWaveCompleteAudio (waveCompleteAudio);
 			}
+		} 
 	}
 
 	void showLoadingScreen (){
