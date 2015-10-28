@@ -97,7 +97,7 @@ public class EnemyManager : MonoBehaviour {
 			enemiesPerWave = 17;
 			maxHordeWaves = 5;
             GoliathLimit = 5;
-
+            nxtLvl = "Credits_Video";
             //NB NB NB Add epilogue video
 		}
 
@@ -155,7 +155,15 @@ public class EnemyManager : MonoBehaviour {
                     enemyKillCount = enemiesPerWave;
                     timestamp = spawnrate + barTime;
                     SoundManager.instance.PlayEnvironmentAudio(hordeSpawnSound);
-                    hordeWaveCount++;
+                        if (hordeWaveCount != maxHordeWaves)
+                        {
+                            hordeWaveCount++;
+                        }
+                        else
+                        {
+                            levelComplete = true;
+                             timestamp = 1f;
+                         }
                     flag1 = true;
                     flag2 = true;
                 }
@@ -198,7 +206,6 @@ public class EnemyManager : MonoBehaviour {
 
                         }
                         
-                        waveTimeLimit = 10f;
                         numberOfEnemies = 0;
                         hordeSpawnTime = startTimeReset;
                         startTime = startTimeReset;
@@ -261,12 +268,6 @@ public class EnemyManager : MonoBehaviour {
 			loading_video.Play();
 			loading_video.loop = true;
             //async = Application.LoadLevelAsync(nxtLvl);
-            
-
-			// Load the credits 
-			if (nxtLvl == "Level3")
-				Application.LoadLevel("Credits_Video");
-			else
 				Application.LoadLevel(nxtLvl);
 
 
