@@ -31,6 +31,7 @@ public class BatterySpawnManager : MonoBehaviour {
 		batterySpawn ();
 		batterySpawn ();
 		batterySpawn ();
+		batterySpawn ();
 		Debug.Log ("Spawning BATEREIEISISISIS");
 	}
 

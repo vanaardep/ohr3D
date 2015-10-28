@@ -30,6 +30,7 @@ public class LightbulbSpawnManager : MonoBehaviour {
 		lightbulbSpawn();
 		lightbulbSpawn();
 		lightbulbSpawn();
+		lightbulbSpawn();
 		Debug.Log ("Spawning LIIIIIIIIIIGHTBULBS");
 	}
 
