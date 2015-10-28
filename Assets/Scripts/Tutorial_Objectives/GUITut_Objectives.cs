@@ -79,8 +79,8 @@ public class GUITut_Objectives : MonoBehaviour {
 	
 	public void endTutorial () {
 		loading = true;
-		//StopAllAudio (); DO NOT CALL THIS FUNCTION FOR NOW. ONLY WAY TO PLAY BACKGROUND MUSIC
-		Application.LoadLevel ("Tutorial_Video_Title_Part2"); // Make it the next tut screen
+		StopAllAudio ();
+		Application.LoadLevel ("Tutorial_Video_Title_Part2"); 
 	}
 
 	void StopAllAudio() {
