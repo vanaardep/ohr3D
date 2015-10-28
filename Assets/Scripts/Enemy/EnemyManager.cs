@@ -255,7 +255,7 @@ public class EnemyManager : MonoBehaviour {
 
 			// Win screen
 			if (levelComplete) {
-				GUI.Label (new Rect (Screen.width / 2 - 100, Screen.height / 2 - 100, 100, 100), "Level Complete", mainFont);
+				GUI.Label (new Rect (Screen.width / 2 - 100, Screen.height / 2 - 50, 100, 100), "Level Complete", mainFont);
 				
 			}
 		}
