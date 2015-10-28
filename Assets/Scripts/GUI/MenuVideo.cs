@@ -5,6 +5,7 @@ public class MenuVideo : MonoBehaviour {
 
 	MovieTexture intro_video;
 
+	private AudioSource[] allAudioSources;
 
 	// Use this for initialization
 	void Start () {
@@ -14,7 +15,9 @@ public class MenuVideo : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		if (Input.GetKeyUp (KeyCode.Space)) {
+			endTutorial();
+		}
 	}
 
 	void OnGUI () {
@@ -26,5 +29,17 @@ public class MenuVideo : MonoBehaviour {
 
 	void videoDone () {
 		Application.LoadLevel ("Menu");
+	}
+
+	public void endTutorial () {
+		StopAllAudio ();
+		Application.LoadLevel ("Menu");
+	}
+	
+	void StopAllAudio() {
+		allAudioSources = FindObjectsOfType(typeof(AudioSource)) as AudioSource[];
+		foreach( AudioSource audioS in allAudioSources) {
+			audioS.Stop();
+		}
 	}
 }

@@ -28,7 +28,7 @@ public class HoverMenu : MonoBehaviour {
 	private float timer;
 	private bool checkPos;
 
-	public bool upgradeShortcut;
+	public bool upgradeShortcut = false;
 	private bool AlreadyUpgradedPylon;
 	private bool AlreadyUpgradedTurret;
 	private bool AlreadyUpgradedMine;

@@ -70,7 +70,7 @@ public class EnemyManager : MonoBehaviour {
 		if (Application.loadedLevelName == "Level1") {
 			spawnrate = 5f;//5
 			startTime = 30f;
-			enemiesPerWave = 15;
+			enemiesPerWave = 5;//15
 			maxHordeWaves = 3;//3
             GoliathLimit = 3;
             nxtLvl = "Level2";

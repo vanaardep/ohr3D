@@ -59,16 +59,16 @@ public class MainMenu : MonoBehaviour {
 				Application.Quit ();
 			}
 
-			if (GUI.Button (new Rect (Screen.width - 120, Screen.height - 60, 100, 50), "SOUND", smallFont)) {
+			/*if (GUI.Button (new Rect (Screen.width - 120, Screen.height - 60, 80, 50), "SOUND", smallFont)) {
 				// Level Select
 				SoundManagerMenu.instance.PlayMainMenuClickAudio (mainMenuClickSound);
 				menuSelect = true;
-			}
+			}*/
 
 			// Space line
-			GUI.Button(new Rect(Screen.width - 205, Screen.height - 62, 100, 50), "|", smallFont);
+			//GUI.Button(new Rect(Screen.width - 205, Screen.height - 62, 100, 50), "|", smallFont);
 
-			if (GUI.Button(new Rect(Screen.width - 215, Screen.height - 60, 100, 50), "CONTROLS", smallFont))
+			if (GUI.Button(new Rect(Screen.width - 100, Screen.height - 60, 80, 50), "CONTROLS", smallFont))
             {
                 // Controls
                 SoundManagerMenu.instance.PlayMainMenuClickAudio(mainMenuClickSound);
