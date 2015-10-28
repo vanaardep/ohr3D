@@ -71,7 +71,7 @@ public class EnemyManager : MonoBehaviour {
 			spawnrate = 5f;//5
 			startTime = 30f;
 			enemiesPerWave = 15;
-			maxHordeWaves = 3;//2
+			maxHordeWaves = 3;//3
             GoliathLimit = 3;
             nxtLvl = "Level2";
 		}
@@ -261,7 +261,15 @@ public class EnemyManager : MonoBehaviour {
 			loading_video.Play();
 			loading_video.loop = true;
             //async = Application.LoadLevelAsync(nxtLvl);
-            Application.LoadLevel(nxtLvl);
+            
+
+			// Load the credits 
+			if (nxtLvl == "Level3")
+				Application.LoadLevel("Credits_Video");
+			else
+				Application.LoadLevel(nxtLvl);
+
+
             //Invoke ("showLoadedScene", 5);
             //async.allowSceneActivation = false;
 
