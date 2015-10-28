@@ -190,31 +190,31 @@ public class EnemyManager : MonoBehaviour {
 
 			if (numberOfEnemies == enemiesPerWave) {
 				
-				flag1 = false;
-                waveTimeLimit -= Time.deltaTime;
+			flag1 = false;
+			waveTimeLimit -= Time.deltaTime;
 
-            	if (waveTimeLimit <= 0) {
+			if (waveTimeLimit <= 0) {
 
-                        flag2 = false;
-                        waveTimeLimit = waveTimeConst;
-                        doneForWave = false;
+				flag2 = false;
+				waveTimeLimit = waveTimeConst;
+				doneForWave = false;
 
-                        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-                        foreach (GameObject enemy in enemies) {
+				GameObject[] enemies = GameObject.FindGameObjectsWithTag ("Enemy");
+				foreach (GameObject enemy in enemies) {
 
-                            enemy.GetComponent<Animator>().Play("die");
+					enemy.GetComponent<Animator> ().Play ("die");
 
-                        }
+				}
                         
-                        numberOfEnemies = 0;
-                        hordeSpawnTime = startTimeReset;
-                        startTime = startTimeReset;
-                        startTime = barTime + startTime;
-                        bsm.batterySpawnLoad();
-                        lsm.lightbulbSpawnLoad();
-                        SoundManager.instance.PlayWaveCompleteAudio(waveCompleteAudio);
-                    }
+				numberOfEnemies = 0;
+				hordeSpawnTime = startTimeReset;
+				startTime = startTimeReset;
+				startTime = barTime + startTime;
+				bsm.batterySpawnLoad ();
+				lsm.lightbulbSpawnLoad ();
+				SoundManager.instance.PlayWaveCompleteAudio (waveCompleteAudio);
 			}
+		} 
 	}
 
 	void showLoadingScreen (){

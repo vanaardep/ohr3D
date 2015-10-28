@@ -19,8 +19,7 @@ public class MainMenu : MonoBehaviour {
     public GUIStyle secondaryFont;
 
     bool loading = false;
-    // public static bool splash = true;
-    public static bool splash = false;
+    public static bool splash = true;
 	bool menuSelect = false;
     bool started = false;
 
