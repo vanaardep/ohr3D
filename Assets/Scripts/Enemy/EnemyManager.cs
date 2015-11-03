@@ -59,7 +59,7 @@ public class EnemyManager : MonoBehaviour {
 		aliveNumberOfEnemies = 0;
         numGoliath = 0;
 
-        waveTimeConst = 60;//120
+        waveTimeConst = 60;//60
         waveTimeLimit = waveTimeConst;//PERIOD TO LAST AFTER EVERY ENEMY HAS SPAWNED
 
         loading_video = (MovieTexture) Resources.Load( "loading" , typeof( MovieTexture ) );
@@ -126,7 +126,7 @@ public class EnemyManager : MonoBehaviour {
 		barTime += Time.deltaTime;
         
 
-		if (hordeWaveCount == maxHordeWaves)
+		if (hordeWaveCount == maxHordeWaves + 1) //+1 amd commented
         {
 			// Win level
 			SoundManager.instance.PlayLevelCompleteAudio(levelCompleteAudio);
