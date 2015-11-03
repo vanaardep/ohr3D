@@ -80,9 +80,9 @@ public class EnemyManager : MonoBehaviour {
 		//LEVEL 2
 		//=======
 		if (Application.loadedLevelName == "Level2") {
-			spawnrate = 2f;
+			spawnrate = 1f;
 			startTime = 60f;
-			enemiesPerWave = 17;
+			enemiesPerWave = 20;
 			maxHordeWaves = 3;//2
             GoliathLimit = 4;
             nxtLvl = "Level3";
@@ -94,7 +94,7 @@ public class EnemyManager : MonoBehaviour {
 		if (Application.loadedLevelName == "Level3") {
 			spawnrate = 1f;
 			startTime = 30f;
-			enemiesPerWave = 25;
+			enemiesPerWave = 40;
 			maxHordeWaves = 3;
             GoliathLimit = 5;
             nxtLvl = "Credit_Video";
@@ -126,7 +126,7 @@ public class EnemyManager : MonoBehaviour {
 		barTime += Time.deltaTime;
         
 
-		if (hordeWaveCount == maxHordeWaves + 1)
+		if (hordeWaveCount == maxHordeWaves)
         {
 			// Win level
 			SoundManager.instance.PlayLevelCompleteAudio(levelCompleteAudio);
