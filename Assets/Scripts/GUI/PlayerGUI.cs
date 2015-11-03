@@ -11,6 +11,7 @@ public class PlayerGUI : MonoBehaviour {
 	public Texture2D gui_health;
 	public GUIStyle mainFont;
 	public GUIStyle smallFont;
+	public GUIStyle keyFont;
 
 	public string imageFolderName = "Health circle pieces";
 	//public ArrayList pictures = new ArrayList();
@@ -43,7 +44,8 @@ public class PlayerGUI : MonoBehaviour {
 		}
 
 		// Hotkeys
-		GUI.DrawTexture(new Rect(Screen.width / 2 - 115, Screen.height - 55, 230, 55), gui_hotkeys, ScaleMode.StretchToFill, true, 0F);
+		GUI.Label(new Rect(Screen.width / 2 - 150, Screen.height - 130, 295, 75), "Hotkeys", keyFont);
+		GUI.DrawTexture(new Rect(Screen.width / 2 - 150, Screen.height - 75, 295, 75), gui_hotkeys, ScaleMode.StretchToFill, true, 0F);
 
 		// Lightbulbs
 		GUI.DrawTexture(new Rect(170, 20, 50, 50), gui_lightbulbs, ScaleMode.ScaleToFit, true, 0F);

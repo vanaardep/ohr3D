@@ -132,7 +132,7 @@ public class HoverMenu : MonoBehaviour {
 				}
 
 			}
-			if(GUI.Button (new Rect (posx, posy + 45, 30, 30), gui_upgrade, mainFont))
+			if(GUI.Button (new Rect (posx, posy + 55, 30, 30), gui_upgrade, mainFont))
 			{
 				if(thisObj.tag == "Pylon")
 				{
@@ -187,7 +187,7 @@ public class HoverMenu : MonoBehaviour {
 					}
 				}
 			}
-			if(GUI.Button (new Rect (posx + 45, posy + 45, 30, 30), gui_destroy, mainFont))
+			if(GUI.Button (new Rect (posx + 45, posy + 55, 30, 30), gui_destroy, mainFont))
 			{
 				SoundManagerMenu.instance.PlayMainMenuClickAudio(hoverMenuClickSound);
 				if(thisObj.tag == "Pylon")
