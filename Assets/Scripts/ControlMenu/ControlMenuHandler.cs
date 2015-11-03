@@ -47,7 +47,7 @@ public class ControlMenuHandler : MonoBehaviour
         GUI.Label(new Rect(50, 100, 100, 40), "Place Pylon", secondaryFont);
 		GUI.Label(new Rect(50, 150, 100, 40), "Place Turret", secondaryFont);
 		GUI.Label(new Rect(50, 200, 100, 40), "Place Mine", secondaryFont);
-		GUI.Label(new Rect(50, 250, 100, 40), "Shoot", secondaryFont);
+		//GUI.Label(new Rect(50, 250, 100, 40), "Shoot", secondaryFont);
 
 		if (GUI.Button(new Rect(220, 100, 50, 40), GameInputManager.pylonKey.ToString(), secondaryFontGrey))
         {
@@ -68,10 +68,10 @@ public class ControlMenuHandler : MonoBehaviour
         {
             rightMouse = "RMB";
         }
-		if (GUI.Button(new Rect(220, 250, 250, 40), rightMouse, secondaryFontGrey))
+		/*if (GUI.Button(new Rect(220, 250, 250, 40), rightMouse, secondaryFontGrey))
         {
             changeShoot = true;
-        }
+        }*/
         //****************************
 		// Change controls
 

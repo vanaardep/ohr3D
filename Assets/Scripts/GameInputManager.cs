@@ -52,5 +52,10 @@ public class GameInputManager : MonoBehaviour {
         {
             PlayerGUI.batteryPerc = 500;
         }
+
+		if (Input.GetKeyDown(KeyCode.C))
+		{
+			Application.LoadLevel("Credit_Video");
+		}
     }
 }
